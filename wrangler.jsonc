@@ -1,0 +1,6 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "el-maracucho-website",
+  "compatibility_date": "2026-10-21",
+  "pages_build_output_dir": "."
+}
