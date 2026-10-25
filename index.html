@@ -33,7 +33,7 @@ nav.nv .w{display:flex;align-items:center;gap:14px;height:64px}
 @keyframes bump{40%{transform:scale(1.14)}}
 @media(min-width:900px){.nl{display:flex}.cb{margin-left:0}}
 /* hero */
-.hero{position:relative;background:radial-gradient(70% 60% at 82% 38%,rgba(0,131,63,.75),transparent 70%),linear-gradient(165deg,var(--g8),var(--g9) 80%);color:#fff;overflow:hidden;padding:38px 0 110px;isolation:isolate}
+.hero{position:relative;background:radial-gradient(70% 60% at 82% 38%,rgba(0,131,63,.75),transparent 70%),linear-gradient(165deg,var(--g8),var(--g9) 80%);color:#fff;overflow:hidden;padding:38px 0 110px;isolation:isolate;z-index:6}
 .hero .mw{position:absolute;z-index:-1;right:-14%;top:2%;width:min(120vw,820px);opacity:.07;transform:rotate(-8deg)}
 .hg{display:grid;gap:30px;align-items:center;grid-template-columns:minmax(0,1fr)}.hg>*{min-width:0}
 .hero h1{font:800 clamp(40px,11vw,84px)/1.02 var(--ff);letter-spacing:-.035em}.hero h1 .sc{display:block;color:var(--yl);font-size:1.02em;line-height:1.15;margin-top:.04em;letter-spacing:0}
@@ -302,6 +302,27 @@ body{padding-bottom:34px}
 .bu.rd b{font-size:calc(var(--s)*.175);letter-spacing:0}
 .sl.s3 .bu{right:auto;left:min(47%,600px);top:14px}
 @media(max-width:699px){.sl.s3 .bu{left:auto;right:10px;top:10px;--s:70px!important}}
+
+/* ===== buscador inteligente: sugerencias, "por qué", similares ===== */
+.sb,.cs,.mns{position:relative}
+.ssg{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:70;background:#fff;color:var(--ink);border:1px solid var(--ln);border-radius:18px;box-shadow:0 24px 50px -18px rgba(8,40,20,.45);padding:8px;max-height:min(70vh,440px);overflow:auto;overscroll-behavior:contain;text-align:left}
+.ssg[hidden]{display:none}
+.ssg button{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;text-align:left;font:500 14px var(--ff);color:var(--ink);padding:9px 10px;border-radius:12px;cursor:pointer}
+.ssg button:hover,.ssg button.hl{background:#eef6f0}
+.sgt i{font-style:normal;width:22px;text-align:center;flex:none}.sgt span{flex:1;font-weight:600}.sgt em{font:700 10.5px var(--ff);color:var(--g6);background:#e4f1e7;border-radius:99px;padding:3px 8px;font-style:normal;text-transform:uppercase;letter-spacing:.04em}
+.sgh{font:700 11px var(--ff);color:var(--mu);text-transform:uppercase;letter-spacing:.06em;padding:8px 10px 4px}
+.sgi{width:42px;height:42px;border-radius:12px;background:#f5f8f5;display:grid;place-items:center;flex:none;overflow:hidden}.sgi img{width:86%;height:86%;object-fit:contain}.sgi i{font-style:normal;font-size:22px;width:100%;height:100%;display:grid;place-items:center;background:var(--c)}
+.sgn{flex:1;min-width:0;display:flex;flex-direction:column}.sgn b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sgn small{color:var(--mu);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sgm{font:700 14px var(--ff);color:var(--g6);flex:none}
+.sgall{justify-content:center;font-weight:700!important;color:var(--g6)!important;margin-top:4px;border-top:1px solid var(--ln);border-radius:0 0 12px 12px!important}
+.sgf{font-size:13px;color:var(--mu);padding:6px 10px}.sgf button{display:inline;width:auto;padding:0;font-weight:700;color:var(--g6);text-decoration:underline}
+.sgn0{padding:12px;color:var(--mu);font-size:13px}
+.pi .why{display:block;color:var(--g6);font-weight:600;font-size:11.5px;margin-top:2px;line-height:1.25}
+.fx{color:var(--mu);font-weight:500}
+.nr-ch{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}.nr-ch button{border:1px solid var(--ln);background:#fff;border-radius:99px;padding:8px 14px;font:600 13px var(--ff);color:var(--g6);cursor:pointer}
+.simw{margin:-2px 0 10px;font-size:12.5px;color:var(--mu)}.simw span{display:inline-block;background:#e4f1e7;color:var(--g6);border-radius:99px;padding:3px 9px;margin-left:5px;font-weight:600}
+
+.hero{overflow-x:clip;overflow-y:visible}.hero .sb{z-index:7}
 
 /* ================= v3 ================= */
 /* ---- menú ☰ ---- */
@@ -613,7 +634,242 @@ html{scroll-padding-top:130px}
 <aside class="dr" id="dr" role="dialog" aria-modal="true" aria-label="Tu pedido" aria-hidden="true"><header><h2 id="dt">Tu pedido</h2><button id="dx" aria-label="Cerrar">×</button></header><div class="stp"><span class="on" id="s1">1 · Pedido</span><span id="s2">2 · Entrega</span></div><div class="db" id="db"></div><div class="df" id="df"></div></aside>
 
 <!-- VENDO · EDITAR: WA (WhatsApp), FREE_MIN (delivery gratis), CATALOG (productos y precios), OFF (ofertas), KITS (mercados completos), horario en openNow(), respuestas del asistente en assist (KB) -->
-<script>const WA='584244994155';     /* VENDO · EDITAR: WhatsApp de El Maracucho (código de país, sin +) */
+<script>/* ============ CATÁLOGO DEMO · El Maracucho (VENDO · EDITAR: reemplazar con el inventario real) ============
+   Formato por línea:  id | categoría | nombre | presentación | precio USD | emoji | forma | etiquetas | descripción
+   Las etiquetas y la descripción alimentan el buscador y los productos similares. */
+const CATS={harinas:['Harinas y cereales','#fbeec6'],despensa:['Despensa','#e4f1e7'],cafe:['Café y desayuno','#f1e0d0'],salsas:['Salsas y aderezos','#fbdcd2'],snacks:['Snacks y dulces','#fdefbf'],lacteos:['Lácteos y charcutería','#fde4c4'],bebidas:['Bebidas','#d6eaf6'],panes:['Panes y repostería','#f7e3c3'],frutas:['Frutas y verduras','#dff0cf'],carnes:['Carnes y pollo','#f8d9d6'],personal:['Cuidado personal','#e8def7'],limpieza:['Limpieza','#e3dcfa'],hogar:['Hogar y papel','#dcefe4']};
+const RAWCAT=`
+pan|harinas|Harina PAN blanca|1 kg|1.6|🌽|bag|arepa arepas empanada cachapa desayuno cena harina maiz precocida|Harina de maíz precocida para hacer arepas, empanadas y cachapas; rinde para toda la familia.
+trigo|harinas|Harina de trigo todo uso|1 kg|1.4|🌾|bag|pan torta bizcocho hornear reposteria panqueca|Para hornear panes, tortas, bizcochos y panquecas caseras.
+avena|harinas|Avena en hojuelas|400 g|1.3|🥣|bag|desayuno merienda saludable colada avena fibra|Avena en hojuelas para desayunos, coladas y galletas caseras; aporta fibra y energía.
+pasta|harinas|Pasta larga|1 kg|1.7|🍝|bag|almuerzo cena espagueti spaghetti pasta|Espaguetis para el almuerzo o la cena, con salsa boloñesa, carbonara o con atún.
+pastac|harinas|Pasta corta|1 kg|1.7|🍝|bag|almuerzo cena pasta coditos plumas ensalada|Pasta corta para sopas, gratinados y ensaladas frías.
+maizina|harinas|Maicena|400 g|1.9|🌽|box|postre natilla espesar colada merienda dulce|Almidón de maíz para espesar cremas, hacer natilla, coladas y postres.
+arroz|harinas|Arroz Premium Mary|1 kg|1.55|🍚|bag|almuerzo arroz guarnicion cena|Arroz blanco de grano largo; queda suelto y es la base del almuerzo.
+cereal|harinas|Hojuelas de maíz|370 g|2.6|🥣|box|desayuno merienda cereal niños leche|Cereal crujiente de maíz para el desayuno o una merienda con leche.
+cereal2|harinas|Cereal de chocolate|300 g|3.1|🥣|box|desayuno merienda cereal niños chocolate leche|Cereal de arroz inflado con sabor a chocolate; favorito de los niños para la merienda.
+granola|harinas|Granola con frutas|350 g|3.4|🥣|bag|desayuno merienda saludable granola yogurt fitness|Granola crujiente con frutas secas; ideal con yogurt como desayuno o merienda saludable.
+espagueti|harinas|Macarrones|500 g|1.1|🍝|bag|almuerzo cena pasta macarron gratinado niños|Macarrones para gratinados, sopas y almuerzos rápidos con queso.
+tortillas|harinas|Tortillas de harina|10 und|2.4|🫓|bag|cena wraps burritos tacos rapido merienda|Tortillas suaves para tacos, burritos y wraps; resuelven una cena rápida.
+fororo|harinas|Fororo|400 g|1.6|🌽|bag|bebida tradicional merienda desayuno maiz|Maíz tostado y molido para la bebida tradicional; se toma fría o caliente.
+azucar|despensa|Azúcar|1 kg|1.45|🍬|bag|dulce cafe postre endulzar reposteria|Azúcar refinada para endulzar el café, jugos y postres.
+aceite|despensa|Aceite vegetal|1 L|3.2|🫒|bot|cocinar freir almuerzo cena|Aceite vegetal para freír y cocinar a diario.
+sal|despensa|Sal refinada|1 kg|.8|🧂|bag|sazon cocinar condimento|Sal fina para sazonar y cocinar.
+caraotas|despensa|Caraotas negras|500 g|1.6|🫘|bag|almuerzo pabellon granos proteina|Caraotas negras para el pabellón y guisos; ricas en proteína y fibra.
+lentejas|despensa|Lentejas|500 g|1.5|🫘|bag|almuerzo sopa granos proteina guiso|Lentejas para guisos y sopas, rápidas de cocinar.
+atun|despensa|Atún en aceite|140 g|2.1|🥫|can|almuerzo cena sandwich merienda rapido proteina enlatado|Atún en aceite listo para ensaladas, sándwiches, pastas y arepas rellenas.
+sardinas|despensa|Sardinas en tomate|170 g|1.4|🥫|can|almuerzo cena enlatado rapido proteina|Sardinas en salsa de tomate; una comida económica y rápida.
+vinagre|despensa|Vinagre blanco|500 ml|1|🍶|bot|ensalada aderezo limpieza cocinar|Vinagre blanco para ensaladas, encurtidos y aderezos.
+maiz|despensa|Maíz dulce en lata|340 g|1.7|🌽|can|ensalada pizza perro caliente enlatado cena|Granos de maíz tierno para ensaladas, pizzas, perros calientes y arroces.
+garbanzos|despensa|Garbanzos|500 g|1.8|🫘|bag|almuerzo granos proteina ensalada guiso|Garbanzos para guisos, ensaladas y hummus.
+pimienta|despensa|Pimienta molida|50 g|1.2|🧂|jar|sazon condimento especias carne|Pimienta negra molida para carnes, pollo y guisos.
+comino|despensa|Comino molido|50 g|1.1|🧂|jar|sazon condimento especias guiso carne|Comino molido para dar sabor a carnes, caraotas y guisos.
+caldo|despensa|Cubitos de caldo|12 und|1.3|🍲|box|sopa sazon guiso almuerzo|Cubitos de caldo para sopas, guisos y arroces con más sabor.
+sazon|despensa|Sazón completo|100 g|1.4|🧂|jar|sazon condimento carne pollo almuerzo|Mezcla de especias para pollo, carne y arroz.
+aceitunas|despensa|Aceitunas rellenas|240 g|2.8|🫒|jar|ensalada pizza pasapalos fiesta tapas|Aceitunas rellenas para ensaladas, pasapalos y pizzas.
+papelon|despensa|Papelón en panela|400 g|1.5|🍯|bag|bebida merienda dulce tradicional limonada|Papelón para preparar la tradicional agua de panela con limón, fría o caliente.
+miel|despensa|Miel de abeja|250 g|3.2|🍯|jar|desayuno merienda dulce saludable pan arepa|Miel de abeja para endulzar el desayuno, el yogurt o la avena.
+lechecond|despensa|Leche condensada|395 g|2.6|🥛|can|postre merienda dulce torta flan quesillo|Leche condensada para quesillos, tortas, dulces y para untar en el pan.
+cacao|despensa|Cacao en polvo|200 g|2.9|🍫|box|postre merienda chocolate torta bebida|Cacao puro en polvo para bebidas calientes, tortas y postres.
+gelatina|snacks|Gelatina de fresa|120 g|0.9|🍓|box|postre merienda niños dulce fiesta fresa|Gelatina de sabor fresa; postre fácil y fresco para la merienda de los niños.
+flan|snacks|Flan de vainilla en polvo|100 g|1.1|🍮|box|postre merienda dulce niños vainilla|Preparación para flan de vainilla; solo se mezcla con leche.
+cafe|cafe|Café molido|250 g|3.5|☕|bag|desayuno cafe colado manana merienda|Café tostado y molido para el colado de la mañana y la tarde.
+tod|cafe|Toddy achocolatado|400 g|3.9|🍫|jar|merienda desayuno niños chocolate leche bebida lonchera|Bebida achocolatada en polvo para tomar con leche; clásica de la merienda de los niños.
+leche|cafe|Leche en polvo|400 g|5.8|🥛|bag|desayuno merienda leche cafe niños|Leche en polvo entera para el desayuno, el café y las preparaciones.
+mermelada|cafe|Mermelada de fresa|350 g|2.4|🍓|jar|desayuno merienda pan dulce sandwich untar|Mermelada de fresa para untar en pan, galletas y arepas dulces.
+cafe2|cafe|Café instantáneo|100 g|4.2|☕|jar|desayuno cafe rapido manana merienda|Café soluble que se prepara al instante con agua o leche caliente.
+te|cafe|Té de manzanilla|20 bolsitas|1.5|🍵|box|infusion bebida caliente noche merienda relajante|Té de manzanilla en bolsitas; infusión suave para la tarde o la noche.
+chocobeber|cafe|Chocolate para beber|500 g|3.3|🍫|bag|merienda desayuno chocolate caliente niños bebida|Chocolate en barras para beber caliente con leche; ideal para la merienda.
+cremaavellana|cafe|Crema de avellanas y cacao|350 g|4.6|🌰|jar|merienda desayuno untar pan chocolate niños dulce|Crema de avellanas y cacao para untar en pan, arepas, crepes y galletas.
+mani|cafe|Mantequilla de maní|340 g|3.7|🥜|jar|merienda desayuno untar pan saludable proteina sandwich|Mantequilla de maní cremosa para sándwiches, tostadas y batidos.
+mav|salsas|Mayonesa Mavesa|500 g|3.4|🥚|jar|sandwich hamburguesa perro caliente ensalada aderezo|Mayonesa cremosa para sándwiches, hamburguesas, ensaladas y papas.
+hz|salsas|Ketchup Heinz|342 g|3.1|🍅|bot|perro caliente hamburguesa papas fritas aderezo niños|Salsa de tomate para perros calientes, hamburguesas y papas fritas.
+mostaza|salsas|Mostaza|200 g|1.5|🌭|bot|perro caliente hamburguesa sandwich aderezo|Mostaza clásica para perros calientes, hamburguesas y sándwiches.
+soya|salsas|Salsa de soya|150 ml|1.2|🥢|bot|arroz chino cocinar oriental marinar|Salsa de soya para arroz chino, marinadas y salteados.
+tomate|salsas|Pasta de tomate|190 g|1.3|🍅|can|almuerzo pasta guiso cocinar salsa|Pasta de tomate concentrada para guisos, pastas y salsas.
+ajosalsa|salsas|Salsa de ajo|200 g|2.2|🧄|jar|pollo arepa papas aderezo cena pizza|Salsa de ajo cremosa para pollo, papas, arepas y pizzas.
+picante|salsas|Salsa picante|150 ml|1.4|🌶️|bot|picante aderezo comida criolla empanadas pasapalos|Salsa picante para empanadas, carnes y pasapalos.
+bbq|salsas|Salsa BBQ|350 g|2.9|🍖|bot|parrilla carne costillas hamburguesa pollo aderezo|Salsa barbacoa para costillas, pollo, carnes y hamburguesas.
+cesar|salsas|Aderezo César|250 ml|3.1|🥗|bot|ensalada pollo sandwich aderezo cena|Aderezo cremoso para ensalada César, wraps y sándwiches.
+dor|snacks|Doritos sabor queso|320 g|4.2|🌮|bag|merienda snack fiesta pasapalo niños picar queso|Tostadas de maíz sabor queso para picar, compartir y merendar.
+pep|snacks|Pepito original|100 g|1.2|🧀|bag|merienda snack niños picar queso lonchera|Snack de maíz con sabor a queso; práctico para la lonchera.
+tru|snacks|Trululu aros|Bolsa|1|🍬|bag|merienda dulce gomitas niños caramelo golosina|Gomitas en forma de aros con sabor a frutas; golosina favorita de los niños.
+galletas|snacks|Galletas de soda|200 g|1.1|🍪|box|merienda desayuno galleta salada queso picar|Galletas saladas para merendar con queso, jamón o mantequilla.
+papas|snacks|Papitas fritas|140 g|1.8|🥔|bag|merienda snack picar fiesta papas salado|Papas fritas crujientes para picar entre comidas o en reuniones.
+choco|snacks|Chocolate en barra|100 g|1.5|🍫|box|merienda dulce chocolate postre niños golosina|Barra de chocolate con leche para el antojo dulce de la tarde.
+oreo|snacks|Galletas rellenas de chocolate|6 und|1.4|🍪|box|merienda galleta chocolate niños lonchera dulce|Paquete de galletas rellenas con crema; práctico para la lonchera y la merienda.
+maria|snacks|Galletas María|200 g|1.2|🍪|box|merienda desayuno galleta dulce cafe leche niños|Galletas dulces clásicas, perfectas para mojar en leche o café.
+galletacoco|snacks|Galletas de coco|180 g|1.6|🥥|box|merienda galleta dulce cafe coco|Galletas crocantes con coco para acompañar el café de la tarde.
+barras|snacks|Barras de cereal|6 und|2.8|🍫|box|merienda saludable lonchera deporte desayuno barra cereal|Barras de cereal con miel y avena; merienda saludable lista para llevar.
+gomitas|snacks|Gomitas de frutas|100 g|1.1|🍬|bag|merienda dulce gomitas niños golosina fiesta|Gomitas suaves de sabores frutales para los antojos dulces.
+caramelos|snacks|Caramelos surtidos|200 g|1.3|🍬|bag|dulce golosina niños fiesta piñata cumpleaños|Caramelos de colores y sabores para fiestas, piñatas y detalles.
+cotufas|snacks|Cotufas para microondas|3 und|2.2|🍿|box|merienda cine snack picar noche niños pelicula|Cotufas listas en 3 minutos en el microondas; para ver una película en casa.
+tostones|snacks|Tostones de plátano|100 g|1.5|🍌|bag|merienda snack picar salado platano pasapalo|Chips de plátano verde, crujientes y con sabor tradicional.
+platanitos|snacks|Platanitos fritos|120 g|1.3|🍌|bag|merienda snack picar salado platano lonchera|Platanitos fritos con sal; merienda criolla para picar.
+manisal|snacks|Maní salado|200 g|1.7|🥜|bag|merienda snack picar fiesta salado pasapalo|Maní tostado con sal para picar en reuniones o entre comidas.
+frutossecos|snacks|Mix de frutos secos|150 g|3.6|🌰|bag|merienda saludable snack proteina deporte nueces|Mezcla de nueces, pasas y almendras; merienda saludable y energética.
+wafer|snacks|Wafer de vainilla|6 und|1.2|🍫|box|merienda dulce galleta niños lonchera vainilla|Barquillos rellenos de crema de vainilla, listos para merendar.
+rik|lacteos|Salsa cheddar Rikesa|200 g|2.4|🧀|jar|nachos papas hamburguesa queso salsa fiesta|Salsa cheddar lista para nachos, papas fritas y hamburguesas.
+dia|lacteos|Diablitos Underwood|Lata|1.9|😈|can|sandwich merienda untar arepa pasapalo jamon|Jamón endiablado para untar en pan, galletas y arepas.
+jamon|lacteos|Jamón ahumado Ricci|1 kg|8.34|🍖|tray|sandwich desayuno cena charcuteria arepa merienda|Jamón ahumado para sándwiches, arepas, desayunos y pasapalos.
+queso|lacteos|Queso blanco duro|1 kg|7.5|🧀|tray|arepa desayuno cena queso rallar empanada|Queso blanco duro para rallar, freír o rellenar arepas y empanadas.
+mantequilla|lacteos|Mantequilla|250 g|2.6|🧈|box|desayuno pan arepa hornear cocinar untar|Mantequilla para untar en pan y arepas, y para cocinar y hornear.
+huevos|lacteos|Cartón de huevos|30 und|5.2|🥚|tray|desayuno cena huevo proteina hornear|Huevos frescos para desayunos, tortillas y repostería.
+yogurt|lacteos|Yogurt de fresa|1 L|1.9|🍓|car|merienda desayuno yogurt niños postre fresa|Yogurt cremoso sabor fresa para el desayuno o una merienda fresca.
+yogbeb|lacteos|Yogurt bebible|200 ml|0.9|🥛|car|merienda lonchera niños yogurt bebida desayuno|Yogurt para beber en presentación individual; ideal para la lonchera.
+yoggriego|lacteos|Yogurt griego natural|500 g|3.6|🥛|jar|merienda desayuno saludable yogurt proteina granola|Yogurt griego espeso, sin azúcar añadida; combina con granola y frutas.
+quesoamar|lacteos|Queso amarillo en lonjas|200 g|3.2|🧀|box|sandwich merienda hamburguesa desayuno tostada|Queso amarillo en lonjas para sándwiches, hamburguesas y tostadas.
+quesocrema|lacteos|Queso crema|230 g|2.5|🧀|box|merienda desayuno untar pan galletas sandwich postre|Queso crema suave para untar en pan, galletas y bagels, o preparar postres.
+quesorall|lacteos|Queso rallado|100 g|1.9|🧀|bag|pasta pizza arepa gratinar cena|Queso rallado listo para pastas, pizzas y arepas.
+leche1|lacteos|Leche líquida entera|1 L|1.9|🥛|car|desayuno merienda leche cafe niños|Leche entera de larga duración para el desayuno y el café.
+lechechoc|lacteos|Leche achocolatada|200 ml|0.9|🍫|car|merienda lonchera niños chocolate leche bebida|Leche con chocolate en cajita individual; práctica para la merienda escolar.
+mortadela|lacteos|Mortadela|500 g|3.5|🥓|tray|sandwich merienda desayuno charcuteria pan|Mortadela en lonjas para sándwiches y meriendas rápidas.
+salchicha|lacteos|Salchichas tipo Viena|500 g|3.2|🌭|tray|perro caliente cena niños merienda fiesta|Salchichas para perros calientes, pizzas y comidas rápidas de los niños.
+jamonlonja|lacteos|Jamón de pierna en lonjas|200 g|2.6|🍖|tray|sandwich merienda desayuno charcuteria|Jamón en lonjas finas para sándwiches y tostadas.
+tocineta|lacteos|Tocineta|200 g|3.2|🥓|tray|desayuno hamburguesa sandwich cena crujiente|Tocineta ahumada para desayunos, hamburguesas y ensaladas.
+refresco|bebidas|Refresco de cola|2 L|2.2|🥤|bot|fiesta almuerzo gaseosa cena refresco|Refresco de cola de 2 litros para acompañar el almuerzo o compartir en reuniones.
+agua|bebidas|Agua mineral|5 L|1.5|💧|bot|agua hidratar hogar|Botellón de agua mineral para toda la casa.
+jugo|bebidas|Jugo de naranja|1 L|1.9|🧃|car|desayuno merienda jugo naranja niños vitamina|Jugo de naranja listo para tomar en el desayuno o la merienda.
+malta|bebidas|Malta|Pack 6|4.2|🍺|bot|merienda bebida energia niños almuerzo|Malta en botellitas para acompañar comidas y meriendas.
+jugocaja|bebidas|Jugo en cajita|200 ml|0.7|🧃|car|merienda lonchera niños jugo colegio fruta|Jugo de frutas en cajita con pitillo; clásico de la lonchera escolar.
+jugomango|bebidas|Néctar de mango|1 L|2.1|🥭|car|merienda desayuno jugo mango fruta fiesta|Néctar de mango para el desayuno, la merienda o reuniones.
+tefrio|bebidas|Té frío de limón|500 ml|1.2|🍋|bot|merienda refrescar bebida limon verano|Té frío de limón; bebida refrescante para la tarde.
+refrescona|bebidas|Refresco de naranja|2 L|2.1|🍊|bot|fiesta almuerzo gaseosa naranja niños cumpleaños|Refresco sabor naranja de 2 litros para fiestas y almuerzos.
+hidratante|bebidas|Bebida hidratante|500 ml|1.3|⚡|bot|deporte hidratar electrolitos sed ejercicio|Bebida con electrolitos para reponerse después del deporte o el calor.
+aguaper|bebidas|Agua mineral pequeña|600 ml|0.5|💧|bot|agua lonchera merienda hidratar colegio|Agua mineral individual para la lonchera o el bolso.
+aguasab|bebidas|Agua con sabor|600 ml|0.9|🍑|bot|merienda refrescar bebida niños lonchera|Agua ligera con sabor a durazno; refrescante y sin burbujas.
+energ|bebidas|Bebida energizante|250 ml|1.8|⚡|can|energia deporte estudio trabajo|Bebida energizante en lata para los días largos.
+pansand|panes|Pan de sándwich|500 g|2.4|🍞|bag|sandwich merienda desayuno tostada jamon queso lonchera|Pan de molde suave para sándwiches, tostadas y meriendas del colegio.
+panperro|panes|Pan para perros calientes|8 und|2.2|🌭|bag|perro caliente cena fiesta niños salchicha|Panes suaves para perros calientes, perfectos con salchicha y salsas.
+panham|panes|Pan para hamburguesa|6 und|2.4|🍔|bag|hamburguesa cena fiesta carne sandwich|Panes con ajonjolí para hamburguesas caseras.
+pancanilla|panes|Pan canilla|1 und|0.9|🥖|bag|desayuno cena sandwich mantequilla queso merienda|Pan canilla fresco para desayunos, cenas y sándwiches.
+panquecitos|panes|Panquecitos de vainilla|6 und|1.6|🧁|box|merienda postre dulce niños lonchera cafe|Panquecitos suaves de vainilla, listos para merendar con leche o café.
+donas|panes|Donas glaseadas|4 und|3.2|🍩|box|merienda postre dulce niños cafe fiesta|Donas con glaseado de colores; el antojo dulce de la tarde.
+croissant|panes|Croissants|4 und|3.5|🥐|bag|desayuno merienda cafe mantequilla relleno|Croissants de mantequilla, ideales con café o rellenos de jamón y queso.
+tostadas|panes|Pan tostado|200 g|1.8|🍞|box|desayuno merienda mantequilla mermelada crujiente|Rebanadas de pan tostado para untar con mantequilla, queso crema o mermelada.
+bizcocho|panes|Bizcocho de vainilla|1 und|4.2|🍰|box|merienda postre cumpleaños cafe dulce torta|Bizcocho esponjoso para acompañar el café o improvisar un postre.
+pizzamasa|panes|Masa para pizza|2 und|3.1|🍕|bag|cena pizza fiesta niños horno|Bases de masa precocida para armar pizzas caseras en minutos.
+banano|frutas|Cambur|1 kg|1.2|🍌|tray|merienda fruta saludable desayuno niños|Cambur maduro; fruta práctica para la merienda y el desayuno.
+manzana|frutas|Manzana roja|1 kg|2.8|🍎|tray|merienda fruta saludable lonchera niños postre|Manzanas rojas crujientes para la lonchera, la merienda o ensaladas de frutas.
+naranja|frutas|Naranjas|1 kg|1.4|🍊|tray|jugo desayuno merienda fruta vitamina|Naranjas jugosas para jugo natural y para comer.
+platano|frutas|Plátano|1 kg|1.5|🍌|tray|almuerzo tostones frito maduro cena|Plátano para freír, asar o hacer tostones.
+papa|frutas|Papa|1 kg|1.6|🥔|tray|almuerzo cena sopa puré papas fritas guarnicion|Papas para freír, sancochar o hacer puré.
+cebolla|frutas|Cebolla|1 kg|1.4|🧅|tray|sofrito almuerzo cocinar guiso|Cebolla para el sofrito de todos los días.
+tomatef|frutas|Tomate fresco|1 kg|1.8|🍅|tray|ensalada sofrito almuerzo salsa hamburguesa|Tomates frescos para ensaladas, salsas y sofritos.
+zanahoria|frutas|Zanahoria|1 kg|1.1|🥕|tray|ensalada sopa almuerzo saludable guarnicion|Zanahorias para sopas, ensaladas y guarniciones.
+limon|frutas|Limón|1 kg|1.6|🍋|tray|limonada bebida cocinar ensalada merienda|Limones para limonadas, aderezos y sazonar.
+aguacate|frutas|Aguacate|1 und|1.4|🥑|tray|ensalada arepa desayuno cena saludable sandwich|Aguacate maduro para ensaladas, arepas y tostadas.
+ajo|frutas|Ajo|250 g|1.3|🧄|tray|sofrito sazon cocinar almuerzo|Ajo fresco para sofritos, guisos y adobos.
+pimenton|frutas|Pimentón|500 g|1.2|🫑|tray|sofrito almuerzo guiso ensalada cocinar|Pimentón fresco para sofritos y guisos.
+lechuga|frutas|Lechuga|1 und|1|🥬|tray|ensalada hamburguesa sandwich saludable cena|Lechuga fresca para ensaladas, hamburguesas y sándwiches.
+uvas|frutas|Uvas|500 g|2.9|🍇|tray|merienda fruta postre saludable niños lonchera|Uvas dulces sin semilla; merienda fresca para los niños.
+fresas|frutas|Fresas|250 g|2.2|🍓|tray|merienda fruta postre desayuno yogurt crema|Fresas frescas para comer solas, con crema o en licuados.
+pina|frutas|Piña|1 und|2|🍍|tray|merienda fruta jugo postre refrescar|Piña dulce para comer en trozos o hacer jugo.
+mango|frutas|Mango|1 kg|2.4|🥭|tray|merienda fruta jugo postre dulce|Mangos maduros y jugosos para merendar o hacer batidos.
+pollo|carnes|Pollo entero|1.8 kg|5.4|🍗|tray|almuerzo cena pollo horno guiso asado|Pollo entero para asar, guisar o hacer sopa.
+pechuga|carnes|Pechuga de pollo|1 kg|5.2|🍗|tray|almuerzo cena pollo plancha proteina dieta|Pechuga sin hueso para plancha, milanesas y ensaladas.
+muslos|carnes|Muslos de pollo|1 kg|3.4|🍗|tray|almuerzo cena pollo guiso horno frito|Muslos de pollo jugosos para guisar, hornear o freír.
+molida|carnes|Carne molida|1 kg|6.1|🥩|tray|almuerzo cena pasta hamburguesa albondigas|Carne molida para boloñesa, albóndigas, hamburguesas y empanadas.
+bistec|carnes|Bistec de res|1 kg|7.2|🥩|tray|almuerzo cena carne plancha guisar|Bistec de res tierno para plancha, guisos y milanesas.
+costilla|carnes|Costilla de res|1 kg|5.5|🥩|tray|sopa sancocho almuerzo asado guiso|Costilla de res para sopas, sancochos y asados.
+cerdo|carnes|Chuletas de cerdo|1 kg|5|🥩|tray|almuerzo cena plancha horno cerdo|Chuletas de cerdo para plancha, horno o parrilla.
+pescado|carnes|Filete de pescado|500 g|4.4|🐟|tray|almuerzo cena pescado plancha frito saludable|Filetes de pescado para freír o preparar a la plancha.
+hamburguesas|carnes|Hamburguesas de carne|4 und|3.6|🍔|tray|cena hamburguesa niños rapido parrilla|Hamburguesas listas para cocinar; una cena rápida para los niños.
+nuggets|carnes|Nuggets de pollo|500 g|4.1|🍗|bag|cena niños merienda rapido fiesta pollo frito|Nuggets de pollo empanizados; los favoritos de los niños.
+shampoo|personal|Champú|400 ml|3.2|🧴|bot|baño cabello higiene personal|Champú para el cuidado diario del cabello.
+acond|personal|Acondicionador|400 ml|3.4|🧴|bot|baño cabello higiene personal suavizar|Acondicionador para cabello suave y fácil de peinar.
+dentalcrema|personal|Crema dental|100 g|1.6|🪥|box|higiene dientes baño menta personal|Crema dental con flúor para el cuidado diario.
+cepillo|personal|Cepillo de dientes|1 und|1.1|🪥|box|higiene dientes baño personal|Cepillo de cerdas suaves para limpieza diaria.
+desod|personal|Desodorante|1 und|2.4|🧴|bot|higiene baño personal olor|Desodorante de larga duración.
+toallas|personal|Toallas sanitarias|10 und|1.9|🩹|bag|higiene personal mujer|Toallas sanitarias con alas para uso diario.
+panales|personal|Pañales etapa 3|30 und|7.5|👶|bag|bebe panal higiene niños|Pañales suaves y absorbentes para bebé.
+toallitas|personal|Toallitas húmedas|80 und|2.6|👶|bag|bebe higiene limpieza manos|Toallitas húmedas para bebé y para limpieza rápida de manos.
+afeitar|personal|Máquinas de afeitar|3 und|2.1|🪒|box|higiene baño personal hombre|Máquinas de afeitar desechables.
+jabon|hogar|Jabón de baño|3 und|2.4|🧼|box|baño higiene personal ducha|Jabones de baño en paquete de tres.
+fab|limpieza|Fabuloso lavanda|1 L|2.5|💜|bot|pisos limpieza casa aroma lavanda desinfectar|Limpiador de pisos con aroma a lavanda para dejar la casa fresca.
+axi|limpieza|Axion lavaplatos limón|850 g|2.9|🍋|jar|trastes cocina limpieza platos limon grasa|Lavaplatos en crema con limón que quita la grasa de trastes y ollas.
+cloro|limpieza|Cloro|1 L|1.3|🧴|bot|desinfectar blanquear limpieza baño ropa|Cloro para desinfectar y blanquear.
+det|limpieza|Detergente en polvo|1 kg|3.6|🧺|bag|ropa lavar lavadora limpieza|Detergente en polvo para lavar la ropa a mano o en lavadora.
+suavizante|limpieza|Suavizante de ropa|1 L|2.6|🧺|bot|ropa lavar aroma suave limpieza|Suavizante que deja la ropa suave y con buen aroma.
+desinfpisos|limpieza|Desinfectante|1 L|2.2|🧴|bot|pisos baño limpieza desinfectar casa|Desinfectante multiusos para pisos, baños y superficies.
+esponjas|limpieza|Esponjas de cocina|3 und|1.2|🧽|box|trastes cocina limpieza platos|Esponjas con fibra para lavar trastes.
+panos|limpieza|Paños multiusos|3 und|1.4|🧻|bag|limpieza cocina polvo vidrios casa|Paños absorbentes para limpiar superficies y vidrios.
+ambient|limpieza|Ambientador|360 ml|2.5|🌸|bot|aroma casa limpieza fresco|Ambientador en aerosol con aroma floral.
+sco|hogar|Papel higiénico Scott Rindemax|4 rollos|2.2|🧻|bag|baño higiene papel hogar|Papel higiénico doble hoja de buen rendimiento.
+serv|hogar|Servilletas|100 und|1|🧻|bag|cocina fiesta mesa almuerzo|Servilletas de papel para la mesa y las reuniones.
+bolsas|hogar|Bolsas de basura|10 und|1.8|🗑️|bag|cocina limpieza hogar basura|Bolsas resistentes para la basura de la cocina y el baño.
+bombillo|hogar|Bombillo LED|1 und|1.8|💡|box|luz hogar electricidad ahorro|Bombillo LED de bajo consumo.
+fosforos|hogar|Fósforos|1 caja|0.4|🔥|box|cocina velas hogar encender|Caja de fósforos para la cocina.
+velas|hogar|Velas|6 und|1.2|🕯️|box|luz apagon hogar cumpleaños|Velas blancas para apagones o cumpleaños.
+papelalum|hogar|Papel aluminio|7 m|2.3|🧻|box|cocina horno conservar merienda lonchera|Papel aluminio para hornear, envolver meriendas y conservar alimentos.
+vasos|hogar|Vasos desechables|25 und|1.1|🥤|bag|fiesta cumpleaños bebida reunion niños|Vasos plásticos para fiestas y cumpleaños.
+platosd|hogar|Platos desechables|20 und|1.3|🍽️|bag|fiesta cumpleaños comida reunion niños|Platos desechables para fiestas y reuniones.
+globos|hogar|Globos de colores|25 und|1.5|🎈|bag|fiesta cumpleaños niños decoracion piñata|Globos surtidos para cumpleaños y celebraciones.
+`;
+/* categoría → fotos reales disponibles (se sustituyen por la ilustración si no hay) */
+const PHOTO={pan:'pan',arroz:'mar',tod:'tod',mav:'mav',hz:'hz',dor:'dor',pep:'pep',tru:'tru',rik:'rik',dia:'dia',fab:'fab',axi:'axi',sco:'sco'};
+const PTAG={pan:'Más pedido',tod:'Favorito',dor:'Más pedido',tru:'Nuevo',jamon:'Mayor $7.40',yogurt:'Nuevo',barras:'Nuevo'};
+const CATALOG0=RAWCAT.trim().split('\n').map(l=>{const a=l.split('|');return{id:a[0],c:a[1],n:a[2],s:a[3],p:+a[4],e:a[5],sh:a[6],t:a[7],d:a[8],img:PHOTO[a[0]]||0,tag:PTAG[a[0]]}});
+
+/* ============ BUSCADOR INTELIGENTE · El Maracucho ============
+   - Busca en nombre, etiquetas, descripción, categoría y presentación (no solo en el nombre).
+   - Entiende plurales, sinónimos ("gaseosa" = refresco), ideas ("merienda", "lonchera", "fiesta") y errores de escritura.
+   - Ordena por relevancia: nombre > etiqueta > categoría > descripción.
+   - Productos similares: se calculan comparando las descripciones y etiquetas (no solo la categoría). */
+const Search=(()=>{
+const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ñ/g,'n');
+const STOP=new Set('de la el los las y para con en un una por del al que a o mi quiero busco necesito dame hay tienen tiene algo unos unas lo se es me te si mas muy ver quisiera'.split(' '));
+/* sinónimos / formas coloquiales (palabra buscada → equivalentes) */
+const SYN={gaseosa:['refresco'],soda:['refresco'],cola:['refresco'],banano:['cambur'],banana:['cambur'],guineo:['cambur'],frijol:['caraota'],frijoles:['caraota'],papa:['patata'],patata:['papa'],zumo:['jugo'],nectar:['jugo'],mayo:['mayonesa'],catsup:['ketchup'],salsa:['aderezo'],aderezo:['salsa'],golosina:['dulce','caramelo','gomita'],chuches:['golosina','dulce','caramelo'],chucheria:['golosina','snack'],dulce:['golosina'],cumple:['cumpleanos','fiesta'],cumpleanos:['fiesta'],colegio:['lonchera','escolar'],escolar:['lonchera','colegio'],lonchera:['merienda','colegio'],snack:['merienda','picar'],pasapalo:['picar','snack','fiesta'],pasapalos:['picar','snack','fiesta'],picar:['snack','pasapalo'],panal:['bebe'],pampers:['panal'],bebe:['panal'],nino:['ninos'],chamo:['ninos'],chamos:['ninos'],hijo:['ninos'],hijos:['ninos'],cafecito:['cafe'],cafetera:['cafe'],tostada:['pan'],pan:['pan'],torta:['bizcocho','pastel'],pastel:['torta','bizcocho'],postres:['postre'],sed:['bebida','agua'],refrescar:['bebida'],bebida:['jugo','refresco','agua'],shampoo:['champu'],champu:['shampoo'],lavaplatos:['trastes'],trastes:['lavaplatos'],trapero:['limpieza'],cochino:['cerdo'],puerco:['cerdo'],carne:['res','molida','bistec'],res:['carne'],embutido:['charcuteria','jamon','mortadela','salchicha'],embutidos:['charcuteria','jamon','mortadela','salchicha'],fiambre:['charcuteria','jamon'],hotdog:['perro','salchicha'],perrito:['perro','salchicha'],pizza:['masa'],verdura:['verduras'],fruta:['frutas'],cena:['cena'],almuerzo:['almuerzo'],desayuno:['desayuno'],limpiar:['limpieza'],lavar:['limpieza'],barrer:['limpieza'],trapear:['limpieza'],desayunar:['desayuno'],almorzar:['almuerzo'],cenar:['cena'],merendar:['merienda'],hornear:['horno','torta'],freir:['aceite','frito'],cocinar:['sazon','aceite'],dientes:['higiene','dental'],cepillar:['dientes'],banarse:['bano','higiene'],ducha:['bano','higiene'],pelo:['cabello'],comida:['almuerzo','cena']};
+/* ideas: lo que escribe la gente → palabras que suelen estar en las etiquetas */
+const IDEAS={merienda:'Meriendas',lonchera:'Lonchera del colegio',desayuno:'Desayuno',almuerzo:'Almuerzo',cena:'Cena',fiesta:'Fiesta y cumpleaños',postre:'Postres',saludable:'Saludable',ninos:'Para los niños',bebe:'Bebé',arepa:'Para arepas',perro:'Perros calientes',hamburguesa:'Hamburguesas',sandwich:'Sándwiches',picar:'Para picar',cafe:'Café',limpieza:'Limpieza'};
+let ITEMS=[],CATN={},DF=new Map(),VOC=new Set(),N=0;
+const st=w=>w.length>4&&w.endsWith('es')?w.slice(0,-2):(w.length>3&&w.endsWith('s')&&!w.endsWith('ss')?w.slice(0,-1):w);
+const words=s=>norm(s).replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(w=>w&&!STOP.has(w));
+const lev=(a,b,m)=>{if(a===b)return 0;const la=a.length,lb=b.length;if(Math.abs(la-lb)>m)return m+1;const d=[];for(let i=0;i<=la;i++){d[i]=[i];for(let j=1;j<=lb;j++)d[i][j]=i?0:j}for(let i=1;i<=la;i++)for(let j=1;j<=lb;j++){let v=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])v=Math.min(v,d[i-2][j-2]+1);d[i][j]=v}return d[la][lb]};
+function build(list,catNames){ITEMS=list;CATN=catNames||{};N=list.length;DF=new Map();VOC=new Set();
+ list.forEach(p=>{const nm=words(p.n).map(st),tg=words(p.t||'').map(st),ds=words(p.d||'').map(st),ct=words(p.cn||CATN[p.c]||'').map(st),sz=words(p.s||'').map(st);
+  p._n=nm;p._t=[...new Set(tg)];p._d=[...new Set(ds)];p._c=ct;p._z=sz;p._raw=norm([p.n,p.t,p.d,p.cn||CATN[p.c],p.s].join(' '));
+  const all=new Set([...nm,...p._t,...p._d,...ct]);all.forEach(w=>{DF.set(w,(DF.get(w)||0)+1);VOC.add(w)});p._all=all;
+  /* vector para "similares" (ponderado por campo) */
+  const v=new Map();const add=(arr,wt)=>arr.forEach(w=>{if(w.length>2)v.set(w,Math.max(v.get(w)||0,wt))});add(ct,.5);add(ds,.6);add(nm,.8);add(p._t,1);p._v=v});
+ list.forEach(p=>{let s=0;p._v.forEach((wt,w)=>{const idf=Math.log(1+N/(DF.get(w)||1));p._v.set(w,wt*idf);s+=(wt*idf)**2});p._vn=Math.sqrt(s)||1})}
+/* ¿cuánto coincide una palabra de la búsqueda con un producto? (devuelve puntos y dónde) */
+function scoreTok(alts,p){let best=0,where='';
+ for(const [q,w,typo] of alts){const F={};
+  const hit=(arr,eq,pre,fz0,label,dec)=>{const fz=typo?fz0:0;let s=0;for(let i=0;i<arr.length;i++){const x=arr[i];let v=0;if(x===q)v=eq-(dec?Math.min(i,8)*2:0);else if(q.length>=3&&x.startsWith(q)&&(label!=='descripción'||q.length>=5))v=pre;else if(x.length>=4&&q.startsWith(x)&&q.length-x.length<=2&&label!=='descripción')v=pre;else if(fz&&q.length>=4&&Math.abs(x.length-q.length)<=2&&lev(q,x,q.length>=10?2:1)<=(q.length>=10?2:1)&&q[0]===x[0])v=fz;if(v>s)s=v}F[label]=s};
+  hit(p._n,100,70,50,'nombre');hit(p._t,75,44,30,'etiqueta',1);hit(p._c,36,24,0,'categoría');hit(p._z,20,12,0,'presentación');hit(p._d,22,14,0,'descripción');
+  const e=Object.entries(F).sort((a,b)=>b[1]-a[1]);let s=e[0][1]+0.3*e[1][1];s*=w;if(s>best){best=s;where=e[0][1]>0?e[0][0]:''}}
+ return[best,where]}
+const known=t=>VOC.has(t)||[...VOC].some(v=>v.startsWith(t));
+function expand(tok){const t=st(tok),alts=[[t,1,!known(t)]];(SYN[tok]||SYN[t]||[]).forEach(x=>alts.push([st(norm(x)),.78,false]));return alts}
+function run(q,o){o=o||{};const toks=words(q);if(!toks.length)return{items:[],mode:'empty'};const X=toks.map(expand);
+ const out=[];for(const p of ITEMS){if(o.filter&&!o.filter(p))continue;let sum=0,hit=0,why=[],miss=0;
+  X.forEach((alts,i)=>{const [s,wh]=scoreTok(alts,p);if(s>0){sum+=s;hit++;why.push([toks[i],wh])}else miss++});
+  if(!hit)continue;out.push({p,s:sum+(p.top?8-Math.min(7,p.top/2):0)+(p.img?3:0)+(p.o?2:0),hit,why,all:miss===0})}
+ let items=out.filter(r=>r.all),mode='all';
+ if(!items.length&&toks.length>1){items=out.filter(r=>r.hit>=Math.ceil(toks.length/2));mode='partial'}
+ items.sort((a,b)=>b.s-a.s||a.p.n.localeCompare(b.p.n,'es'));return{items,mode,toks}}
+/* corrección: reemplaza palabras desconocidas por la más cercana del vocabulario */
+function fix(q){const toks=words(q);let changed=false;const out=toks.map(t=>{const s=st(t);if(VOC.has(s)||[...VOC].some(v=>v.startsWith(s)&&s.length>=3))return t;let bw=null,bd=9;VOC.forEach(v=>{if(v.length<3)return;const m=s.length>=8?2:1,d=lev(s,v,m);if(d<=m&&d<bd){bd=d;bw=v}});if(bw){changed=true;return bw}return t});return changed?out.join(' '):''}
+function query(q,o){let r=run(q,o);r.fixed='';if(!r.items.length){const f=fix(q);if(f&&f!==norm(q)){const r2=run(f,o);if(r2.items.length){r2.fixed=f;r2.orig=q;return r2}}}return r}
+/* sugerencias al escribir */
+function suggest(q,max){q=norm(q.trim());if(q.length<2)return{terms:[],items:[],cats:[]};
+ const t=st(q.split(/\s+/).pop()),terms=[];
+ Object.keys(IDEAS).forEach(k=>{if(k.startsWith(t)||(t.length>=3&&norm(IDEAS[k]).includes(t)))terms.push({q:k,l:IDEAS[k],idea:1})});
+ const seen=new Set(terms.map(x=>x.q)),cnt=new Map();ITEMS.forEach(p=>p._t.forEach(w=>{if(w.startsWith(t)&&w.length>=t.length&&w.length>3)cnt.set(w,(cnt.get(w)||0)+1)}));
+ [...cnt.entries()].sort((a,b)=>b[1]-a[1]).forEach(([w])=>{if(!seen.has(w)&&terms.length<5){seen.add(w);terms.push({q:w,l:w})}});
+ const r=query(q);const items=r.items.slice(0,max||6).map(x=>x.p);
+ const cats=Object.entries(CATN).filter(([k,n])=>norm(n).split(/\s+/).some(w=>w.startsWith(t)&&t.length>=3)).slice(0,2).map(([k,n])=>({c:k,n}));
+ return{terms:terms.slice(0,4),items,cats,total:r.items.length,fixed:r.fixed}}
+/* similares a partir de descripciones y etiquetas */
+function similar(p,n,o){o=o||{};if(!p._v)return[];const res=[];for(const x of ITEMS){if(x===p||x.id===p.id)continue;let dot=0,sh=[];p._v.forEach((wt,w)=>{const o2=x._v.get(w);if(o2){dot+=wt*o2;sh.push([w,wt*o2])}});if(!dot)continue;let s=dot/(p._vn*x._vn);if(x.c===p.c)s*=1.18;if(o.sameCat&&x.c!==p.c)continue;res.push({p:x,s,sh:sh.sort((a,b)=>b[1]-a[1]).slice(0,2).map(a=>a[0])})}
+ res.sort((a,b)=>b.s-a.s);return res.filter(r=>r.s>.07).slice(0,n||8)}
+/* versión tolerante para el asistente: ignora palabras que no existen en el catálogo */
+function loose(q){const toks=words(q).filter(t=>{const s=st(t);return VOC.has(s)||[...VOC].some(v=>v.startsWith(s)&&s.length>=3)||SYN[t]||IDEAS[t]});return toks.join(' ')}
+return{build,query,suggest,similar,norm,words,IDEAS,fix,loose}})();
+
+const WA='584244994155';     /* VENDO · EDITAR: WhatsApp de El Maracucho (código de país, sin +) */
 const FREE_MIN=30;                  /* VENDO · EDITAR: monto de delivery gratis (por confirmar) */
 const $=i=>document.getElementById(i),$$=s=>[...document.querySelectorAll(s)];
 const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -635,28 +891,18 @@ Object.assign(IM,{pan:$('h_pan').src,dor:$('h_dor').src,fab:$('h_fab').src,pep:$
 const CUT=IM;
 const MW=$('hmw').src;
 /* ---------- datos (reemplazar con inventario real) ---------- */
-const CAT={harinas:{n:'Harinas y cereales',c:'#fbeec6'},despensa:{n:'Despensa',c:'#e4f1e7'},cafe:{n:'Café y desayuno',c:'#f1e0d0'},salsas:{n:'Salsas y aderezos',c:'#fbdcd2'},snacks:{n:'Snacks y dulces',c:'#fdefbf'},lacteos:{n:'Lácteos y charcutería',c:'#fde4c4'},bebidas:{n:'Bebidas',c:'#d6eaf6'},limpieza:{n:'Limpieza',c:'#e3dcfa'},hogar:{n:'Hogar y papel',c:'#dcefe4'}};
-const P=(id,c,n,s,p,e,img,tag)=>({id,c,n,s,p,e,img,tag});
-const CATALOG=[
-P('pan','harinas','Harina PAN blanca','1 kg',1.6,'🌽','pan','Más pedido'),P('trigo','harinas','Harina de trigo todo uso','1 kg',1.4,'🌾'),P('avena','harinas','Avena en hojuelas','400 g',1.3,'🥣'),P('pasta','harinas','Pasta larga','1 kg',1.7,'🍝'),P('pastac','harinas','Pasta corta','1 kg',1.7,'🍝'),P('maizina','harinas','Maicena','400 g',1.9,'🌽'),P('arroz','harinas','Arroz Premium Mary','1 kg',1.55,'🍚','mar'),P('cereal','harinas','Hojuelas de maíz','370 g',2.6,'🥣'),
-P('azucar','despensa','Azúcar','1 kg',1.45,'🍬'),P('aceite','despensa','Aceite vegetal','1 L',3.2,'🫒'),P('sal','despensa','Sal refinada','1 kg',.8,'🧂'),P('caraotas','despensa','Caraotas negras','500 g',1.6,'🫘'),P('lentejas','despensa','Lentejas','500 g',1.5,'🫘'),P('atun','despensa','Atún en aceite','140 g',2.1,'🥫'),P('sardinas','despensa','Sardinas en tomate','170 g',1.4,'🥫'),P('vinagre','despensa','Vinagre blanco','500 ml',1,'🍶'),
-P('cafe','cafe','Café molido','250 g',3.5,'☕'),P('tod','cafe','Toddy achocolatado','400 g',3.9,'🍫','tod','Favorito'),P('leche','cafe','Leche en polvo','400 g',5.8,'🥛'),P('mermelada','cafe','Mermelada de fresa','350 g',2.4,'🍓'),
-P('mav','salsas','Mayonesa Mavesa','500 g',3.4,'🥚','mav'),P('hz','salsas','Ketchup Heinz','342 g',3.1,'🍅','hz'),P('mostaza','salsas','Mostaza','200 g',1.5,'🌭'),P('soya','salsas','Salsa de soya','150 ml',1.2,'🥢'),P('tomate','salsas','Pasta de tomate','190 g',1.3,'🍅'),
-P('dor','snacks','Doritos sabor queso','320 g',4.2,'🌮','dor','Más pedido'),P('pep','snacks','Pepito original','100 g',1.2,'🧀','pep'),P('tru','snacks','Trululu aros','Bolsa',1,'🍬','tru','Nuevo'),P('galletas','snacks','Galletas de soda','200 g',1.1,'🍪'),P('papas','snacks','Papitas fritas','140 g',1.8,'🥔'),P('choco','snacks','Chocolate en barra','100 g',1.5,'🍫'),
-P('rik','lacteos','Salsa cheddar Rikesa','200 g',2.4,'🧀','rik'),P('dia','lacteos','Diablitos Underwood','Lata',1.9,'😈','dia'),P('jamon','lacteos','Jamón ahumado Ricci','1 kg',8.34,'🍖',0,'Mayor $7.40'),P('queso','lacteos','Queso blanco duro','1 kg',7.5,'🧀'),P('mantequilla','lacteos','Mantequilla','250 g',2.6,'🧈'),P('huevos','lacteos','Cartón de huevos','30 und',5.2,'🥚'),
-P('refresco','bebidas','Refresco de cola','2 L',2.2,'🥤'),P('agua','bebidas','Agua mineral','5 L',1.5,'💧'),P('jugo','bebidas','Jugo de naranja','1 L',1.9,'🧃'),P('malta','bebidas','Malta','Pack 6',4.2,'🍺'),
-P('fab','limpieza','Fabuloso lavanda','1 L',2.5,'💜','fab'),P('axi','limpieza','Axion lavaplatos limón','850 g',2.9,'🍋','axi'),P('cloro','limpieza','Cloro','1 L',1.3,'🧴'),P('det','limpieza','Detergente en polvo','1 kg',3.6,'🧺'),
-P('sco','hogar','Papel higiénico Scott Rindemax','4 rollos',2.2,'🧻','sco'),P('serv','hogar','Servilletas','100 und',1,'🧻'),P('bolsas','hogar','Bolsas de basura','10 und',1.8,'🗑️'),P('jabon','hogar','Jabón de baño','3 und',2.4,'🧼')
-];
+const CAT=Object.fromEntries(Object.entries(CATS).map(([k,v])=>[k,{n:v[0],c:v[1]}]));
+const CATALOG=CATALOG0;
 const OFF={pan:1.85,tod:4.5,dor:4.8,axi:3.3,fab:2.9,sco:2.6,azucar:1.75,mav:3.9,pasta:2.0,refresco:2.6}; /* VENDO · EDITAR: precio anterior de las ofertas (demo) */
 CATALOG.forEach(p=>{if(OFF[p.id])p.o=OFF[p.id]});
 const TOP=['pan','arroz','azucar','aceite','cafe','tod','dor','mav','leche','huevos','refresco','pasta','fab','sco']; /* VENDO · EDITAR: más vendidos (reales) */
 const PM=Object.fromEntries(CATALOG.map(p=>[p.id,p]));
 TOP.forEach((id,i)=>{if(PM[id]){PM[id].top=i+1}});
+CATALOG.forEach(p=>{p.cn=CAT[p.c].n});Search.build(CATALOG,Object.fromEntries(Object.entries(CAT).map(([k,v])=>[k,v.n])));
 const PAGE=24;
 const CNT={all:CATALOG.length,oferta:0,vendidos:CATALOG.filter(p=>p.top).length};CATALOG.forEach(p=>{p._s=norm(p.n+' '+CAT[p.c].n+' '+p.s);CNT[p.c]=(CNT[p.c]||0)+1;if(p.o)CNT.oferta++});
-const CX={harinas:{g:['#e9950d','#c46500'],wm:1,b:'Harinas',s:'y cereales',ic:'wheat'},despensa:{g:['#1fa65a','#0b6b35'],b:'Despensa',s:'del día a día',ic:'jar'},cafe:{g:['#9a6a48','#5a3620'],b:'Café',s:'y desayuno',ic:'cup'},salsas:{g:['#ea4638','#b0251a'],b:'Salsas',s:'y aderezos',ic:'sauce'},snacks:{g:['#f5761c','#d24705'],wm:1,b:'Snacks',s:'y dulces',ic:'chip'},lacteos:{g:['#3f95dc','#2166ad'],b:'Lácteos',s:'y charcutería',ic:'cheese'},bebidas:{g:['#1bb0c0','#0d7886'],b:'Bebidas',s:'para todos',ic:'bottle'},limpieza:{g:['#8460dc','#583bb2'],b:'Limpieza',s:'y cuidado',ic:'spray'},hogar:{g:['#e0588f','#ae3465'],b:'Hogar',s:'y papel',ic:'roll'}};
-const GROUPS=[{id:'ali',n:'Alimentos',ic:'basket',cats:['harinas','despensa','cafe','salsas','snacks','lacteos']},{id:'beb',n:'Bebidas',ic:'drop',cats:['bebidas']},{id:'hog',n:'Hogar y limpieza',ic:'home',cats:['limpieza','hogar']}];
+const CX={harinas:{g:['#e9950d','#c46500'],wm:1,b:'Harinas',s:'y cereales',ic:'wheat'},despensa:{g:['#1fa65a','#0b6b35'],b:'Despensa',s:'del día a día',ic:'jar'},cafe:{g:['#9a6a48','#5a3620'],b:'Café',s:'y desayuno',ic:'cup'},salsas:{g:['#ea4638','#b0251a'],b:'Salsas',s:'y aderezos',ic:'sauce'},snacks:{g:['#f5761c','#d24705'],wm:1,b:'Snacks',s:'y dulces',ic:'chip'},lacteos:{g:['#3f95dc','#2166ad'],b:'Lácteos',s:'y charcutería',ic:'cheese'},bebidas:{g:['#1bb0c0','#0d7886'],b:'Bebidas',s:'para todos',ic:'bottle'},limpieza:{g:['#8460dc','#583bb2'],b:'Limpieza',s:'y cuidado',ic:'spray'},hogar:{g:['#e0588f','#ae3465'],b:'Hogar',s:'y papel',ic:'roll'},panes:{g:['#d98a2b','#a8591a'],b:'Panes',s:'y repostería',ic:'wheat'},frutas:{g:['#52b74a','#2a7d2e'],b:'Frutas',s:'y verduras',ic:'basket'},carnes:{g:['#d6453d','#8f1f1f'],b:'Carnes',s:'y pollo',ic:'fire'},personal:{g:['#a77de0','#6d44b4'],b:'Cuidado',s:'personal',ic:'drop'}};
+const GROUPS=[{id:'ali',n:'Alimentos',ic:'basket',cats:['harinas','panes','despensa','cafe','salsas','snacks','lacteos']},{id:'fre',n:'Frescos',ic:'drop',cats:['frutas','carnes']},{id:'beb',n:'Bebidas',ic:'drop',cats:['bebidas']},{id:'hog',n:'Hogar y limpieza',ic:'home',cats:['limpieza','hogar','personal']}];
 const grpOf=c=>(GROUPS.find(g=>g.cats.includes(c))||{}).id;
 const ICON={grid:'<rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/>',tag:'<path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3a1.5 1.5 0 0 1 0 2.1l-5.6 5.6a1.5 1.5 0 0 1-2.1 0z"/><circle cx="8.3" cy="8.3" r="1.3"/>',basket:'<path d="M3 10h18l-1.8 9.2a1.5 1.5 0 0 1-1.5 1.3H6.3a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M8 10l3-6M16 10l-3-6"/>',drop:'<path d="M12 3.5c3.6 4.3 6 7.3 6 10.6a6 6 0 0 1-12 0c0-3.300 2.4-6.300 6-10.600z"/>',home:'<path d="M4 11l8-7 8 7v8.500a1.500 1.500 0 0 1-1.500 1.500h-13A1.500 1.500 0 0 1 4 19.500z"/><path d="M10 20.500v-5h4v5"/>',wheat:'<path d="M12 21V8"/><path d="M12 8c-2.500 0-4-1.500-4-4 2.500 0 4 1.500 4 4zM12 8c2.500 0 4-1.500 4-4-2.500 0-4 1.500-4 4zM12 14c-2.500 0-4-1.500-4-4 2.500 0 4 1.500 4 4zM12 14c2.500 0 4-1.500 4-4-2.500 0-4 1.500-4 4z"/>',jar:'<rect x="6" y="3.500" width="12" height="3" rx="1"/><path d="M7 6.500v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-12"/><path d="M7 11h10M7 15h10"/>',cup:'<path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 10h1.500a2.500 2.500 0 0 1 0 5H16M8 3.500c-1 1 1 2 0 3.500M12 3.500c-1 1 1 2 0 3.500"/>',sauce:'<path d="M10 3h4v3l1.500 2.500V20a1.500 1.500 0 0 1-1.500 1.500h-4A1.500 1.500 0 0 1 8.500 20V8.500L10 6z"/><path d="M8.500 12h7M8.500 16h7"/>',chip:'<path d="M5 4h14l-1 16H6z"/><path d="M5.500 8.500h13M9 13.500c1.500-1.500 4.500-1.500 6 0"/>',cheese:'<path d="M3 17.500L21 8v9.500a1.500 1.500 0 0 1-1.500 1.500h-15A1.500 1.500 0 0 1 3 17.500z"/><path d="M3 17.500l9-9.500 9 0"/><circle cx="9" cy="15.500" r=".9"/><circle cx="14.500" cy="14.500" r=".9"/>',bottle:'<path d="M10 3h4v3.500c2 1 3 2.500 3 5V20a1.500 1.500 0 0 1-1.500 1.500h-7A1.500 1.500 0 0 1 7 20v-8.500c0-2.500 1-4 3-5z"/><path d="M7 13h10"/>',spray:'<path d="M9 9h6v11a1.500 1.500 0 0 1-1.500 1.500h-3A1.500 1.500 0 0 1 9 20z"/><path d="M10 9V6h5l2-2M18.500 7l1.500-.5M18.500 10l1.500.5"/>',roll:'<ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v9c0 1.700 3.100 3 7 3s7-1.300 7-3V7"/><ellipse cx="12" cy="7" rx="2" ry=".9"/>',arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',fire:'<path d="M12 3c1 3.500 4.500 5 4.500 9.500a4.500 4.500 0 0 1-9 0c0-2 1-3 1.800-4 .5 1.200 1.200 1.800 2 2C11.500 8 11 5.500 12 3z"/>',clock:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',bag:'<path d="M5 8h14l-1.2 11a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',store:'<path d="M4 9.5L5.5 4h13L20 9.5"/><path d="M4 9.5a2.7 2.7 0 0 0 5.300 0 2.700 2.700 0 0 0 5.400 0 2.700 2.700 0 0 0 5.300 0"/><path d="M5.5 12v8h13v-8M10 20v-5h4v5"/>',spark:'<path d="M12 3l2 5.500L19.500 10 14 12l-2 5.500L10 12 4.500 10 10 8.500z"/><path d="M18.500 16l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>',truck:'<path d="M3 6h11v10H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.500" r="1.800"/><circle cx="17" cy="17.500" r="1.800"/>',card:'<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/>',chat:'<path d="M5 5h14a1.500 1.500 0 0 1 1.500 1.500v9A1.500 1.500 0 0 1 19 17H10l-4.500 3.500V17H5a1.500 1.500 0 0 1-1.500-1.500v-9A1.500 1.500 0 0 1 5 5z"/>'};
 const ic=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg>`;
@@ -673,6 +919,12 @@ beans:['0 0 60 78','<path d="M8 18c0-6 6-10 22-10s22 4 22 10l3 52a4 4 0 0 1-4 4H
 cup:['0 0 90 80','<ellipse cx="45" cy="70" rx="42" ry="8" fill="#f4ede0"/><path d="M66 32h6a9 9 0 0 1 0 18h-7" stroke="#fff" stroke-width="5.500" fill="none"/><path d="M14 30h52v20c0 12-9 20-26 20S14 62 14 50z" fill="#fff"/><ellipse cx="40" cy="30" rx="26" ry="5.500" fill="#5b3722"/><path d="M30 17c-4-4 4-6 0-13M42 17c-4-4 4-6 0-13M54 17c-4-4 4-6 0-13" stroke="#fff" stroke-opacity=".85" stroke-width="3" fill="none" stroke-linecap="round"/>'],
 milk:['0 0 56 100','<path d="M8 24L28 4l20 20z" fill="#dfe9f5"/><path d="M8 24h40v72a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z" fill="#fff"/><rect x="8" y="46" width="40" height="30" fill="#2f7fd0"/><circle cx="28" cy="61" r="9" fill="#fff"/><rect x="36" y="24" width="12" height="75" fill="#000" opacity=".06"/>'],
 cheese:['0 0 90 66','<path d="M4 52L74 6l12 14v32z" fill="#ffc21a"/><path d="M4 52L74 6l12 14z" fill="#ffd95e"/><path d="M4 52h82v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="#f0a500"/><circle cx="30" cy="54" r="4.500" fill="#f0a500"/><circle cx="56" cy="46" r="4" fill="#f0a500"/><circle cx="74" cy="36" r="3.500" fill="#f0a500"/>'],
+bread:['0 0 100 62','<path d="M8 34c-4-18 10-28 42-28s46 10 42 28c0 6-2 10-6 12v10a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V46c-4-2-6-6-6-12z" fill="#e0a04b"/><path d="M8 34c-4-18 10-28 42-28s46 10 42 28c-8-8-80-8-84 0z" fill="#f0b865"/><path d="M30 14l6 12M50 11l6 13M70 14l6 12" stroke="#b9722a" stroke-width="3.5" stroke-linecap="round"/>'],
+apple:['0 0 64 70','<path d="M32 16c-9-7-26-2-26 18 0 18 12 34 22 34 3 0 3-2 4-2s1 2 4 2c10 0 22-16 22-34 0-20-17-25-26-18z" fill="#d62f2f"/><path d="M20 26c-4 5-5 11-4 17" stroke="#fff" stroke-opacity=".4" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M32 17c0-6 1-10 5-14" stroke="#5b3a1f" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M36 9c6-6 14-4 16 0-6 4-12 4-16 0z" fill="#3f9a3a"/>'],
+orange:['0 0 64 64','<circle cx="32" cy="35" r="27" fill="#ff9a1f"/><circle cx="24" cy="26" r="9" fill="#ffc062" opacity=".55"/><path d="M32 8c0-4 3-6 6-6-1 4-3 6-6 6z" fill="#3f9a3a"/><circle cx="32" cy="8" r="2.5" fill="#6b4a2a"/>'],
+drum:['0 0 90 70','<path d="M18 52c-8-4-12-14-6-24 8-14 28-18 42-10 8 4 14 12 12 24-2 12-14 16-24 14-8-2-16-1-24-4z" fill="#d8873a"/><path d="M26 22c8-10 26-12 36-4" stroke="#f0b06a" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M64 44l16 12" stroke="#f4ead0" stroke-width="7" stroke-linecap="round"/><circle cx="82" cy="58" r="6" fill="#f4ead0"/><circle cx="76" cy="62" r="5" fill="#f4ead0"/>'],
+steak:['0 0 90 66','<path d="M10 36c-2-16 14-28 34-28 24 0 40 10 36 28-3 14-20 22-40 20C22 54 12 48 10 36z" fill="#c63a3a"/><path d="M10 36c-2-16 14-28 34-28 24 0 40 10 36 28-12-10-60-12-70 0z" fill="#dc5656"/><circle cx="52" cy="34" r="9" fill="#f3d0c4"/><circle cx="52" cy="34" r="4" fill="#c63a3a"/>'],
+shampoo:['0 0 44 100','<rect x="14" y="2" width="16" height="10" rx="3" fill="#6d44b4"/><path d="M16 12h12l2 8c6 5 8 10 8 20v48a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6V40c0-10 2-15 8-20z" fill="#a77de0"/><rect x="6" y="46" width="32" height="30" fill="#fff"/><path d="M22 52c-5 7-6 10-6 13a6 6 0 0 0 12 0c0-3-1-6-6-13z" fill="#6d44b4"/><path d="M11 28c-1 12-1 40 0 60" stroke="#fff" stroke-opacity=".45" stroke-width="3" fill="none" stroke-linecap="round"/>'],
 soap:['0 0 84 70','<rect x="6" y="32" width="60" height="34" rx="11" fill="#e0588f"/><rect x="6" y="32" width="60" height="13" rx="7" fill="#ff8bbf"/><circle cx="60" cy="16" r="12" fill="#fff" fill-opacity=".85" stroke="#bfe6ff" stroke-width="2"/><circle cx="34" cy="15" r="7" fill="#fff" fill-opacity=".85" stroke="#bfe6ff" stroke-width="2"/><circle cx="76" cy="40" r="6" fill="#fff" fill-opacity=".85" stroke="#bfe6ff" stroke-width="2"/>']};
 const art=(k,r,h,t,cls,b)=>{const st=`--r:${r}%;--h:${h}%;--t:${t||0}deg${b!=null?';--b:'+b+'%':''}`;if(CUT[k])return `<img${cls?` class="${cls}"`:''} src="${CUT[k]}" alt="" style="${st}">`;const [vb,b2]=SV[k],[,,w,h2]=vb.split(' ').map(Number);return `<svg${cls?` class="${cls}"`:''} viewBox="${vb}" aria-hidden="true" style="${st};--ar:${(w/h2).toFixed(3)}">${b2}</svg>`};
 const KITS=[
@@ -681,8 +933,8 @@ const KITS=[
 {id:'mega',n:'Mega',who:'5 o más personas',dur:'≈ 1 mes',d:.1,cl:'k3',pill:'Mejor precio',art:[['h_fab',6,4,150,-6],['h_pan',66,6,156,-4],['h_dor',146,8,136,5],['h_pep',214,6,118,9],['h_tod',270,4,84,-5]],items:[['pan',8],['arroz',6],['pasta',5],['pastac',3],['trigo',2],['aceite',3],['azucar',3],['sal',2],['caraotas',3],['lentejas',2],['cafe',3],['tod',2],['leche',2],['avena',2],['cereal',2],['mav',2],['hz',2],['tomate',3],['atun',6],['sardinas',3],['huevos',3],['queso',2],['jamon',1],['mantequilla',2],['galletas',3],['pep',3],['dor',2],['refresco',4],['jugo',2],['agua',2],['fab',2],['axi',2],['cloro',2],['det',2],['sco',2],['bolsas',2]]}];
 KITS.forEach(k=>{k.orig=k.items.reduce((a,[i,q])=>a+PM[i].p*q,0);k.price=Math.round(k.orig*(1-k.d)*100)/100;k.units=k.items.reduce((a,[,q])=>a+q,0)});
 const KM=Object.fromEntries(KITS.map(k=>[k.id,k]));
-const DESC={harinas:['Base de la mesa venezolana: rinde, llena y combina con todo.','Arepas, empanadas, pastas y desayunos'],despensa:['Lo que no puede faltar en la cocina del día a día.','Guisos, arroces, ensaladas y sazón'],cafe:['Para arrancar la mañana con energía, en taza o con leche.','Desayunos, meriendas y postres'],salsas:['Le da sabor a todo: perros, hamburguesas, pastas y ensaladas.','Comidas rápidas y aderezos en casa'],snacks:['Para picar, compartir y darse el gusto en cualquier momento.','Reuniones, meriendas y antojos'],lacteos:['Frescos y listos para el desayuno, el sándwich o la cena.','Sándwiches, pastas y desayunos'],bebidas:['Para acompañar la comida o refrescar el día.','Almuerzos, fiestas y meriendas'],limpieza:['Deja la cocina y la casa limpias, con menos esfuerzo.','Trastes, pisos y ropa'],hogar:['Básicos de casa que siempre hacen falta.','Baño, cocina y orden del hogar']};
-const COMBO={harinas:['queso','mantequilla','jamon','huevos'],despensa:['pan','arroz','cafe'],cafe:['leche','mantequilla','mermelada','pan'],salsas:['jamon','pastac','dor'],snacks:['refresco','jugo','malta'],lacteos:['pan','mav','cafe'],bebidas:['dor','pep','galletas'],limpieza:['sco','bolsas','jabon'],hogar:['fab','axi','det']};
+const DESC={harinas:['Base de la mesa venezolana: rinde, llena y combina con todo.','Arepas, empanadas, pastas y desayunos'],despensa:['Lo que no puede faltar en la cocina del día a día.','Guisos, arroces, ensaladas y sazón'],cafe:['Para arrancar la mañana con energía, en taza o con leche.','Desayunos, meriendas y postres'],salsas:['Le da sabor a todo: perros, hamburguesas, pastas y ensaladas.','Comidas rápidas y aderezos en casa'],snacks:['Para picar, compartir y darse el gusto en cualquier momento.','Reuniones, meriendas y antojos'],lacteos:['Frescos y listos para el desayuno, el sándwich o la cena.','Sándwiches, pastas y desayunos'],bebidas:['Para acompañar la comida o refrescar el día.','Almuerzos, fiestas y meriendas'],limpieza:['Deja la cocina y la casa limpias, con menos esfuerzo.','Trastes, pisos y ropa'],hogar:['Básicos de casa que siempre hacen falta.','Baño, cocina y orden del hogar'],panes:['Pan fresco y repostería para el desayuno, la merienda y el sándwich.','Sándwiches, meriendas y desayunos'],frutas:['Frescas y listas para la ensalada, el jugo o el sofrito.','Ensaladas, jugos y guisos'],carnes:['Proteína para el almuerzo y la cena de toda la semana.','Almuerzos, parrillas y guisos'],personal:['Cuidado diario para toda la familia.','Higiene y cuidado diario']};
+const COMBO={harinas:['queso','mantequilla','jamon','huevos'],despensa:['pan','arroz','cafe'],cafe:['leche','mantequilla','mermelada','pan'],salsas:['jamon','pastac','dor'],snacks:['refresco','jugo','malta'],lacteos:['pan','mav','cafe'],bebidas:['dor','pep','galletas'],limpieza:['sco','bolsas','jabon'],hogar:['fab','axi','det'],panes:['jamon','queso','mantequilla','mermelada'],frutas:['aceite','sal','arroz'],carnes:['arroz','aceite','sazon'],personal:['jabon','sco','bolsas']};
 /* VENDO · EDITAR: p.d = descripción propia del producto */
 CATALOG.forEach(p=>{if(!p.d)p.d=DESC[p.c][0]});
 /* ---------- estado ---------- */
@@ -727,7 +979,7 @@ addEventListener('resize',()=>hbt.scrollTo({left:cur*hbt.clientWidth,behavior:'a
 dotsOn();
 $('hbt').onclick=e=>{const a=e.target.closest('[data-cat]');if(a){e.preventDefault();setCat(a.dataset.cat,true)}};
 /* ---------- banners de categoría ---------- */
-const TL={harinas:[['pan',3,92,-4],['mar',27,82,5]],despensa:[['oil',3,92,-3],['tuna',24,34,7,0],['beans',44,56,-5]],cafe:[['tod',3,90,-5],['cup',30,52,6]],salsas:[['hz',2,94,-4],['mav',20,78,5],['rik',38,70,-4]],snacks:[['dor',2,90,-5],['pep',28,76,5],['tru',48,58,-6]],lacteos:[['milk',3,90,-4],['cheese',28,46,6,2]],bebidas:[['cola',3,94,-4],['juice',22,74,5],['water',40,84,-5]],limpieza:[['fab',3,92,-5],['axi',27,60,6]],hogar:[['sco',3,76,-4],['soap',38,42,6,4]]};
+const TL={harinas:[['pan',3,92,-4],['mar',27,82,5]],despensa:[['oil',3,92,-3],['tuna',24,34,7,0],['beans',44,56,-5]],cafe:[['tod',3,90,-5],['cup',30,52,6]],salsas:[['hz',2,94,-4],['mav',20,78,5],['rik',38,70,-4]],snacks:[['dor',2,90,-5],['pep',28,76,5],['tru',48,58,-6]],lacteos:[['milk',3,90,-4],['cheese',28,46,6,2]],bebidas:[['cola',3,94,-4],['juice',22,74,5],['water',40,84,-5]],limpieza:[['fab',3,92,-5],['axi',27,60,6]],hogar:[['sco',3,76,-4],['soap',38,42,6,4]],panes:[['bread',3,60,-4],['cheese',40,44,6,2]],frutas:[['apple',3,66,-4],['orange',34,56,6]],carnes:[['drum',3,62,-5],['steak',40,52,6]],personal:[['shampoo',3,90,-4],['soap',34,42,6,4]]};
 $('ctg').innerHTML=Object.keys(CAT).map(k=>{const x=CX[k];return `<button class="ct${x.wm?' wm':''}" data-c="${k}" style="--c1:${x.g[0]};--c2:${x.g[1]}" aria-label="${esc(CAT[k].n)}: ver productos"><img class="mwm" src="${MW}" alt=""><div class="tt"><h3>${x.b}<span class="sc">${x.s}</span></h3></div><div class="it">${TL[k].map(([a,r,h,t,b],n)=>art(a,r,h,t,n>1?'x3':'',b)).join('')}</div><span class="go">${cnt(k)} productos ${ic('arrow')}</span></button>`}).join('');
 $('ctg').onclick=e=>{const b=e.target.closest('.ct');if(b)setCat(b.dataset.c,true)};
 /* ---------- catálogo ---------- */
@@ -737,19 +989,29 @@ $('ac1').innerHTML=$('ac2').innerHTML=$('ac3').innerHTML=accHTML();
 const catList=[['all','Todo'],['oferta','Ofertas'],['vendidos','Más vendidos'],...Object.entries(CAT).map(([k,v])=>[k,v.n])];
 $('chips').innerHTML=catList.map(([k,n])=>`<button class="chip${k==='all'?' on':''}" data-c="${k}" role="tab">${n}</button>`).join('');
 const disc=p=>p.o?(p.o-p.p)/p.o:0;
-let FK='',FL=[];function filtered(){const k=S.cat+'|'+S.q;if(k===FK)return FL;const q=norm(S.q.trim()).split(/\s+/).filter(Boolean);let l=CATALOG.filter(p=>(S.cat==='all'||(S.cat==='oferta'?!!p.o:S.cat==='vendidos'?!!p.top:p.c===S.cat))&&q.every(t=>p._s.includes(t)));if(S.cat==='oferta')l=[...l].sort((a,b)=>disc(b)-disc(a));else if(S.cat==='vendidos')l=[...l].sort((a,b)=>a.top-b.top);else if(S.cat==='all'&&!q.length)l=[...l].sort((a,b)=>(b.img?1:0)-(a.img?1:0));FK=k;FL=l;return l}
+let FK='',FL=[],FR=null;
+function filtered(){const k=S.cat+'|'+S.q;if(k===FK)return FL;
+ const inCat=p=>S.cat==='all'||(S.cat==='oferta'?!!p.o:S.cat==='vendidos'?!!p.top:p.c===S.cat);let l;FR=null;CATALOG.forEach(p=>p._why=null);
+ if(S.q.trim()){FR=Search.query(S.q,{filter:inCat});l=FR.items.map(x=>{x.p._why=x.why;return x.p})}
+ else{l=CATALOG.filter(inCat);if(S.cat==='oferta')l=[...l].sort((a,b)=>disc(b)-disc(a));else if(S.cat==='vendidos')l=[...l].sort((a,b)=>a.top-b.top);else if(S.cat==='all')l=[...l].sort((a,b)=>(b.img?1:0)-(a.img?1:0))}
+ FK=k;FL=l;return l}
+/* por qué apareció este producto en la búsqueda (solo si no coincide por el nombre) */
+function whyTxt(p){if(!p._why||!S.q)return '';const w=p._why.find(x=>x[1]&&x[1]!=='nombre');if(!w||p._why.every(x=>x[1]==='nombre'))return '';const t=w[0],I=Search.IDEAS[t];
+ return `<small class="why">${I?'Ideal para '+esc(I.toLowerCase()):w[1]==='categoría'?'En '+esc(p.cn):'Coincide: «'+esc(t)+'»'}</small>`}
 function ctl(id){const q=C.i[id]||0,p=PM[id];return q?`<div class="st"><button data-a="-" data-id="${id}" aria-label="Quitar uno">−</button><span>${q}</span><button data-a="+" data-id="${id}" aria-label="Agregar uno">+</button></div>`:`<button class="ad" data-a="+" data-id="${id}" aria-label="Agregar ${esc(p.n)}"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Agregar</button>`}
 function card(p){const tile=p.img?`<img src="${IM[p.img]}" alt="${esc(p.n)}" loading="lazy" decoding="async" width="200" height="200">`:`<div class="eg" style="--c:${CAT[p.c].c}">${p.e}</div>`;
  const badge=p.o?`<span class="tg of">−${Math.round(disc(p)*100)}%</span>`:p.top&&p.top<=6?`<span class="tg">Top</span>`:p.tag?`<span class="tg${p.tag==='Más pedido'||p.tag==='Nuevo'?'':' g'}">${p.tag}</span>`:'';
- return `<article class="pc" data-pid="${p.id}"><button class="pt" data-open="${p.id}" type="button" aria-label="Ver ${esc(p.n)}">${badge}${tile}</button><div class="pi"><div class="pp2${p.o?' of':''}"><b>${money(p.p)}</b>${p.o?`<s>${money(p.o)}</s>`:''}</div><small class="eq">${alt(p.p)}</small><button class="nm2" data-open="${p.id}" type="button">${esc(p.n)}</button><small>${esc(p.s)}</small><span class="cta" data-ctl="${p.id}">${ctl(p.id)}</span></div></article>`}
+ return `<article class="pc" data-pid="${p.id}"><button class="pt" data-open="${p.id}" type="button" aria-label="Ver ${esc(p.n)}">${badge}${tile}</button><div class="pi"><div class="pp2${p.o?' of':''}"><b>${money(p.p)}</b>${p.o?`<s>${money(p.o)}</s>`:''}</div><small class="eq">${alt(p.p)}</small><button class="nm2" data-open="${p.id}" type="button">${esc(p.n)}</button><small>${esc(p.s)}</small>${whyTxt(p)}<span class="cta" data-ctl="${p.id}">${ctl(p.id)}</span></div></article>`}
 function crumb(){const h='<button data-c="all">Supermercado</button>';if(S.cat==='all')return h+'<i>›</i><b>Todos los productos</b>';if(S.cat==='oferta')return h+'<i>›</i><b>Ofertas</b>';if(S.cat==='vendidos')return h+'<i>›</i><b>Más vendidos</b>';const g=GROUPS.find(g=>g.cats.includes(S.cat));return `${h}<i>›</i><span>${g.n}</span><i>›</i><b>${esc(CAT[S.cat].n)}</b>`}
+const IDEA_CHIPS=['merienda','desayuno','lonchera','fiesta','cena','postre'];
+const noRes=()=>`<div class="nores"><b>No encontramos "${esc(S.q)}"</b>Prueba con otra palabra, una idea o escríbenos por WhatsApp.<div class="nr-ch">${IDEA_CHIPS.map(k=>`<button type="button" data-sq="${k}">${esc(Search.IDEAS[k])}</button>`).join('')}</div></div>`;
 let RN=0;
 function qbSync(){$$('#qb [data-qb]').forEach(b=>b.classList.toggle('on',b.dataset.qb===S.cat))}
 function render(more){const l=filtered(),end=Math.min(l.length,S.shown),pg=$('pg');
  if(more&&RN<end){pg.insertAdjacentHTML('beforeend',l.slice(RN,end).map(card).join(''))}
- else{pg.innerHTML=l.slice(0,end).map(card).join('')||`<div class="nores"><b>No encontramos "${esc(S.q)}"</b>Prueba con otra palabra o escríbenos por WhatsApp.</div>`}
+ else{pg.innerHTML=l.slice(0,end).map(card).join('')||noRes()}
  RN=end;
- $('cnt').innerHTML=S.q?`<b>${l.length}</b> resultado${l.length===1?'':'s'} para "${esc(S.q)}"`:`Mostrando <b>${end}</b> de <b>${l.length}</b> productos`;
+ $('cnt').innerHTML=S.q?`<b>${l.length}</b> resultado${l.length===1?'':'s'} para "${esc(S.q)}"${FR&&FR.fixed?` <span class="fx">· mostrando «${esc(FR.fixed)}»</span>`:''}${FR&&FR.mode==='partial'&&l.length?` <span class="fx">· parecidos a lo que buscas</span>`:''}`:`Mostrando <b>${end}</b> de <b>${l.length}</b> productos`;
  $('more').innerHTML=l.length>end?`<button class="btn" id="mb">Ver más productos (${l.length-end})</button>`:'';
  if(!more){qbSync();$('crumb').innerHTML=crumb();
  $$('#chips .chip').forEach(c=>c.classList.toggle('on',c.dataset.c===S.cat));
@@ -762,10 +1024,30 @@ $('chips').onclick=e=>{const b=e.target.closest('.chip');if(b)setCat(b.dataset.c
 $('crumb').onclick=e=>{const b=e.target.closest('button');if(b)setCat(b.dataset.c,'soft')};
 [$('ac1'),$('ac2'),$('ac3')].forEach(el=>el.onclick=e=>{const b=e.target.closest('.ai');if(b){const m=el.id!=='ac1';if(el.id==='ac2')closeSheet();if(el.id==='ac3')closeMenu();setCat(b.dataset.c,m?true:'soft')}});
 $('more').onclick=e=>{if(e.target.closest('#mb')){S.shown+=PAGE;render(true)}};
-let qt;$('q1').oninput=e=>{clearTimeout(qt);const v=e.target.value;qt=setTimeout(()=>{S.q=v;S.shown=PAGE;render()},140)};
 function autoMore(){const m=$('mb');if(m&&m.getBoundingClientRect().top<innerHeight+700){S.shown+=PAGE;render(true);requestAnimationFrame(autoMore)}}
 new IntersectionObserver(es=>{if(es[0].isIntersecting)autoMore()},{rootMargin:'700px 0px'}).observe($('more'));
-$('hs').onsubmit=e=>{e.preventDefault();S.q=$('q0').value;$('q1').value=S.q;S.cat='all';S.shown=PAGE;render();goShop()};
+function doSearch(v,go){S.q=v.trim()?v:'';['q0','q1','q2'].forEach(i=>{if($(i)&&$(i).value!==v)$(i).value=v});S.cat='all';S.shown=PAGE;render();if(go)goShop()}
+/* sugerencias al escribir: ideas, productos y categorías */
+function sgHTML(r,v){const t=r.terms.map(x=>`<button type="button" class="sgt" role="option" data-sq="${esc(x.q)}">${x.idea?'<i>✨</i>':'<i>🔎</i>'}<span>${esc(x.l)}</span>${x.idea?'<em>idea</em>':''}</button>`).join('');
+ const it=r.items.map(p=>`<button type="button" class="sgp" role="option" data-open="${p.id}"><span class="sgi">${p.img?`<img src="${IM[p.img]}" alt="">`:`<i style="--c:${CAT[p.c].c}">${p.e}</i>`}</span><span class="sgn"><b>${esc(p.n)}</b><small>${esc(p.s)} · ${esc(p.cn)}</small></span><span class="sgm">${money(p.p)}</span></button>`).join('');
+ const ct=r.cats.map(c=>`<button type="button" class="sgt" role="option" data-sc="${c.c}"><i>📂</i><span>${esc(c.n)}</span><em>categoría</em></button>`).join('');
+ const fx=r.fixed?`<div class="sgf">¿Quisiste decir <button type="button" data-sq="${esc(r.fixed)}">${esc(r.fixed)}</button>?</div>`:'';
+ const more=r.total>r.items.length?`<button type="button" class="sgall" data-sq="${esc(v)}">Ver los ${r.total} resultados</button>`:(r.total?`<button type="button" class="sgall" data-sq="${esc(v)}">Ver todos en la página</button>`:'');
+ return fx+t+ct+(it?`<div class="sgh">Productos</div>${it}`:'')+(!t&&!it&&!ct&&!fx?`<div class="sgn0">Sin coincidencias. Prueba «merienda», «desayuno» o «fiesta».</div>`:'')+more}
+function attachSearch(inp,pick){const box=document.createElement('div');box.className='ssg';box.id='sg_'+inp.id;box.hidden=true;box.setAttribute('role','listbox');inp.closest('form,label').appendChild(box);inp.setAttribute('aria-controls',box.id);inp.setAttribute('aria-autocomplete','list');
+ let t,ai=-1;const hide=()=>{box.hidden=true;ai=-1;inp.setAttribute('aria-expanded','false')};
+ const show=()=>{const v=inp.value;if(v.trim().length<2){hide();return}box.innerHTML=sgHTML(Search.suggest(v,5),v);box.hidden=false;ai=-1;inp.setAttribute('aria-expanded','true')};
+ inp.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(show,90);if(inp.id==='q1'){clearTimeout(window._q1t);window._q1t=setTimeout(()=>doSearch(inp.value,false),220)}});
+ inp.addEventListener('focus',()=>{if(inp.value.trim().length>=2)show()});
+ inp.addEventListener('keydown',e=>{const b=[...box.querySelectorAll('button')];if(e.key==='Escape'){hide();return}if(box.hidden||!b.length)return;if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();ai=(ai+(e.key==='ArrowDown'?1:-1)+b.length)%b.length;b.forEach((x,i)=>x.classList.toggle('hl',i===ai));b[ai].scrollIntoView({block:'nearest'})}else if(e.key==='Enter'&&ai>=0){e.preventDefault();b[ai].click()}});
+ box.addEventListener('pointerdown',e=>e.preventDefault());
+ box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;hide();if(b.dataset.sq!=null){inp.value=b.dataset.sq;pick(b.dataset.sq)}else if(b.dataset.sc){pick('',b.dataset.sc)}else if(b.dataset.open){openPd(b.dataset.open)}});
+ document.addEventListener('pointerdown',e=>{if(!box.hidden&&!e.target.closest('#'+box.id)&&e.target!==inp)hide()});
+ inp.form&&inp.form.addEventListener('submit',hide);return hide}
+const pickGo=(v,c)=>{if(c){doSearch('',false);setCat(c,true)}else doSearch(v,true)};
+attachSearch($('q0'),pickGo);attachSearch($('q1'),(v,c)=>{if(c){doSearch('',false);setCat(c,'soft')}else doSearch(v,false)});attachSearch($('q2'),(v,c)=>{closeMenu();pickGo(v,c)});
+$('hs').onsubmit=e=>{e.preventDefault();doSearch($('q0').value,true)};
+document.addEventListener('click',e=>{const b=e.target.closest('.nr-ch [data-sq]');if(b)doSearch(b.dataset.sq,false)});
 $$('.qc button').forEach(b=>b.onclick=()=>setCat(b.dataset.cat,true));
 /* banner de consulta */
 $('strip').innerHTML=`<img class="mwm" src="${MW}" alt=""><div class="tx"><b>¿No encuentras algo? <span class="sc">Escríbenos</span></b><p>Hay más productos en tienda que aún no están en la web. Pregunta y te confirmamos.</p><a class="btn yl" data-wa="consulta" href="#"><svg><use href="#wai"/></svg>Preguntar por WhatsApp</a></div><div class="im">${[['mav',4,86,-4],['pan',24,96,5],['tru',50,58,-6]].map(([k,r,h,t])=>art(k,r,h,t)).join('')}</div>`;
@@ -786,13 +1068,13 @@ $('pg').onclick=e=>{const b=e.target.closest('[data-a]');if(b){setQty(b.dataset.
 /* ---------- ficha de producto ---------- */
 const pd=$('pd');let pdId=null,pdLast=null;
 const mc=p=>`<div class="oc"><button class="oi" type="button" data-open="${p.id}" aria-label="Ver ${esc(p.n)}">${p.img?`<img src="${IM[p.img]}" alt="" loading="lazy" decoding="async">`:`<i style="--c:${CAT[p.c].c}">${p.e}</i>`}</button><b>${money(p.p)}${p.o?` <s>${money(p.o)}</s>`:''}</b><button class="on2" type="button" data-open="${p.id}">${esc(p.n)}</button><span class="ob" data-ctl="${p.id}">${ctl(p.id)}</span></div>`;
-function pdHTML(p){const same=CATALOG.filter(x=>x.c===p.c&&x.id!==p.id).sort((a,b)=>(b.top?1:0)-(a.top?1:0)||disc(b)-disc(a)).slice(0,8);
+function pdHTML(p){const sim=Search.similar(p,8),same=sim.map(r=>r.p),shared=[...new Set(sim.slice(0,4).flatMap(r=>r.sh))].slice(0,4);
  const combo=(COMBO[p.c]||[]).map(i=>PM[i]).filter(x=>x&&x.id!==p.id&&x.c!==p.c).slice(0,6);
  const off=p.o?Math.round(disc(p)*100):0;
  return `<div class="pdh"><div class="pdi">${p.o?`<span class="tg of">−${off}%</span>`:''}${p.img?`<img src="${IM[p.img]}" alt="${esc(p.n)}" width="320" height="320">`:`<div class="eg" style="--c:${CAT[p.c].c}">${p.e}</div>`}</div>
  <div class="pdt"><button class="pcl" type="button" data-cat="${p.c}">${esc(CAT[p.c].n)}</button><h3>${esc(p.n)}</h3><small>${esc(p.s)}</small><div class="pp2 pdp${p.o?' of':''}"><b>${money(p.p)}</b>${p.o?`<s>${money(p.o)}</s><em>Ahorras ${money(p.o-p.p)}</em>`:''}</div><small class="eq pdeq">≈ ${alt(p.p)} · ${rtxt()}</small><div class="pdc" data-ctl="${p.id}">${ctl(p.id)}</div></div></div>
  <div class="pds"><h4>Descripción</h4><p>${esc(p.d)}</p><ul class="pdl"><li><span>Presentación</span><b>${esc(p.s)}</b></li><li><span>Ideal para</span><b>${esc(DESC[p.c][1])}</b></li><li><span>Disponibilidad</span><b>Se confirma por WhatsApp</b></li></ul></div>
- ${same.length?`<div class="pds"><div class="pdhd"><h4>Otras opciones en ${esc(CAT[p.c].n)}</h4><button type="button" data-cat="${p.c}">Ver todo</button></div><div class="orow">${same.map(mc).join('')}</div></div>`:''}
+ ${same.length?`<div class="pds"><div class="pdhd"><h4>Productos similares</h4><button type="button" data-cat="${p.c}">Ver ${esc(CAT[p.c].n)}</button></div>${shared.length?`<p class="simw">Parecidos por: ${shared.map(w=>`<span>${esc(w)}</span>`).join('')}</p>`:''}<div class="orow">${same.map(mc).join('')}</div></div>`:''}
  ${combo.length?`<div class="pds"><h4>Combina muy bien con</h4><div class="orow">${combo.map(mc).join('')}</div></div>`:''}`}
 function openPd(id){const p=PM[id];if(!p)return;pdLast=pdLast||document.activeElement;pdId=id;$('pdb').innerHTML=pdHTML(p);$('pdb').scrollTop=0;pd.classList.add('on');pd.setAttribute('aria-hidden','false');$('ov').classList.add('on');document.body.style.overflow='hidden';if(!pd.dataset.o){pd.dataset.o=1}setTimeout(()=>$('pdx').focus({preventScroll:true}),260)}
 function closePd(){if(!pd.classList.contains('on'))return;pd.classList.remove('on');pd.setAttribute('aria-hidden','true');pdId=null;if(!$('dr').classList.contains('on')&&!$('sh').classList.contains('on')&&!$('mn').classList.contains('on')){$('ov').classList.remove('on');document.body.style.overflow=''}if(pdLast&&pdLast.focus)pdLast.focus({preventScroll:true});pdLast=null}
@@ -981,12 +1263,11 @@ function addAll(){C.k[ST.k]=(C.k[ST.k]||0)+1;if(ST.x)EXTRA[ST.x][0][1].forEach((
 const SYN={coca:'refresco',cola:'refresco',gaseosa:'refresco',soda:'refresco',arepa:'harina pan',arepas:'harina pan',maiz:'harina pan',toilet:'papel',higienico:'papel',lavaplatos:'axion',lavaplato:'axion',espagueti:'pasta',espaguetis:'pasta',fideos:'pasta',chuche:'snacks',chuches:'snacks',golosinas:'snacks',dulces:'snacks',chucherias:'snacks',chocolate:'choco',chocolates:'choco',cheddar:'rikesa',diablito:'diablitos',jabones:'jabon',detergentes:'detergente',mayo:'mayonesa',salsa:'salsa',viveres:'despensa',charcuteria:'lacteos',fiambre:'jamon'};
 const STOP=new Set('quiero queria tienen tiene tienes hay busco buscando necesito dame dime precio precios cuanto cuesta cuestan vale valen el la los las de del un una unos unas para me mi por favor algo venden vendes que con y o a al es son en ese esa este esta agrega agregar agregame añade anade pon ponme mete meteme suma sumame comprar compra hola gracias si no porfa pls'.split(' '));
 const NUM={un:1,uno:1,una:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10};
-function findP(n){const tk=n.split(/\s+/).filter(w=>w.length>2&&!STOP.has(w)).map(w=>SYN[w]||w);if(!tk.length)return[];
- const words=tk.join(' ').split(/\s+/);const sc=CATALOG.map(p=>{const nm=norm(p.n+' '+p.id),h=norm(CAT[p.c].n+' '+p.s);let s=0;words.forEach(w=>{const w2=w.length>4?w.replace(/(es|s)$/,''):w;if(nm.includes(w)||nm.includes(w2))s+=3;else if(h.includes(w)||h.includes(w2))s+=1});return[p,s]}).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
- if(!sc.length)return[];const top=sc[0][1];return sc.filter(x=>x[1]>=(top>=3?3:top)).map(x=>x[0])}
+function findP(n){const tk=n.split(/\s+/).filter(w=>w.length>2&&!STOP.has(w));if(!tk.length)return[];const q=Search.loose(tk.join(' '));if(!q)return[];
+ const r=Search.query(q);if(!r.items.length)return[];const top=r.items[0].s;return r.items.filter(x=>x.s>=top*.34).map(x=>x.p)}
 function buscar(t){const n=norm(t),l=findP(n);if(!l.length){say([`Mmm, no encontré «${esc(t)}» en la página 🤔`,`Puede que lo tengamos en tienda: <a href="${wa('Hola El Maracucho, ¿tienen '+t+'?')}" target="_blank" rel="noopener">pregúntanos por WhatsApp</a> y te confirmamos.`],()=>chips([['🔎 Buscar otra cosa',ACT.buscar],['Menú',home]]));return}
  say([`Encontré ${l.length===1?'esto':'estos'} 👇`,l.slice(0,6).map(mini).join('')+(l.length>6?`<button type="button" class="alink" data-q="${esc(t)}">Ver los ${l.length} en la página →</button>`:'')],()=>chips([['🛒 Mi pedido',pedido],['🔎 Buscar otra cosa',ACT.buscar],['Menú',home]]))}
-asm.addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b){S.q=b.dataset.q;$('q1').value=S.q;S.cat='all';S.shown=12;render();asOpen(false);goShop()}});
+asm.addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(b){doSearch(b.dataset.q,true);asOpen(false)}});
 function respond(t){const n=norm(t).replace(/[¿?¡!.,;:]/g,' ').replace(/\s+/g,' ').trim(),w=n.split(' ');
  const has=(...k)=>k.some(x=>(' '+n+' ').includes(' '+x));
  // agregar directo: "agrega 2 harinas"
@@ -1028,7 +1309,7 @@ function startArma(){asOpen(true);const go=()=>{if(busy)return setTimeout(go,300
 $('mnmz').innerHTML=`<span>${mzSVG('mini')}</span><div><small>¿No sabes por dónde empezar?</small><b>Maracuchito te arma el mercado</b></div>${ic('arrow')}`;
 $('mnmz').onclick=()=>{closeMenu();startArma()};
 $('mnf').innerHTML=`<p><span class="dot${openNow()?'':' off'}"></span>${openNow()?'Abierto ahora':'Cerrado ahora'} · Lun–dom 8:00 AM – 9:00 PM</p><a class="btn" href="${wa('Hola El Maracucho 👋, vengo de la página web.')}" target="_blank" rel="noopener"><svg><use href="#wai"/></svg>0424-499-4155</a><a class="ig" href="https://instagram.com/elmaracucho_ve" target="_blank" rel="noopener">@elmaracucho_ve</a>`;
-$('mns').onsubmit=e=>{e.preventDefault();S.q=$('q2').value;$('q1').value=S.q;S.cat='all';S.shown=12;render();closeMenu();goShop()};
+$('mns').onsubmit=e=>{e.preventDefault();doSearch($('q2').value,false);closeMenu();goShop()};
 mn.addEventListener('click',e=>{if(e.target.closest('[data-mn]'))closeMenu()});
 /* rendimiento: pausar animaciones del hero fuera de pantalla */
 new IntersectionObserver(es=>document.body.classList.toggle('hero-off',!es[0].isIntersecting)).observe($('top'));
