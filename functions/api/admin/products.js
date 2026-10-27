@@ -13,17 +13,38 @@ export async function onRequestPost(context) {
 
   try {
     const body = await request.json();
-    const { id, precio, precio_oferta, promo_tag, disponible, imagen_url, nombre, presentacion, categoria, emoji, descripcion, tags } = body;
+    const {
+      id,
+      action,
+      precio,
+      precio_oferta,
+      promo_tag,
+      disponible,
+      imagen_url,
+      nombre,
+      presentacion,
+      categoria,
+      emoji,
+      descripcion,
+      tags
+    } = body;
 
     if (!id) {
       return jsonResponse({ success: false, error: "El ID del producto es obligatorio" }, 400);
     }
 
-    // Comprueba si el producto existe
-    const existing = await queryTurso(env, "SELECT id FROM productos WHERE id = ?;", [id]);
+    if (action === "delete") {
+      await queryTurso(env, "DELETE FROM productos WHERE id = ?;", [id]);
+      return jsonResponse({
+        success: true,
+        deleted: id,
+        message: `Producto ${id} eliminado de Turso`
+      });
+    }
+
+    const existing = await queryTurso(env, "SELECT * FROM productos WHERE id = ?;", [id]);
 
     if (existing.rows.length === 0) {
-      // Inserción de nuevo producto
       await queryTurso(
         env,
         `INSERT INTO productos (
@@ -31,58 +52,86 @@ export async function onRequestPost(context) {
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 999, ?, ?, datetime('now'));`,
         [
           id,
-          categoria || 'despensa',
-          nombre || 'Nuevo Producto',
-          presentacion || 'Unidad',
+          categoria || "despensa",
+          nombre || "Nuevo Producto",
+          presentacion || "Unidad",
           precio !== undefined && precio !== null ? Number(precio) : 0,
-          precio_oferta !== undefined && precio_oferta !== null ? Number(precio_oferta) : null,
+          precio_oferta !== undefined && precio_oferta !== null && precio_oferta !== "" ? Number(precio_oferta) : null,
           promo_tag || null,
-          emoji || '🛒',
+          emoji || "🛒",
           imagen_url || null,
           disponible !== undefined ? (disponible ? 1 : 0) : 1,
-          descripcion || '',
-          tags || ''
+          descripcion || "",
+          tags || ""
         ]
       );
     } else {
-      // Actualización de producto existente
+      const cur = existing.rows[0];
+      const nextPrecio = precio !== undefined && precio !== null ? Number(precio) : Number(cur.precio);
+      const nextOferta = "precio_oferta" in body
+        ? (precio_oferta !== null && precio_oferta !== "" ? Number(precio_oferta) : null)
+        : (cur.precio_oferta !== null && cur.precio_oferta !== undefined ? Number(cur.precio_oferta) : null);
+      const nextTag = "promo_tag" in body
+        ? (promo_tag ? String(promo_tag).trim() : null)
+        : (cur.promo_tag || null);
+      const nextDisp = disponible !== undefined && disponible !== null
+        ? (disponible ? 1 : 0)
+        : (cur.disponible !== undefined && cur.disponible !== null ? Number(cur.disponible) : 1);
+      const nextImg = "imagen_url" in body
+        ? (imagen_url ? String(imagen_url).trim() : null)
+        : (cur.imagen_url || null);
+      const nextNombre = nombre !== undefined && nombre !== null && String(nombre).trim()
+        ? String(nombre).trim()
+        : cur.nombre;
+      const nextPres = presentacion !== undefined && presentacion !== null
+        ? String(presentacion).trim()
+        : cur.presentacion;
+      const nextCat = categoria !== undefined && categoria !== null && String(categoria).trim()
+        ? String(categoria).trim()
+        : cur.categoria;
+      const nextEmoji = emoji !== undefined && emoji !== null && String(emoji).trim()
+        ? String(emoji).trim()
+        : (cur.emoji || "🛒");
+      const nextDesc = descripcion !== undefined && descripcion !== null
+        ? String(descripcion).trim()
+        : (cur.descripcion || "");
+      const nextTags = tags !== undefined && tags !== null
+        ? String(tags).trim()
+        : (cur.tags || "");
+
       await queryTurso(
         env,
         `UPDATE productos 
-         SET precio = CASE WHEN ? IS NOT NULL THEN ? ELSE precio END,
+         SET precio = ?,
              precio_oferta = ?,
              promo_tag = ?,
-             disponible = CASE WHEN ? IS NOT NULL THEN ? ELSE disponible END,
-             imagen_url = CASE WHEN ? IS NOT NULL THEN ? ELSE imagen_url END,
-             nombre = CASE WHEN ? IS NOT NULL THEN ? ELSE nombre END,
-             presentacion = CASE WHEN ? IS NOT NULL THEN ? ELSE presentacion END,
-             categoria = CASE WHEN ? IS NOT NULL THEN ? ELSE categoria END,
-             emoji = CASE WHEN ? IS NOT NULL THEN ? ELSE emoji END,
+             disponible = ?,
+             imagen_url = ?,
+             nombre = ?,
+             presentacion = ?,
+             categoria = ?,
+             emoji = ?,
+             descripcion = ?,
+             tags = ?,
              updated_at = datetime('now')
          WHERE id = ?;`,
         [
-          precio !== undefined ? precio : null,
-          precio !== undefined ? precio : null,
-          precio_oferta !== undefined ? precio_oferta : null,
-          promo_tag !== undefined ? promo_tag : null,
-          disponible !== undefined ? (disponible ? 1 : 0) : null,
-          disponible !== undefined ? (disponible ? 1 : 0) : null,
-          imagen_url !== undefined ? imagen_url : null,
-          imagen_url !== undefined ? imagen_url : null,
-          nombre !== undefined ? nombre : null,
-          nombre !== undefined ? nombre : null,
-          presentacion !== undefined ? presentacion : null,
-          presentacion !== undefined ? presentacion : null,
-          categoria !== undefined ? categoria : null,
-          categoria !== undefined ? categoria : null,
-          emoji !== undefined ? emoji : null,
-          emoji !== undefined ? emoji : null,
+          nextPrecio,
+          nextOferta,
+          nextTag,
+          nextDisp,
+          nextImg,
+          nextNombre,
+          nextPres,
+          nextCat,
+          nextEmoji,
+          nextDesc,
+          nextTags,
           id
         ]
       );
     }
 
-    // Consulta el producto actualizado/creado
     const updated = await queryTurso(env, "SELECT * FROM productos WHERE id = ?;", [id]);
 
     return jsonResponse({
@@ -92,6 +141,35 @@ export async function onRequestPost(context) {
     });
   } catch (err) {
     console.error("Error en /api/admin/products:", err);
+    return jsonResponse({ success: false, error: err.message }, 500);
+  }
+}
+
+export async function onRequestDelete(context) {
+  const { request, env } = context;
+
+  if (!checkAuth(request, env)) {
+    return jsonResponse({ success: false, error: "No autorizado. PIN requerido." }, 401);
+  }
+
+  try {
+    const url = new URL(request.url);
+    let id = url.searchParams.get("id");
+    if (!id) {
+      const body = await request.json().catch(() => ({}));
+      id = body.id;
+    }
+    if (!id) {
+      return jsonResponse({ success: false, error: "El ID del producto es obligatorio" }, 400);
+    }
+    await queryTurso(env, "DELETE FROM productos WHERE id = ?;", [id]);
+    return jsonResponse({
+      success: true,
+      deleted: id,
+      message: `Producto ${id} eliminado de Turso`
+    });
+  } catch (err) {
+    console.error("Error en DELETE /api/admin/products:", err);
     return jsonResponse({ success: false, error: err.message }, 500);
   }
 }

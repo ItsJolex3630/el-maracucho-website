@@ -660,176 +660,23 @@ html{scroll-padding-top:172px}
 const CATS={harinas:['Harinas y cereales','#fbeec6'],despensa:['Despensa','#e4f1e7'],cafe:['Café y desayuno','#f1e0d0'],salsas:['Salsas y aderezos','#fbdcd2'],snacks:['Snacks y dulces','#fdefbf'],lacteos:['Lácteos y charcutería','#fde4c4'],bebidas:['Bebidas','#d6eaf6'],panes:['Panes y repostería','#f7e3c3'],frutas:['Frutas y verduras','#dff0cf'],carnes:['Carnes y pollo','#f8d9d6'],personal:['Cuidado personal','#e8def7'],limpieza:['Limpieza','#e3dcfa'],hogar:['Hogar y papel','#dcefe4']};
 const RAWCAT=`
 pan|harinas|Harina PAN blanca|1 kg|1.6|🌽|bag|arepa arepas empanada cachapa desayuno cena harina maiz precocida|Harina de maíz precocida para hacer arepas, empanadas y cachapas; rinde para toda la familia.
-trigo|harinas|Harina de trigo todo uso|1 kg|1.4|🌾|bag|pan torta bizcocho hornear reposteria panqueca|Para hornear panes, tortas, bizcochos y panquecas caseras.
-avena|harinas|Avena en hojuelas|400 g|1.3|🥣|bag|desayuno merienda saludable colada avena fibra|Avena en hojuelas para desayunos, coladas y galletas caseras; aporta fibra y energía.
-pasta|harinas|Pasta larga|1 kg|1.7|🍝|bag|almuerzo cena espagueti spaghetti pasta|Espaguetis para el almuerzo o la cena, con salsa boloñesa, carbonara o con atún.
-pastac|harinas|Pasta corta|1 kg|1.7|🍝|bag|almuerzo cena pasta coditos plumas ensalada|Pasta corta para sopas, gratinados y ensaladas frías.
-maizina|harinas|Maicena|400 g|1.9|🌽|box|postre natilla espesar colada merienda dulce|Almidón de maíz para espesar cremas, hacer natilla, coladas y postres.
 arroz|harinas|Arroz Premium Mary|1 kg|1.55|🍚|bag|almuerzo arroz guarnicion cena|Arroz blanco de grano largo; queda suelto y es la base del almuerzo.
-cereal|harinas|Hojuelas de maíz|370 g|2.6|🥣|box|desayuno merienda cereal niños leche|Cereal crujiente de maíz para el desayuno o una merienda con leche.
-cereal2|harinas|Cereal de chocolate|300 g|3.1|🥣|box|desayuno merienda cereal niños chocolate leche|Cereal de arroz inflado con sabor a chocolate; favorito de los niños para la merienda.
-granola|harinas|Granola con frutas|350 g|3.4|🥣|bag|desayuno merienda saludable granola yogurt fitness|Granola crujiente con frutas secas; ideal con yogurt como desayuno o merienda saludable.
-espagueti|harinas|Macarrones|500 g|1.1|🍝|bag|almuerzo cena pasta macarron gratinado niños|Macarrones para gratinados, sopas y almuerzos rápidos con queso.
-tortillas|harinas|Tortillas de harina|10 und|2.4|🫓|bag|cena wraps burritos tacos rapido merienda|Tortillas suaves para tacos, burritos y wraps; resuelven una cena rápida.
-fororo|harinas|Fororo|400 g|1.6|🌽|bag|bebida tradicional merienda desayuno maiz|Maíz tostado y molido para la bebida tradicional; se toma fría o caliente.
-azucar|despensa|Azúcar|1 kg|1.45|🍬|bag|dulce cafe postre endulzar reposteria|Azúcar refinada para endulzar el café, jugos y postres.
-aceite|despensa|Aceite vegetal|1 L|3.2|🫒|bot|cocinar freir almuerzo cena|Aceite vegetal para freír y cocinar a diario.
-sal|despensa|Sal refinada|1 kg|.8|🧂|bag|sazon cocinar condimento|Sal fina para sazonar y cocinar.
-caraotas|despensa|Caraotas negras|500 g|1.6|🫘|bag|almuerzo pabellon granos proteina|Caraotas negras para el pabellón y guisos; ricas en proteína y fibra.
-lentejas|despensa|Lentejas|500 g|1.5|🫘|bag|almuerzo sopa granos proteina guiso|Lentejas para guisos y sopas, rápidas de cocinar.
-atun|despensa|Atún en aceite|140 g|2.1|🥫|can|almuerzo cena sandwich merienda rapido proteina enlatado|Atún en aceite listo para ensaladas, sándwiches, pastas y arepas rellenas.
-sardinas|despensa|Sardinas en tomate|170 g|1.4|🥫|can|almuerzo cena enlatado rapido proteina|Sardinas en salsa de tomate; una comida económica y rápida.
-vinagre|despensa|Vinagre blanco|500 ml|1|🍶|bot|ensalada aderezo limpieza cocinar|Vinagre blanco para ensaladas, encurtidos y aderezos.
-maiz|despensa|Maíz dulce en lata|340 g|1.7|🌽|can|ensalada pizza perro caliente enlatado cena|Granos de maíz tierno para ensaladas, pizzas, perros calientes y arroces.
-garbanzos|despensa|Garbanzos|500 g|1.8|🫘|bag|almuerzo granos proteina ensalada guiso|Garbanzos para guisos, ensaladas y hummus.
-pimienta|despensa|Pimienta molida|50 g|1.2|🧂|jar|sazon condimento especias carne|Pimienta negra molida para carnes, pollo y guisos.
-comino|despensa|Comino molido|50 g|1.1|🧂|jar|sazon condimento especias guiso carne|Comino molido para dar sabor a carnes, caraotas y guisos.
-caldo|despensa|Cubitos de caldo|12 und|1.3|🍲|box|sopa sazon guiso almuerzo|Cubitos de caldo para sopas, guisos y arroces con más sabor.
-sazon|despensa|Sazón completo|100 g|1.4|🧂|jar|sazon condimento carne pollo almuerzo|Mezcla de especias para pollo, carne y arroz.
-aceitunas|despensa|Aceitunas rellenas|240 g|2.8|🫒|jar|ensalada pizza pasapalos fiesta tapas|Aceitunas rellenas para ensaladas, pasapalos y pizzas.
-papelon|despensa|Papelón en panela|400 g|1.5|🍯|bag|bebida merienda dulce tradicional limonada|Papelón para preparar la tradicional agua de panela con limón, fría o caliente.
-miel|despensa|Miel de abeja|250 g|3.2|🍯|jar|desayuno merienda dulce saludable pan arepa|Miel de abeja para endulzar el desayuno, el yogurt o la avena.
-lechecond|despensa|Leche condensada|395 g|2.6|🥛|can|postre merienda dulce torta flan quesillo|Leche condensada para quesillos, tortas, dulces y para untar en el pan.
-cacao|despensa|Cacao en polvo|200 g|2.9|🍫|box|postre merienda chocolate torta bebida|Cacao puro en polvo para bebidas calientes, tortas y postres.
-gelatina|snacks|Gelatina de fresa|120 g|0.9|🍓|box|postre merienda niños dulce fiesta fresa|Gelatina de sabor fresa; postre fácil y fresco para la merienda de los niños.
-flan|snacks|Flan de vainilla en polvo|100 g|1.1|🍮|box|postre merienda dulce niños vainilla|Preparación para flan de vainilla; solo se mezcla con leche.
-cafe|cafe|Café molido|250 g|3.5|☕|bag|desayuno cafe colado manana merienda|Café tostado y molido para el colado de la mañana y la tarde.
 tod|cafe|Toddy achocolatado|400 g|3.9|🍫|jar|merienda desayuno niños chocolate leche bebida lonchera|Bebida achocolatada en polvo para tomar con leche; clásica de la merienda de los niños.
-leche|cafe|Leche en polvo|400 g|5.8|🥛|bag|desayuno merienda leche cafe niños|Leche en polvo entera para el desayuno, el café y las preparaciones.
-mermelada|cafe|Mermelada de fresa|350 g|2.4|🍓|jar|desayuno merienda pan dulce sandwich untar|Mermelada de fresa para untar en pan, galletas y arepas dulces.
-cafe2|cafe|Café instantáneo|100 g|4.2|☕|jar|desayuno cafe rapido manana merienda|Café soluble que se prepara al instante con agua o leche caliente.
-te|cafe|Té de manzanilla|20 bolsitas|1.5|🍵|box|infusion bebida caliente noche merienda relajante|Té de manzanilla en bolsitas; infusión suave para la tarde o la noche.
-chocobeber|cafe|Chocolate para beber|500 g|3.3|🍫|bag|merienda desayuno chocolate caliente niños bebida|Chocolate en barras para beber caliente con leche; ideal para la merienda.
-cremaavellana|cafe|Crema de avellanas y cacao|350 g|4.6|🌰|jar|merienda desayuno untar pan chocolate niños dulce|Crema de avellanas y cacao para untar en pan, arepas, crepes y galletas.
-mani|cafe|Mantequilla de maní|340 g|3.7|🥜|jar|merienda desayuno untar pan saludable proteina sandwich|Mantequilla de maní cremosa para sándwiches, tostadas y batidos.
 mav|salsas|Mayonesa Mavesa|500 g|3.4|🥚|jar|sandwich hamburguesa perro caliente ensalada aderezo|Mayonesa cremosa para sándwiches, hamburguesas, ensaladas y papas.
 hz|salsas|Ketchup Heinz|342 g|3.1|🍅|bot|perro caliente hamburguesa papas fritas aderezo niños|Salsa de tomate para perros calientes, hamburguesas y papas fritas.
-mostaza|salsas|Mostaza|200 g|1.5|🌭|bot|perro caliente hamburguesa sandwich aderezo|Mostaza clásica para perros calientes, hamburguesas y sándwiches.
-soya|salsas|Salsa de soya|150 ml|1.2|🥢|bot|arroz chino cocinar oriental marinar|Salsa de soya para arroz chino, marinadas y salteados.
-tomate|salsas|Pasta de tomate|190 g|1.3|🍅|can|almuerzo pasta guiso cocinar salsa|Pasta de tomate concentrada para guisos, pastas y salsas.
-ajosalsa|salsas|Salsa de ajo|200 g|2.2|🧄|jar|pollo arepa papas aderezo cena pizza|Salsa de ajo cremosa para pollo, papas, arepas y pizzas.
-picante|salsas|Salsa picante|150 ml|1.4|🌶️|bot|picante aderezo comida criolla empanadas pasapalos|Salsa picante para empanadas, carnes y pasapalos.
-bbq|salsas|Salsa BBQ|350 g|2.9|🍖|bot|parrilla carne costillas hamburguesa pollo aderezo|Salsa barbacoa para costillas, pollo, carnes y hamburguesas.
-cesar|salsas|Aderezo César|250 ml|3.1|🥗|bot|ensalada pollo sandwich aderezo cena|Aderezo cremoso para ensalada César, wraps y sándwiches.
 dor|snacks|Doritos sabor queso|320 g|4.2|🌮|bag|merienda snack fiesta pasapalo niños picar queso|Tostadas de maíz sabor queso para picar, compartir y merendar.
 pep|snacks|Pepito original|100 g|1.2|🧀|bag|merienda snack niños picar queso lonchera|Snack de maíz con sabor a queso; práctico para la lonchera.
 tru|snacks|Trululu aros|Bolsa|1|🍬|bag|merienda dulce gomitas niños caramelo golosina|Gomitas en forma de aros con sabor a frutas; golosina favorita de los niños.
-galletas|snacks|Galletas de soda|200 g|1.1|🍪|box|merienda desayuno galleta salada queso picar|Galletas saladas para merendar con queso, jamón o mantequilla.
-papas|snacks|Papitas fritas|140 g|1.8|🥔|bag|merienda snack picar fiesta papas salado|Papas fritas crujientes para picar entre comidas o en reuniones.
-choco|snacks|Chocolate en barra|100 g|1.5|🍫|box|merienda dulce chocolate postre niños golosina|Barra de chocolate con leche para el antojo dulce de la tarde.
-oreo|snacks|Galletas rellenas de chocolate|6 und|1.4|🍪|box|merienda galleta chocolate niños lonchera dulce|Paquete de galletas rellenas con crema; práctico para la lonchera y la merienda.
-maria|snacks|Galletas María|200 g|1.2|🍪|box|merienda desayuno galleta dulce cafe leche niños|Galletas dulces clásicas, perfectas para mojar en leche o café.
-galletacoco|snacks|Galletas de coco|180 g|1.6|🥥|box|merienda galleta dulce cafe coco|Galletas crocantes con coco para acompañar el café de la tarde.
-barras|snacks|Barras de cereal|6 und|2.8|🍫|box|merienda saludable lonchera deporte desayuno barra cereal|Barras de cereal con miel y avena; merienda saludable lista para llevar.
-gomitas|snacks|Gomitas de frutas|100 g|1.1|🍬|bag|merienda dulce gomitas niños golosina fiesta|Gomitas suaves de sabores frutales para los antojos dulces.
-caramelos|snacks|Caramelos surtidos|200 g|1.3|🍬|bag|dulce golosina niños fiesta piñata cumpleaños|Caramelos de colores y sabores para fiestas, piñatas y detalles.
-cotufas|snacks|Cotufas para microondas|3 und|2.2|🍿|box|merienda cine snack picar noche niños pelicula|Cotufas listas en 3 minutos en el microondas; para ver una película en casa.
-tostones|snacks|Tostones de plátano|100 g|1.5|🍌|bag|merienda snack picar salado platano pasapalo|Chips de plátano verde, crujientes y con sabor tradicional.
-platanitos|snacks|Platanitos fritos|120 g|1.3|🍌|bag|merienda snack picar salado platano lonchera|Platanitos fritos con sal; merienda criolla para picar.
-manisal|snacks|Maní salado|200 g|1.7|🥜|bag|merienda snack picar fiesta salado pasapalo|Maní tostado con sal para picar en reuniones o entre comidas.
-frutossecos|snacks|Mix de frutos secos|150 g|3.6|🌰|bag|merienda saludable snack proteina deporte nueces|Mezcla de nueces, pasas y almendras; merienda saludable y energética.
-wafer|snacks|Wafer de vainilla|6 und|1.2|🍫|box|merienda dulce galleta niños lonchera vainilla|Barquillos rellenos de crema de vainilla, listos para merendar.
 rik|lacteos|Salsa cheddar Rikesa|200 g|2.4|🧀|jar|nachos papas hamburguesa queso salsa fiesta|Salsa cheddar lista para nachos, papas fritas y hamburguesas.
 dia|lacteos|Diablitos Underwood|Lata|1.9|😈|can|sandwich merienda untar arepa pasapalo jamon|Jamón endiablado para untar en pan, galletas y arepas.
-jamon|lacteos|Jamón ahumado Ricci|1 kg|8.34|🍖|tray|sandwich desayuno cena charcuteria arepa merienda|Jamón ahumado para sándwiches, arepas, desayunos y pasapalos.
-queso|lacteos|Queso blanco duro|1 kg|7.5|🧀|tray|arepa desayuno cena queso rallar empanada|Queso blanco duro para rallar, freír o rellenar arepas y empanadas.
-mantequilla|lacteos|Mantequilla|250 g|2.6|🧈|box|desayuno pan arepa hornear cocinar untar|Mantequilla para untar en pan y arepas, y para cocinar y hornear.
-huevos|lacteos|Cartón de huevos|30 und|5.2|🥚|tray|desayuno cena huevo proteina hornear|Huevos frescos para desayunos, tortillas y repostería.
-yogurt|lacteos|Yogurt de fresa|1 L|1.9|🍓|car|merienda desayuno yogurt niños postre fresa|Yogurt cremoso sabor fresa para el desayuno o una merienda fresca.
-yogbeb|lacteos|Yogurt bebible|200 ml|0.9|🥛|car|merienda lonchera niños yogurt bebida desayuno|Yogurt para beber en presentación individual; ideal para la lonchera.
-yoggriego|lacteos|Yogurt griego natural|500 g|3.6|🥛|jar|merienda desayuno saludable yogurt proteina granola|Yogurt griego espeso, sin azúcar añadida; combina con granola y frutas.
-quesoamar|lacteos|Queso amarillo en lonjas|200 g|3.2|🧀|box|sandwich merienda hamburguesa desayuno tostada|Queso amarillo en lonjas para sándwiches, hamburguesas y tostadas.
-quesocrema|lacteos|Queso crema|230 g|2.5|🧀|box|merienda desayuno untar pan galletas sandwich postre|Queso crema suave para untar en pan, galletas y bagels, o preparar postres.
-quesorall|lacteos|Queso rallado|100 g|1.9|🧀|bag|pasta pizza arepa gratinar cena|Queso rallado listo para pastas, pizzas y arepas.
-leche1|lacteos|Leche líquida entera|1 L|1.9|🥛|car|desayuno merienda leche cafe niños|Leche entera de larga duración para el desayuno y el café.
-lechechoc|lacteos|Leche achocolatada|200 ml|0.9|🍫|car|merienda lonchera niños chocolate leche bebida|Leche con chocolate en cajita individual; práctica para la merienda escolar.
-mortadela|lacteos|Mortadela|500 g|3.5|🥓|tray|sandwich merienda desayuno charcuteria pan|Mortadela en lonjas para sándwiches y meriendas rápidas.
-salchicha|lacteos|Salchichas tipo Viena|500 g|3.2|🌭|tray|perro caliente cena niños merienda fiesta|Salchichas para perros calientes, pizzas y comidas rápidas de los niños.
-jamonlonja|lacteos|Jamón de pierna en lonjas|200 g|2.6|🍖|tray|sandwich merienda desayuno charcuteria|Jamón en lonjas finas para sándwiches y tostadas.
-tocineta|lacteos|Tocineta|200 g|3.2|🥓|tray|desayuno hamburguesa sandwich cena crujiente|Tocineta ahumada para desayunos, hamburguesas y ensaladas.
-refresco|bebidas|Refresco de cola|2 L|2.2|🥤|bot|fiesta almuerzo gaseosa cena refresco|Refresco de cola de 2 litros para acompañar el almuerzo o compartir en reuniones.
-agua|bebidas|Agua mineral|5 L|1.5|💧|bot|agua hidratar hogar|Botellón de agua mineral para toda la casa.
-jugo|bebidas|Jugo de naranja|1 L|1.9|🧃|car|desayuno merienda jugo naranja niños vitamina|Jugo de naranja listo para tomar en el desayuno o la merienda.
-malta|bebidas|Malta|Pack 6|4.2|🍺|bot|merienda bebida energia niños almuerzo|Malta en botellitas para acompañar comidas y meriendas.
-jugocaja|bebidas|Jugo en cajita|200 ml|0.7|🧃|car|merienda lonchera niños jugo colegio fruta|Jugo de frutas en cajita con pitillo; clásico de la lonchera escolar.
-jugomango|bebidas|Néctar de mango|1 L|2.1|🥭|car|merienda desayuno jugo mango fruta fiesta|Néctar de mango para el desayuno, la merienda o reuniones.
-tefrio|bebidas|Té frío de limón|500 ml|1.2|🍋|bot|merienda refrescar bebida limon verano|Té frío de limón; bebida refrescante para la tarde.
-refrescona|bebidas|Refresco de naranja|2 L|2.1|🍊|bot|fiesta almuerzo gaseosa naranja niños cumpleaños|Refresco sabor naranja de 2 litros para fiestas y almuerzos.
-hidratante|bebidas|Bebida hidratante|500 ml|1.3|⚡|bot|deporte hidratar electrolitos sed ejercicio|Bebida con electrolitos para reponerse después del deporte o el calor.
-aguaper|bebidas|Agua mineral pequeña|600 ml|0.5|💧|bot|agua lonchera merienda hidratar colegio|Agua mineral individual para la lonchera o el bolso.
-aguasab|bebidas|Agua con sabor|600 ml|0.9|🍑|bot|merienda refrescar bebida niños lonchera|Agua ligera con sabor a durazno; refrescante y sin burbujas.
-energ|bebidas|Bebida energizante|250 ml|1.8|⚡|can|energia deporte estudio trabajo|Bebida energizante en lata para los días largos.
-pansand|panes|Pan de sándwich|500 g|2.4|🍞|bag|sandwich merienda desayuno tostada jamon queso lonchera|Pan de molde suave para sándwiches, tostadas y meriendas del colegio.
-panperro|panes|Pan para perros calientes|8 und|2.2|🌭|bag|perro caliente cena fiesta niños salchicha|Panes suaves para perros calientes, perfectos con salchicha y salsas.
-panham|panes|Pan para hamburguesa|6 und|2.4|🍔|bag|hamburguesa cena fiesta carne sandwich|Panes con ajonjolí para hamburguesas caseras.
-pancanilla|panes|Pan canilla|1 und|0.9|🥖|bag|desayuno cena sandwich mantequilla queso merienda|Pan canilla fresco para desayunos, cenas y sándwiches.
-panquecitos|panes|Panquecitos de vainilla|6 und|1.6|🧁|box|merienda postre dulce niños lonchera cafe|Panquecitos suaves de vainilla, listos para merendar con leche o café.
-donas|panes|Donas glaseadas|4 und|3.2|🍩|box|merienda postre dulce niños cafe fiesta|Donas con glaseado de colores; el antojo dulce de la tarde.
-croissant|panes|Croissants|4 und|3.5|🥐|bag|desayuno merienda cafe mantequilla relleno|Croissants de mantequilla, ideales con café o rellenos de jamón y queso.
-tostadas|panes|Pan tostado|200 g|1.8|🍞|box|desayuno merienda mantequilla mermelada crujiente|Rebanadas de pan tostado para untar con mantequilla, queso crema o mermelada.
-bizcocho|panes|Bizcocho de vainilla|1 und|4.2|🍰|box|merienda postre cumpleaños cafe dulce torta|Bizcocho esponjoso para acompañar el café o improvisar un postre.
-pizzamasa|panes|Masa para pizza|2 und|3.1|🍕|bag|cena pizza fiesta niños horno|Bases de masa precocida para armar pizzas caseras en minutos.
-banano|frutas|Cambur|1 kg|1.2|🍌|tray|merienda fruta saludable desayuno niños|Cambur maduro; fruta práctica para la merienda y el desayuno.
-manzana|frutas|Manzana roja|1 kg|2.8|🍎|tray|merienda fruta saludable lonchera niños postre|Manzanas rojas crujientes para la lonchera, la merienda o ensaladas de frutas.
-naranja|frutas|Naranjas|1 kg|1.4|🍊|tray|jugo desayuno merienda fruta vitamina|Naranjas jugosas para jugo natural y para comer.
-platano|frutas|Plátano|1 kg|1.5|🍌|tray|almuerzo tostones frito maduro cena|Plátano para freír, asar o hacer tostones.
-papa|frutas|Papa|1 kg|1.6|🥔|tray|almuerzo cena sopa puré papas fritas guarnicion|Papas para freír, sancochar o hacer puré.
-cebolla|frutas|Cebolla|1 kg|1.4|🧅|tray|sofrito almuerzo cocinar guiso|Cebolla para el sofrito de todos los días.
-tomatef|frutas|Tomate fresco|1 kg|1.8|🍅|tray|ensalada sofrito almuerzo salsa hamburguesa|Tomates frescos para ensaladas, salsas y sofritos.
-zanahoria|frutas|Zanahoria|1 kg|1.1|🥕|tray|ensalada sopa almuerzo saludable guarnicion|Zanahorias para sopas, ensaladas y guarniciones.
-limon|frutas|Limón|1 kg|1.6|🍋|tray|limonada bebida cocinar ensalada merienda|Limones para limonadas, aderezos y sazonar.
-aguacate|frutas|Aguacate|1 und|1.4|🥑|tray|ensalada arepa desayuno cena saludable sandwich|Aguacate maduro para ensaladas, arepas y tostadas.
-ajo|frutas|Ajo|250 g|1.3|🧄|tray|sofrito sazon cocinar almuerzo|Ajo fresco para sofritos, guisos y adobos.
-pimenton|frutas|Pimentón|500 g|1.2|🫑|tray|sofrito almuerzo guiso ensalada cocinar|Pimentón fresco para sofritos y guisos.
-lechuga|frutas|Lechuga|1 und|1|🥬|tray|ensalada hamburguesa sandwich saludable cena|Lechuga fresca para ensaladas, hamburguesas y sándwiches.
-uvas|frutas|Uvas|500 g|2.9|🍇|tray|merienda fruta postre saludable niños lonchera|Uvas dulces sin semilla; merienda fresca para los niños.
-fresas|frutas|Fresas|250 g|2.2|🍓|tray|merienda fruta postre desayuno yogurt crema|Fresas frescas para comer solas, con crema o en licuados.
-pina|frutas|Piña|1 und|2|🍍|tray|merienda fruta jugo postre refrescar|Piña dulce para comer en trozos o hacer jugo.
-mango|frutas|Mango|1 kg|2.4|🥭|tray|merienda fruta jugo postre dulce|Mangos maduros y jugosos para merendar o hacer batidos.
-pollo|carnes|Pollo entero|1.8 kg|5.4|🍗|tray|almuerzo cena pollo horno guiso asado|Pollo entero para asar, guisar o hacer sopa.
-pechuga|carnes|Pechuga de pollo|1 kg|5.2|🍗|tray|almuerzo cena pollo plancha proteina dieta|Pechuga sin hueso para plancha, milanesas y ensaladas.
-muslos|carnes|Muslos de pollo|1 kg|3.4|🍗|tray|almuerzo cena pollo guiso horno frito|Muslos de pollo jugosos para guisar, hornear o freír.
-molida|carnes|Carne molida|1 kg|6.1|🥩|tray|almuerzo cena pasta hamburguesa albondigas|Carne molida para boloñesa, albóndigas, hamburguesas y empanadas.
-bistec|carnes|Bistec de res|1 kg|7.2|🥩|tray|almuerzo cena carne plancha guisar|Bistec de res tierno para plancha, guisos y milanesas.
-costilla|carnes|Costilla de res|1 kg|5.5|🥩|tray|sopa sancocho almuerzo asado guiso|Costilla de res para sopas, sancochos y asados.
-cerdo|carnes|Chuletas de cerdo|1 kg|5|🥩|tray|almuerzo cena plancha horno cerdo|Chuletas de cerdo para plancha, horno o parrilla.
-pescado|carnes|Filete de pescado|500 g|4.4|🐟|tray|almuerzo cena pescado plancha frito saludable|Filetes de pescado para freír o preparar a la plancha.
-hamburguesas|carnes|Hamburguesas de carne|4 und|3.6|🍔|tray|cena hamburguesa niños rapido parrilla|Hamburguesas listas para cocinar; una cena rápida para los niños.
-nuggets|carnes|Nuggets de pollo|500 g|4.1|🍗|bag|cena niños merienda rapido fiesta pollo frito|Nuggets de pollo empanizados; los favoritos de los niños.
-shampoo|personal|Champú|400 ml|3.2|🧴|bot|baño cabello higiene personal|Champú para el cuidado diario del cabello.
-acond|personal|Acondicionador|400 ml|3.4|🧴|bot|baño cabello higiene personal suavizar|Acondicionador para cabello suave y fácil de peinar.
-dentalcrema|personal|Crema dental|100 g|1.6|🪥|box|higiene dientes baño menta personal|Crema dental con flúor para el cuidado diario.
-cepillo|personal|Cepillo de dientes|1 und|1.1|🪥|box|higiene dientes baño personal|Cepillo de cerdas suaves para limpieza diaria.
-desod|personal|Desodorante|1 und|2.4|🧴|bot|higiene baño personal olor|Desodorante de larga duración.
-toallas|personal|Toallas sanitarias|10 und|1.9|🩹|bag|higiene personal mujer|Toallas sanitarias con alas para uso diario.
-panales|personal|Pañales etapa 3|30 und|7.5|👶|bag|bebe panal higiene niños|Pañales suaves y absorbentes para bebé.
-toallitas|personal|Toallitas húmedas|80 und|2.6|👶|bag|bebe higiene limpieza manos|Toallitas húmedas para bebé y para limpieza rápida de manos.
-afeitar|personal|Máquinas de afeitar|3 und|2.1|🪒|box|higiene baño personal hombre|Máquinas de afeitar desechables.
-jabon|hogar|Jabón de baño|3 und|2.4|🧼|box|baño higiene personal ducha|Jabones de baño en paquete de tres.
 fab|limpieza|Fabuloso lavanda|1 L|2.5|💜|bot|pisos limpieza casa aroma lavanda desinfectar|Limpiador de pisos con aroma a lavanda para dejar la casa fresca.
 axi|limpieza|Axion lavaplatos limón|850 g|2.9|🍋|jar|trastes cocina limpieza platos limon grasa|Lavaplatos en crema con limón que quita la grasa de trastes y ollas.
-cloro|limpieza|Cloro|1 L|1.3|🧴|bot|desinfectar blanquear limpieza baño ropa|Cloro para desinfectar y blanquear.
-det|limpieza|Detergente en polvo|1 kg|3.6|🧺|bag|ropa lavar lavadora limpieza|Detergente en polvo para lavar la ropa a mano o en lavadora.
-suavizante|limpieza|Suavizante de ropa|1 L|2.6|🧺|bot|ropa lavar aroma suave limpieza|Suavizante que deja la ropa suave y con buen aroma.
-desinfpisos|limpieza|Desinfectante|1 L|2.2|🧴|bot|pisos baño limpieza desinfectar casa|Desinfectante multiusos para pisos, baños y superficies.
-esponjas|limpieza|Esponjas de cocina|3 und|1.2|🧽|box|trastes cocina limpieza platos|Esponjas con fibra para lavar trastes.
-panos|limpieza|Paños multiusos|3 und|1.4|🧻|bag|limpieza cocina polvo vidrios casa|Paños absorbentes para limpiar superficies y vidrios.
-ambient|limpieza|Ambientador|360 ml|2.5|🌸|bot|aroma casa limpieza fresco|Ambientador en aerosol con aroma floral.
 sco|hogar|Papel higiénico Scott Rindemax|4 rollos|2.2|🧻|bag|baño higiene papel hogar|Papel higiénico doble hoja de buen rendimiento.
-serv|hogar|Servilletas|100 und|1|🧻|bag|cocina fiesta mesa almuerzo|Servilletas de papel para la mesa y las reuniones.
-bolsas|hogar|Bolsas de basura|10 und|1.8|🗑️|bag|cocina limpieza hogar basura|Bolsas resistentes para la basura de la cocina y el baño.
-bombillo|hogar|Bombillo LED|1 und|1.8|💡|box|luz hogar electricidad ahorro|Bombillo LED de bajo consumo.
-fosforos|hogar|Fósforos|1 caja|0.4|🔥|box|cocina velas hogar encender|Caja de fósforos para la cocina.
-velas|hogar|Velas|6 und|1.2|🕯️|box|luz apagon hogar cumpleaños|Velas blancas para apagones o cumpleaños.
-papelalum|hogar|Papel aluminio|7 m|2.3|🧻|box|cocina horno conservar merienda lonchera|Papel aluminio para hornear, envolver meriendas y conservar alimentos.
-vasos|hogar|Vasos desechables|25 und|1.1|🥤|bag|fiesta cumpleaños bebida reunion niños|Vasos plásticos para fiestas y cumpleaños.
-platosd|hogar|Platos desechables|20 und|1.3|🍽️|bag|fiesta cumpleaños comida reunion niños|Platos desechables para fiestas y reuniones.
-globos|hogar|Globos de colores|25 und|1.5|🎈|bag|fiesta cumpleaños niños decoracion piñata|Globos surtidos para cumpleaños y celebraciones.
 `;
-/* categoría → fotos reales disponibles (se sustituyen por la ilustración si no hay) */
+const PHOTO_URL={pan:'/Productos/Harina.webp',arroz:'/Productos/Arroz.webp',tod:'/Productos/Toddy.webp',mav:'/Productos/Mayonesa.webp',hz:'/Productos/Tomte.webp',dor:'/Productos/Doritos.webp',pep:'/Productos/pepito.webp',tru:'/Productos/trululu.webp',rik:'/Productos/chiwi.webp',dia:'/Productos/diablito.webp',fab:'/Productos/Jabon.webp',axi:'/Productos/axion.webp',sco:'/Productos/papel.webp'};
 const PHOTO={pan:'pan',arroz:'mar',tod:'tod',mav:'mav',hz:'hz',dor:'dor',pep:'pep',tru:'tru',rik:'rik',dia:'dia',fab:'fab',axi:'axi',sco:'sco'};
-const PTAG={pan:'Más pedido',tod:'Favorito',dor:'Más pedido',tru:'Nuevo',jamon:'Mayor $7.40',yogurt:'Nuevo',barras:'Nuevo'};
-const CATALOG0=RAWCAT.trim().split('\n').map(l=>{const a=l.split('|');return{id:a[0],c:a[1],n:a[2],s:a[3],p:+a[4],e:a[5],sh:a[6],t:a[7],d:a[8],img:PHOTO[a[0]]||0,tag:PTAG[a[0]]}});
+const PTAG={pan:'-14%',arroz:'Top',tod:'-13%',mav:'-13%',dor:'-12%',tru:'Nuevo',fab:'-14%',axi:'-12%',sco:'-15%'};
+const CATALOG0=RAWCAT.trim().split('\n').map(l=>{const a=l.split('|');return{id:a[0],c:a[1],n:a[2],s:a[3],p:+a[4],e:a[5],sh:a[6],t:a[7],d:a[8],img:PHOTO[a[0]]||0,imgUrl:PHOTO_URL[a[0]]||'',tag:PTAG[a[0]]||null,disponible:true}});
 
 /* ============ BUSCADOR INTELIGENTE · El Maracucho ============
    - Busca en nombre, etiquetas, descripción, categoría y presentación (no solo en el nombre).
@@ -914,24 +761,57 @@ const MW=$('hmw').src;
 /* ---------- datos (reemplazar con inventario real) ---------- */
 const CAT=Object.fromEntries(Object.entries(CATS).map(([k,v])=>[k,{n:v[0],c:v[1]}]));
 const CATALOG=CATALOG0;
-const OFF={pan:1.85,tod:4.5,dor:4.8,axi:3.3,fab:2.9,sco:2.6,azucar:1.75,mav:3.9,pasta:2.0,refresco:2.6}; /* VENDO · EDITAR: precio anterior de las ofertas (demo) */
+const OFF={pan:1.85,tod:4.5,mav:3.9,dor:4.8,fab:2.9,axi:3.3,sco:2.6};
 CATALOG.forEach(p=>{if(OFF[p.id])p.o=OFF[p.id]});
-const TOP=['pan','arroz','azucar','aceite','cafe','tod','dor','mav','leche','huevos','refresco','pasta','fab','sco']; /* VENDO · EDITAR: más vendidos (reales) */
+const TOP=['pan','arroz','tod','dor','mav','hz','pep','tru','rik','dia','fab','axi','sco'];
 const PM=Object.fromEntries(CATALOG.map(p=>[p.id,p]));
 const IMG_SRC=/^(?:https?:|data:|\/|\.\.?\/)|\.(?:png|jpe?g|webp|avif|gif|svg)(?:$|[?#])/i;
 const pimg=p=>{
   if(!p)return '';
+  if(p.imgUrl===null)return '';
   const u=typeof p.imgUrl==='string'?p.imgUrl.trim():'';
   if(u&&IMG_SRC.test(u))return u;
+  if(u&&PHOTO_URL[u])return PHOTO_URL[u];
   if(u&&IM[u])return IM[u];
   if(u&&PHOTO[u]&&IM[PHOTO[u]])return IM[PHOTO[u]];
   return p.img&&IM[p.img]?IM[p.img]:'';
 };
 const phas=p=>!!pimg(p);
+const disc=p=>(p.o&&p.o>p.p)?(p.o-p.p)/p.o:0;
+const isOffer=p=>Boolean((p.o&&p.o>p.p)||(p.tag&&/^(oferta|promo|2x1|rebaja|[-−]\d+%)/i.test(String(p.tag).trim())));
+const badgeHTML=p=>{
+  const out=p.disponible===0||p.disponible===false;
+  if(out)return '<span class="tg agotado">Agotado</span>';
+  const t=p.tag?String(p.tag).trim():'';
+  if(isOffer(p)){
+    const txt=(t&&!/^[-−]\d+%$/.test(t))?t:(p.o&&p.o>p.p?'−'+Math.round(disc(p)*100)+'%':(t||'OFERTA'));
+    return `<span class="tg of">${esc(txt)}</span>`;
+  }
+  if(t)return `<span class="tg${t==='Más pedido'||t==='Nuevo'||t==='Top'?'':' g'}">${esc(t)}</span>`;
+  return '';
+};
 TOP.forEach((id,i)=>{if(PM[id]){PM[id].top=i+1}});
-CATALOG.forEach(p=>{p.cn=CAT[p.c].n});Search.build(CATALOG,Object.fromEntries(Object.entries(CAT).map(([k,v])=>[k,v.n])));
 const PAGE=24;
-const CNT={all:CATALOG.length,oferta:0,vendidos:CATALOG.filter(p=>p.top).length};CATALOG.forEach(p=>{p._s=norm(p.n+' '+CAT[p.c].n+' '+p.s);CNT[p.c]=(CNT[p.c]||0)+1;if(p.o)CNT.oferta++});
+const CNT={all:0,oferta:0,vendidos:0};
+const DESC={harinas:['Base de la mesa venezolana: rinde, llena y combina con todo.','Arepas, empanadas, pastas y desayunos'],despensa:['Lo que no puede faltar en la cocina del día a día.','Guisos, arroces, ensaladas y sazón'],cafe:['Para arrancar la mañana con energía, en taza o con leche.','Desayunos, meriendas y postres'],salsas:['Le da sabor a todo: perros, hamburguesas, pastas y ensaladas.','Comidas rápidas y aderezos en casa'],snacks:['Para picar, compartir y darse el gusto en cualquier momento.','Reuniones, meriendas y antojos'],lacteos:['Frescos y listos para el desayuno, el sándwich o la cena.','Sándwiches, pastas y desayunos'],bebidas:['Para acompañar la comida o refrescar el día.','Almuerzos, fiestas y meriendas'],limpieza:['Deja la cocina y la casa limpias, con menos esfuerzo.','Trastes, pisos y ropa'],hogar:['Básicos de casa que siempre hacen falta.','Baño, cocina y orden del hogar'],panes:['Pan fresco y repostería para el desayuno, la merienda y el sándwich.','Sándwiches, meriendas y desayunos'],frutas:['Frescas y listas para la ensalada, el jugo o el sofrito.','Ensaladas, jugos y guisos'],carnes:['Proteína para el almuerzo y la cena de toda la semana.','Almuerzos, parrillas y guisos'],personal:['Cuidado diario para toda la familia.','Higiene y cuidado diario']};
+function recalcCounts(){
+  Object.keys(CNT).forEach(k=>delete CNT[k]);
+  CNT.all=CATALOG.length;
+  CNT.oferta=0;
+  CNT.vendidos=0;
+  CATALOG.forEach(p=>{
+    if(!CAT[p.c])CAT[p.c]={n:p.c,c:'#eaf5ed'};
+    p.cn=CAT[p.c].n;
+    if(!p.d)p.d=(DESC[p.c]&&DESC[p.c][0])||'Producto disponible en El Maracucho.';
+    p._s=norm(p.n+' '+p.cn+' '+p.s);
+    CNT[p.c]=(CNT[p.c]||0)+1;
+    if(isOffer(p))CNT.oferta++;
+    if(p.top||p.tag==='Top'||p.tag==='Más pedido')CNT.vendidos++;
+  });
+  if(!CNT.vendidos)CNT.vendidos=CATALOG.length;
+  Search.build(CATALOG,Object.fromEntries(Object.entries(CAT).map(([k,v])=>[k,v.n])));
+}
+recalcCounts();
 const CX={harinas:{g:['#e9950d','#c46500'],wm:1,b:'Harinas',s:'y cereales',ic:'wheat'},despensa:{g:['#1fa65a','#0b6b35'],b:'Despensa',s:'del día a día',ic:'jar'},cafe:{g:['#9a6a48','#5a3620'],b:'Café',s:'y desayuno',ic:'cup'},salsas:{g:['#ea4638','#b0251a'],b:'Salsas',s:'y aderezos',ic:'sauce'},snacks:{g:['#f5761c','#d24705'],wm:1,b:'Snacks',s:'y dulces',ic:'chip'},lacteos:{g:['#3f95dc','#2166ad'],b:'Lácteos',s:'y charcutería',ic:'cheese'},bebidas:{g:['#1bb0c0','#0d7886'],b:'Bebidas',s:'para todos',ic:'bottle'},limpieza:{g:['#8460dc','#583bb2'],b:'Limpieza',s:'y cuidado',ic:'spray'},hogar:{g:['#e0588f','#ae3465'],b:'Hogar',s:'y papel',ic:'roll'},panes:{g:['#d98a2b','#a8591a'],b:'Panes',s:'y repostería',ic:'wheat'},frutas:{g:['#52b74a','#2a7d2e'],b:'Frutas',s:'y verduras',ic:'basket'},carnes:{g:['#d6453d','#8f1f1f'],b:'Carnes',s:'y pollo',ic:'fire'},personal:{g:['#a77de0','#6d44b4'],b:'Cuidado',s:'personal',ic:'drop'}};
 const GROUPS=[{id:'ali',n:'Alimentos',ic:'basket',cats:['harinas','panes','despensa','cafe','salsas','snacks','lacteos']},{id:'fre',n:'Frescos',ic:'drop',cats:['frutas','carnes']},{id:'beb',n:'Bebidas',ic:'drop',cats:['bebidas']},{id:'hog',n:'Hogar y limpieza',ic:'home',cats:['limpieza','hogar','personal']}];
 const grpOf=c=>(GROUPS.find(g=>g.cats.includes(c))||{}).id;
@@ -957,22 +837,35 @@ drum:['0 0 90 70','<path d="M18 52c-8-4-12-14-6-24 8-14 28-18 42-10 8 4 14 12 12
 steak:['0 0 90 66','<path d="M10 36c-2-16 14-28 34-28 24 0 40 10 36 28-3 14-20 22-40 20C22 54 12 48 10 36z" fill="#c63a3a"/><path d="M10 36c-2-16 14-28 34-28 24 0 40 10 36 28-12-10-60-12-70 0z" fill="#dc5656"/><circle cx="52" cy="34" r="9" fill="#f3d0c4"/><circle cx="52" cy="34" r="4" fill="#c63a3a"/>'],
 shampoo:['0 0 44 100','<rect x="14" y="2" width="16" height="10" rx="3" fill="#6d44b4"/><path d="M16 12h12l2 8c6 5 8 10 8 20v48a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6V40c0-10 2-15 8-20z" fill="#a77de0"/><rect x="6" y="46" width="32" height="30" fill="#fff"/><path d="M22 52c-5 7-6 10-6 13a6 6 0 0 0 12 0c0-3-1-6-6-13z" fill="#6d44b4"/><path d="M11 28c-1 12-1 40 0 60" stroke="#fff" stroke-opacity=".45" stroke-width="3" fill="none" stroke-linecap="round"/>'],
 soap:['0 0 84 70','<rect x="6" y="32" width="60" height="34" rx="11" fill="#e0588f"/><rect x="6" y="32" width="60" height="13" rx="7" fill="#ff8bbf"/><circle cx="60" cy="16" r="12" fill="#fff" fill-opacity=".85" stroke="#bfe6ff" stroke-width="2"/><circle cx="34" cy="15" r="7" fill="#fff" fill-opacity=".85" stroke="#bfe6ff" stroke-width="2"/><circle cx="76" cy="40" r="6" fill="#fff" fill-opacity=".85" stroke="#bfe6ff" stroke-width="2"/>']};
-const art=(k,r,h,t,cls,b)=>{const st=`--r:${r}%;--h:${h}%;--t:${t||0}deg${b!=null?';--b:'+b+'%':''}`;if(CUT[k])return `<img${cls?` class="${cls}"`:''} src="${CUT[k]}" alt="" style="${st}">`;const [vb,b2]=SV[k],[,,w,h2]=vb.split(' ').map(Number);return `<svg${cls?` class="${cls}"`:''} viewBox="${vb}" aria-hidden="true" style="${st};--ar:${(w/h2).toFixed(3)}">${b2}</svg>`};
+const art=(k,r,h,t,cls,b)=>{const st=`--r:${r}%;--h:${h}%;--t:${t||0}deg${b!=null?';--b:'+b+'%':''}`;if(CUT[k])return `<img${cls?` class="${cls}"`:''} src="${CUT[k]}" alt="" style="${st}">`;const p=PM[k];if(p&&phas(p))return `<img${cls?` class="${cls}"`:''} src="${pimg(p)}" alt="" style="${st}">`;const sv=SV[k];if(!sv)return '';const [vb,b2]=sv,[,,w,h2]=vb.split(' ').map(Number);return `<svg${cls?` class="${cls}"`:''} viewBox="${vb}" aria-hidden="true" style="${st};--ar:${(w/h2).toFixed(3)}">${b2}</svg>`};
 const KITS=[
-{id:'basico',n:'Básico',who:'1–2 personas',dur:'≈ 1 semana',d:.05,cl:'k1',art:[['h_pan',16,6,150,-5],['h_tod',112,4,108,6]],items:[['pan',2],['arroz',2],['pasta',2],['aceite',1],['azucar',1],['sal',1],['caraotas',1],['cafe',1],['mav',1],['atun',2],['huevos',1],['sco',1]]},
-{id:'super',n:'Súper',who:'3–4 personas',dur:'≈ 2 semanas',d:.08,cl:'k2',pill:'Más pedido',pop:1,art:[['h_pan',10,6,152,-6],['h_dor',92,8,138,5],['h_tod',172,4,104,9]],items:[['pan',4],['arroz',4],['pasta',3],['aceite',2],['azucar',2],['sal',1],['caraotas',2],['lentejas',1],['cafe',2],['tod',1],['leche',1],['avena',1],['mav',1],['hz',1],['atun',4],['sardinas',2],['huevos',2],['queso',1],['galletas',2],['fab',1],['axi',1],['sco',1],['refresco',2]]},
-{id:'mega',n:'Mega',who:'5 o más personas',dur:'≈ 1 mes',d:.1,cl:'k3',pill:'Mejor precio',art:[['h_fab',6,4,150,-6],['h_pan',66,6,156,-4],['h_dor',146,8,136,5],['h_pep',214,6,118,9],['h_tod',270,4,84,-5]],items:[['pan',8],['arroz',6],['pasta',5],['pastac',3],['trigo',2],['aceite',3],['azucar',3],['sal',2],['caraotas',3],['lentejas',2],['cafe',3],['tod',2],['leche',2],['avena',2],['cereal',2],['mav',2],['hz',2],['tomate',3],['atun',6],['sardinas',3],['huevos',3],['queso',2],['jamon',1],['mantequilla',2],['galletas',3],['pep',3],['dor',2],['refresco',4],['jugo',2],['agua',2],['fab',2],['axi',2],['cloro',2],['det',2],['sco',2],['bolsas',2]]}];
-KITS.forEach(k=>{k.orig=k.items.reduce((a,[i,q])=>a+PM[i].p*q,0);k.price=Math.round(k.orig*(1-k.d)*100)/100;k.units=k.items.reduce((a,[,q])=>a+q,0)});
+{id:'basico',n:'Básico',who:'1–2 personas',dur:'≈ 1 semana',d:.05,cl:'k1',art:[['h_pan',16,6,150,-5],['h_tod',112,4,108,6]],items:[['pan',2],['arroz',2],['mav',1],['hz',1],['dia',1],['tod',1],['sco',1]]},
+{id:'super',n:'Súper',who:'3–4 personas',dur:'≈ 2 semanas',d:.08,cl:'k2',pill:'Más pedido',pop:1,art:[['h_pan',10,6,152,-6],['h_dor',92,8,138,5],['h_tod',172,4,104,9]],items:[['pan',4],['arroz',3],['tod',1],['mav',1],['hz',1],['rik',1],['dia',2],['dor',1],['pep',2],['fab',1],['axi',1],['sco',1]]},
+{id:'mega',n:'Mega',who:'5 o más personas',dur:'≈ 1 mes',d:.1,cl:'k3',pill:'Mejor precio',art:[['h_fab',6,4,150,-6],['h_pan',66,6,156,-4],['h_dor',146,8,136,5],['h_pep',214,6,118,9],['h_tod',270,4,84,-5]],items:[['pan',6],['arroz',6],['tod',2],['mav',2],['hz',2],['rik',2],['dia',3],['dor',2],['pep',3],['tru',2],['fab',2],['axi',2],['sco',2]]}];
+function recalcKits(keepRemotePrice){
+  KITS.forEach(k=>{
+    k.items=k.items.filter(([i])=>PM[i]);
+    const calcOrig=Math.round(k.items.reduce((a,[i,q])=>a+(PM[i]?PM[i].p:0)*q,0)*100)/100;
+    if(!keepRemotePrice||!k.orig)k.orig=calcOrig;
+    if(!keepRemotePrice||!k.price)k.price=Math.round(k.orig*(1-k.d)*100)/100;
+    k.units=k.items.reduce((a,[,q])=>a+q,0);
+  });
+}
+recalcKits(false);
 const KM=Object.fromEntries(KITS.map(k=>[k.id,k]));
-const DESC={harinas:['Base de la mesa venezolana: rinde, llena y combina con todo.','Arepas, empanadas, pastas y desayunos'],despensa:['Lo que no puede faltar en la cocina del día a día.','Guisos, arroces, ensaladas y sazón'],cafe:['Para arrancar la mañana con energía, en taza o con leche.','Desayunos, meriendas y postres'],salsas:['Le da sabor a todo: perros, hamburguesas, pastas y ensaladas.','Comidas rápidas y aderezos en casa'],snacks:['Para picar, compartir y darse el gusto en cualquier momento.','Reuniones, meriendas y antojos'],lacteos:['Frescos y listos para el desayuno, el sándwich o la cena.','Sándwiches, pastas y desayunos'],bebidas:['Para acompañar la comida o refrescar el día.','Almuerzos, fiestas y meriendas'],limpieza:['Deja la cocina y la casa limpias, con menos esfuerzo.','Trastes, pisos y ropa'],hogar:['Básicos de casa que siempre hacen falta.','Baño, cocina y orden del hogar'],panes:['Pan fresco y repostería para el desayuno, la merienda y el sándwich.','Sándwiches, meriendas y desayunos'],frutas:['Frescas y listas para la ensalada, el jugo o el sofrito.','Ensaladas, jugos y guisos'],carnes:['Proteína para el almuerzo y la cena de toda la semana.','Almuerzos, parrillas y guisos'],personal:['Cuidado diario para toda la familia.','Higiene y cuidado diario']};
-const COMBO={harinas:['queso','mantequilla','jamon','huevos'],despensa:['pan','arroz','cafe'],cafe:['leche','mantequilla','mermelada','pan'],salsas:['jamon','pastac','dor'],snacks:['refresco','jugo','malta'],lacteos:['pan','mav','cafe'],bebidas:['dor','pep','galletas'],limpieza:['sco','bolsas','jabon'],hogar:['fab','axi','det'],panes:['jamon','queso','mantequilla','mermelada'],frutas:['aceite','sal','arroz'],carnes:['arroz','aceite','sazon'],personal:['jabon','sco','bolsas']};
-/* VENDO · EDITAR: p.d = descripción propia del producto */
-CATALOG.forEach(p=>{if(!p.d)p.d=DESC[p.c][0]});
+const COMBO={harinas:['mav','dia','rik','tod'],despensa:['pan','arroz','mav'],cafe:['pan','pep','tru','dor'],salsas:['pan','dor','pep','rik'],snacks:['tod','rik','mav','hz'],lacteos:['pan','arroz','mav','dor'],bebidas:['dor','pep','tru'],limpieza:['sco','axi','fab'],hogar:['fab','axi'],panes:['dia','rik','mav'],frutas:['arroz','pan','mav'],carnes:['arroz','pan','hz'],personal:['sco','fab','axi']};
 /* ---------- estado ---------- */
 let C={i:{},k:{}};try{const s=localStorage.getItem('mar_cart_v1');if(s)C=Object.assign({i:{},k:{}},JSON.parse(s))}catch(e){}
 const S={cat:'all',q:'',shown:24,step:1,mode:'delivery',f:{name:'',phone:'',addr:'',note:'',pay:'',when:'Lo antes posible'}};
 const save=()=>{try{localStorage.setItem('mar_cart_v1',JSON.stringify(C))}catch(e){}};
-const tot=()=>{let it=0,kt=0,ks=0,n=0;for(const[id,q]of Object.entries(C.i)){it+=PM[id].p*q;n+=q}for(const[id,q]of Object.entries(C.k)){kt+=KM[id].price*q;ks+=(KM[id].orig-KM[id].price)*q;n+=q}return{it,kt,ks,n,all:it+kt}};
+function cleanCart(){
+  let dirty=false;
+  for(const id of Object.keys(C.i||{})){if(!PM[id]||!(C.i[id]>0)){delete C.i[id];dirty=true}}
+  for(const id of Object.keys(C.k||{})){if(!KM[id]||!(C.k[id]>0)){delete C.k[id];dirty=true}}
+  if(dirty)save();
+}
+cleanCart();
+const tot=()=>{let it=0,kt=0,ks=0,n=0;for(const[id,q]of Object.entries(C.i)){if(!PM[id])continue;it+=PM[id].p*q;n+=q}for(const[id,q]of Object.entries(C.k)){if(!KM[id])continue;kt+=KM[id].price*q;ks+=Math.max(0,(KM[id].orig-KM[id].price)*q);n+=q}return{it,kt,ks,n,all:it+kt}};
 /* ---------- apertura ---------- */
 function openNow(){try{const h=+new Intl.DateTimeFormat('en-US',{timeZone:'America/Caracas',hour:'numeric',hour12:false}).format(new Date())%24;return h>=8&&h<21}catch(e){return true}}
 function drawOpen(){const o=openNow();$('ts').innerHTML=o?'<span class="dot"></span><b>Abierto ahora</b> · Delivery y pick up · hasta las 9:00 PM':'<span class="dot off"></span><b>Cerrado ahora</b> · Abrimos a las 8:00 AM · puedes dejar tu pedido';$('opn').innerHTML='<span class="dot'+(o?'':' off')+'"></span>'+(o?'Abierto ahora':'Cerrado ahora')}
@@ -982,13 +875,13 @@ $('lg2').src=$('lg3').src=$('lg1').src;$('hmw2').src=$('hmw').src;
 const WAT={mayor:'Hola El Maracucho, quiero comprar al mayor (Food Service). ¿Me envían precios y condiciones?',consulta:'Hola El Maracucho, quiero consultar si tienen un producto que no veo en la web.'};
 const setWa=()=>$$('[data-wa]').forEach(a=>a.href=wa(WAT[a.dataset.wa]||WAT.consulta));setWa();
 /* ---------- mercados ---------- */
-const thumb=id=>{const p=PM[id];return phas(p)?`<span><img src="${pimg(p)}" alt=""></span>`:`<span style="font-size:19px">${p.e}</span>`};
-const drawKits=()=>{$('kits').innerHTML=KITS.map(k=>`<article class="kit ${k.cl} ${k.pop?'pop':''}" data-kit="${k.id}"><div class="kh"><img class="mwm" src="${$('hmw').src}" alt="">${k.pill?`<span class="pill">${k.pill}</span>`:''}${bu('−'+Math.round(k.d*100)+'%')}<div class="nm"><small>Mercado</small><b>${k.n}</b></div>${k.art.map(([i,r,b,h,rot])=>`<img src="${$(i).src}" alt="" style="right:${r}px;bottom:${b}px;height:${h}px;transform:rotate(${rot}deg);--r2:${rot*1.4}deg">`).join('')}</div>
+const thumb=id=>{const p=PM[id];if(!p)return '';return phas(p)?`<span><img src="${pimg(p)}" alt=""></span>`:`<span style="font-size:19px">${p.e||'🛒'}</span>`};
+const drawKits=()=>{$('kits').innerHTML=KITS.map(k=>{const items=k.items.filter(([i])=>PM[i]);return `<article class="kit ${k.cl} ${k.pop?'pop':''}" data-kit="${k.id}"><div class="kh"><img class="mwm" src="${$('hmw').src}" alt="">${k.pill?`<span class="pill">${k.pill}</span>`:''}${bu('−'+Math.round(k.d*100)+'%')}<div class="nm"><small>Mercado</small><b>${k.n}</b></div>${k.art.map(([i,r,b,h,rot])=>`<img src="${$(i).src}" alt="" style="right:${r}px;bottom:${b}px;height:${h}px;transform:rotate(${rot}deg);--r2:${rot*1.4}deg">`).join('')}</div>
 <div class="kb"><div class="meta"><span>👥 ${k.who}</span><span>🗓️ ${k.dur}</span><span>${k.units} productos</span></div>
 <div class="pr"><b>${money(k.price)}</b><s>${money(k.orig)}</s><em>Ahorras ${money(k.orig-k.price)}</em></div><small class="eq keq">≈ ${alt(k.price)}</small>
-<div class="th">${k.items.slice(0,6).map(([i])=>thumb(i)).join('')}<span class="mr">+${k.items.length-6}</span></div>
-<details><summary>Qué incluye</summary><ul>${k.items.map(([i,q])=>`<li>${q}× ${esc(PM[i].n)}<span>${esc(PM[i].s)}</span></li>`).join('')}</ul></details>
-<button class="btn" data-add-kit="${k.id}">Agregar mercado</button></div></article>`).join('');};drawKits();
+<div class="th">${items.slice(0,6).map(([i])=>thumb(i)).join('')}${items.length>6?`<span class="mr">+${items.length-6}</span>`:''}</div>
+<details><summary>Qué incluye</summary><ul>${items.map(([i,q])=>`<li>${q}× ${esc(PM[i].n)}<span>${esc(PM[i].s)}</span></li>`).join('')}</ul></details>
+<button class="btn" data-add-kit="${k.id}">Agregar mercado</button></div></article>`}).join('');};drawKits();
 /* ---------- banners (carrusel) ---------- */
 const cnt=c=>CNT[c]||0;
 const SL=[
@@ -1011,18 +904,24 @@ dotsOn();
 $('hbt').onclick=e=>{const a=e.target.closest('[data-cat]');if(a){e.preventDefault();setCat(a.dataset.cat,true)}};
 /* ---------- banners de categoría ---------- */
 const TL={harinas:[['pan',3,92,-4],['mar',27,82,5]],despensa:[['oil',3,92,-3],['tuna',24,34,7,0],['beans',44,56,-5]],cafe:[['tod',3,90,-5],['cup',30,52,6]],salsas:[['hz',2,94,-4],['mav',20,78,5],['rik',38,70,-4]],snacks:[['dor',2,90,-5],['pep',28,76,5],['tru',48,58,-6]],lacteos:[['milk',3,90,-4],['cheese',28,46,6,2]],bebidas:[['cola',3,94,-4],['juice',22,74,5],['water',40,84,-5]],limpieza:[['fab',3,92,-5],['axi',27,60,6]],hogar:[['sco',3,76,-4],['soap',38,42,6,4]],panes:[['bread',3,60,-4],['cheese',40,44,6,2]],frutas:[['apple',3,66,-4],['orange',34,56,6]],carnes:[['drum',3,62,-5],['steak',40,52,6]],personal:[['shampoo',3,90,-4],['soap',34,42,6,4]]};
-$('ctg').innerHTML=Object.keys(CAT).map(k=>{const x=CX[k];return `<button class="ct${x.wm?' wm':''}" data-c="${k}" style="--c1:${x.g[0]};--c2:${x.g[1]}" aria-label="${esc(CAT[k].n)}: ver productos"><img class="mwm" src="${MW}" alt=""><div class="tt"><h3>${x.b}<span class="sc">${x.s}</span></h3></div><div class="it">${TL[k].map(([a,r,h,t,b],n)=>art(a,r,h,t,n>1?'x3':'',b)).join('')}</div><span class="go">${cnt(k)} productos ${ic('arrow')}</span></button>`}).join('');
 $('ctg').onclick=e=>{const b=e.target.closest('.ct');if(b)setCat(b.dataset.c,true)};
 /* ---------- catálogo ---------- */
 const aiBtn=(c,name,icon,cls)=>`<button class="ai ${cls||''}" data-c="${c}"><span class="ic">${ic(icon)}</span><span class="t">${name}</span><em>${cnt(c)}</em></button>`;
-const accHTML=()=>`<div class="ac">${aiBtn('all','Todos los productos','grid')}${aiBtn('oferta','Ofertas','tag','of')}${aiBtn('vendidos','Más vendidos','fire','of')}<hr>${GROUPS.map(g=>`<details class="ag" data-g="${g.id}"><summary><span class="ic">${ic(g.ic)}</span><span class="t">${g.n}</span><svg class="cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="sub2">${g.cats.map(k=>aiBtn(k,CAT[k].n,CX[k].ic)).join('')}</div></details>`).join('')}</div>`;
-$('ac1').innerHTML=$('ac2').innerHTML=$('ac3').innerHTML=accHTML();
-const catList=[['all','Todo'],['oferta','Ofertas'],['vendidos','Más vendidos'],...Object.entries(CAT).map(([k,v])=>[k,v.n])];
-$('chips').innerHTML=catList.map(([k,n])=>`<button class="chip${k==='all'?' on':''}" data-c="${k}" role="tab">${n}</button>`).join('');
-const disc=p=>p.o?(p.o-p.p)/p.o:0;
+function drawCats(){
+ const activeCats=Object.keys(CAT).filter(k=>cnt(k)>0);
+ $('ctg').innerHTML=activeCats.map(k=>{const x=CX[k]||{g:['#1fa65a','#0b6b35'],b:CAT[k].n,s:'',ic:'basket'};return `<button class="ct${x.wm?' wm':''}" data-c="${k}" style="--c1:${x.g[0]};--c2:${x.g[1]}" aria-label="${esc(CAT[k].n)}: ver productos"><img class="mwm" src="${MW}" alt=""><div class="tt"><h3>${x.b}<span class="sc">${x.s}</span></h3></div><div class="it">${(TL[k]||[]).map(([a,r,h,t,b],n)=>art(a,r,h,t,n>1?'x3':'',b)).join('')}</div><span class="go">${cnt(k)} producto${cnt(k)===1?'':'s'} ${ic('arrow')}</span></button>`}).join('');
+ const grouped=new Set(GROUPS.flatMap(g=>g.cats)),extras=activeCats.filter(k=>!grouped.has(k));
+ const groups=[...GROUPS,...(extras.length?[{id:'otras',n:'Otras categorías',ic:'basket',cats:extras}]:[])];
+ const accHTML=()=>`<div class="ac">${aiBtn('all','Todos los productos','grid')}${aiBtn('oferta','Ofertas','tag','of')}${aiBtn('vendidos','Más vendidos','fire','of')}<hr>${groups.map(g=>{const gc=g.cats.filter(k=>cnt(k)>0);if(!gc.length)return '';return `<details class="ag" data-g="${g.id}" open><summary><span class="ic">${ic(g.ic)}</span><span class="t">${g.n}</span><svg class="cv" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="sub2">${gc.map(k=>aiBtn(k,CAT[k].n,(CX[k]&&CX[k].ic)||'basket')).join('')}</div></details>`}).join('')}</div>`;
+ $('ac1').innerHTML=$('ac2').innerHTML=$('ac3').innerHTML=accHTML();
+ $$('.qc button').forEach(b=>{b.hidden=!cnt(b.dataset.cat)});
+ const catList=[['all','Todo'],['oferta','Ofertas'],['vendidos','Más vendidos'],...activeCats.map(k=>[k,CAT[k].n])];
+ $('chips').innerHTML=catList.map(([k,n])=>`<button class="chip${k===S.cat?' on':''}" data-c="${k}" role="tab">${esc(n)}</button>`).join('');
+}
+drawCats();
 let FK='',FL=[],FR=null;
 function filtered(){const k=S.cat+'|'+S.q;if(k===FK)return FL;
- const inCat=p=>S.cat==='all'||(S.cat==='oferta'?!!p.o:S.cat==='vendidos'?!!p.top:p.c===S.cat);let l;FR=null;CATALOG.forEach(p=>p._why=null);
+ const inCat=p=>S.cat==='all'||(S.cat==='oferta'?isOffer(p):S.cat==='vendidos'?Boolean(p.top||p.tag==='Top'||p.tag==='Más pedido'):p.c===S.cat);let l;FR=null;CATALOG.forEach(p=>p._why=null);
  if(S.q.trim()){FR=Search.query(S.q,{filter:inCat});l=FR.items.map(x=>{x.p._why=x.why;return x.p})}
  else{l=CATALOG.filter(inCat);if(S.cat==='oferta')l=[...l].sort((a,b)=>disc(b)-disc(a));else if(S.cat==='vendidos')l=[...l].sort((a,b)=>a.top-b.top);else if(S.cat==='all')l=[...l].sort((a,b)=>(b.img?1:0)-(a.img?1:0))}
  FK=k;FL=l;return l}
@@ -1030,10 +929,14 @@ function filtered(){const k=S.cat+'|'+S.q;if(k===FK)return FL;
 function whyTxt(p){if(!p._why||!S.q)return '';const w=p._why.find(x=>x[1]&&x[1]!=='nombre');if(!w||p._why.every(x=>x[1]==='nombre'))return '';const t=w[0],I=Search.IDEAS[t];
  return `<small class="why">${I?'Ideal para '+esc(I.toLowerCase()):w[1]==='categoría'?'En '+esc(p.cn):'Coincide: «'+esc(t)+'»'}</small>`}
 function ctl(id){const p=PM[id];if(!p)return '';const q=C.i[id]||0;if(p.disponible===0||p.disponible===false)return `<span class="ad out" aria-disabled="true">Agotado</span>`;return q?`<div class="st"><button data-a="-" data-id="${id}" aria-label="Quitar uno">−</button><span>${q}</span><button data-a="+" data-id="${id}" aria-label="Agregar uno">+</button></div>`:`<button class="ad" data-a="+" data-id="${id}" aria-label="Agregar ${esc(p.n)}"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Agregar</button>`}
-function card(p){const out=p.disponible===0||p.disponible===false;const tile=phas(p)?`<img src="${pimg(p)}" alt="${esc(p.n)}" loading="lazy" decoding="async" width="200" height="200">`:`<div class="eg" style="--c:${CAT[p.c].c}">${p.e}</div>`;
- const badge=out?`<span class="tg agotado">Agotado</span>`:p.o?`<span class="tg of">−${Math.round(disc(p)*100)}%</span>`:p.top&&p.top<=6?`<span class="tg">Top</span>`:p.tag?`<span class="tg${p.tag==='Más pedido'||p.tag==='Nuevo'?'':' g'}">${p.tag}</span>`:'';
- return `<article class="pc${out?' out':''}" data-pid="${p.id}"><button class="pt" data-open="${p.id}" type="button" aria-label="Ver ${esc(p.n)}">${badge}${tile}</button><div class="pi"><div class="pp2${p.o?' of':''}"><b>${money(p.p)}</b>${p.o?`<s>${money(p.o)}</s>`:''}</div><small class="eq">${alt(p.p)}</small><button class="nm2" data-open="${p.id}" type="button">${esc(p.n)}</button><small>${esc(p.s)}</small>${whyTxt(p)}<span class="cta" data-ctl="${p.id}">${ctl(p.id)}</span></div></article>`}
-function crumb(){const h='<button data-c="all">Supermercado</button>';if(S.cat==='all')return h+'<i>›</i><b>Todos los productos</b>';if(S.cat==='oferta')return h+'<i>›</i><b>Ofertas</b>';if(S.cat==='vendidos')return h+'<i>›</i><b>Más vendidos</b>';const g=GROUPS.find(g=>g.cats.includes(S.cat));return `${h}<i>›</i><span>${g.n}</span><i>›</i><b>${esc(CAT[S.cat].n)}</b>`}
+function card(p){
+ const out=p.disponible===0||p.disponible===false;
+ const hasOld=Boolean(p.o&&p.o>p.p);
+ const tile=phas(p)?`<img src="${pimg(p)}" alt="${esc(p.n)}" loading="lazy" decoding="async" width="200" height="200">`:`<div class="eg" style="--c:${(CAT[p.c]&&CAT[p.c].c)||'#eaf5ed'}">${p.e||'🛒'}</div>`;
+ const badge=badgeHTML(p);
+ return `<article class="pc${out?' out':''}" data-pid="${p.id}"><button class="pt" data-open="${p.id}" type="button" aria-label="Ver ${esc(p.n)}">${badge}${tile}</button><div class="pi"><div class="pp2${isOffer(p)?' of':''}"><b>${money(p.p)}</b>${hasOld?`<s>${money(p.o)}</s>`:''}</div><small class="eq">${alt(p.p)}</small><button class="nm2" data-open="${p.id}" type="button">${esc(p.n)}</button><small>${esc(p.s)}</small>${whyTxt(p)}<span class="cta" data-ctl="${p.id}">${ctl(p.id)}</span></div></article>`;
+}
+function crumb(){const h='<button data-c="all">Supermercado</button>';if(S.cat==='all')return h+'<i>›</i><b>Todos los productos</b>';if(S.cat==='oferta')return h+'<i>›</i><b>Ofertas</b>';if(S.cat==='vendidos')return h+'<i>›</i><b>Más vendidos</b>';const g=GROUPS.find(g=>g.cats.includes(S.cat)),cn=esc((CAT[S.cat]&&CAT[S.cat].n)||S.cat);return g?`${h}<i>›</i><span>${g.n}</span><i>›</i><b>${cn}</b>`:`${h}<i>›</i><b>${cn}</b>`}
 const IDEA_CHIPS=['merienda','desayuno','lonchera','fiesta','cena','postre'];
 const noRes=()=>`<div class="nores"><b>No encontramos "${esc(S.q)}"</b>Prueba con otra palabra, una idea o escríbenos por WhatsApp.<div class="nr-ch">${IDEA_CHIPS.map(k=>`<button type="button" data-sq="${k}">${esc(Search.IDEAS[k])}</button>`).join('')}</div></div>`;
 let RN=0;
@@ -1098,14 +1001,17 @@ function setKit(id,d,from){const q=Math.max(0,(C.k[id]||0)+d);if(q)C.k[id]=q;els
 $('pg').onclick=e=>{const b=e.target.closest('[data-a]');if(b){setQty(b.dataset.id,b.dataset.a==='+'?1:-1,b);return}const o=e.target.closest('[data-open]');if(o)openPd(o.dataset.open)};
 /* ---------- ficha de producto ---------- */
 const pd=$('pd');let pdId=null,pdLast=null;
-const mc=p=>`<div class="oc"><button class="oi" type="button" data-open="${p.id}" aria-label="Ver ${esc(p.n)}">${phas(p)?`<img src="${pimg(p)}" alt="" loading="lazy" decoding="async">`:`<i style="--c:${CAT[p.c].c}">${p.e}</i>`}</button><b>${money(p.p)}${p.o?` <s>${money(p.o)}</s>`:''}</b><button class="on2" type="button" data-open="${p.id}">${esc(p.n)}</button><span class="ob" data-ctl="${p.id}">${ctl(p.id)}</span></div>`;
-function pdHTML(p){const out=p.disponible===0||p.disponible===false;const sim=Search.similar(p,8),same=sim.map(r=>r.p),shared=[...new Set(sim.slice(0,4).flatMap(r=>r.sh))].slice(0,4);
+const mc=p=>{const hasOld=Boolean(p.o&&p.o>p.p);return `<div class="oc"><button class="oi" type="button" data-open="${p.id}" aria-label="Ver ${esc(p.n)}">${phas(p)?`<img src="${pimg(p)}" alt="" loading="lazy" decoding="async">`:`<i style="--c:${(CAT[p.c]&&CAT[p.c].c)||'#eaf5ed'}">${p.e||'🛒'}</i>`}</button><b>${money(p.p)}${hasOld?` <s>${money(p.o)}</s>`:''}</b><button class="on2" type="button" data-open="${p.id}">${esc(p.n)}</button><span class="ob" data-ctl="${p.id}">${ctl(p.id)}</span></div>`};
+function pdHTML(p){
+ const out=p.disponible===0||p.disponible===false;
+ const hasOld=Boolean(p.o&&p.o>p.p);
+ const sim=Search.similar(p,8),same=sim.map(r=>r.p),shared=[...new Set(sim.slice(0,4).flatMap(r=>r.sh))].slice(0,4);
  const combo=(COMBO[p.c]||[]).map(i=>PM[i]).filter(x=>x&&x.id!==p.id&&x.c!==p.c).slice(0,6);
- const off=p.o?Math.round(disc(p)*100):0;
- return `<div class="pdh"><div class="pdi">${out?`<span class="tg agotado">Agotado</span>`:p.o?`<span class="tg of">−${off}%</span>`:''}${phas(p)?`<img src="${pimg(p)}" alt="${esc(p.n)}" width="320" height="320">`:`<div class="eg" style="--c:${CAT[p.c].c}">${p.e}</div>`}</div>
- <div class="pdt"><button class="pcl" type="button" data-cat="${p.c}">${esc(CAT[p.c].n)}</button><h3>${esc(p.n)}</h3><small>${esc(p.s)}</small><div class="pp2 pdp${p.o?' of':''}"><b>${money(p.p)}</b>${p.o?`<s>${money(p.o)}</s><em>Ahorras ${money(p.o-p.p)}</em>`:''}</div><small class="eq pdeq">≈ ${alt(p.p)} · ${rtxt()}</small><div class="pdc" data-ctl="${p.id}">${ctl(p.id)}</div></div></div>
- <div class="pds"><h4>Descripción</h4><p>${esc(p.d)}</p><ul class="pdl"><li><span>Presentación</span><b>${esc(p.s)}</b></li><li><span>Ideal para</span><b>${esc(DESC[p.c][1])}</b></li><li><span>Disponibilidad</span><b>${out?'Agotado':'Se confirma por WhatsApp'}</b></li></ul></div>
- ${same.length?`<div class="pds"><div class="pdhd"><h4>Productos similares</h4><button type="button" data-cat="${p.c}">Ver ${esc(CAT[p.c].n)}</button></div>${shared.length?`<p class="simw">Parecidos por: ${shared.map(w=>`<span>${esc(w)}</span>`).join('')}</p>`:''}<div class="orow">${same.map(mc).join('')}</div></div>`:''}
+ const ideal=(DESC[p.c]&&DESC[p.c][1])||'Consumo diario en casa';
+ return `<div class="pdh"><div class="pdi">${badgeHTML(p)}${phas(p)?`<img src="${pimg(p)}" alt="${esc(p.n)}" width="320" height="320">`:`<div class="eg" style="--c:${(CAT[p.c]&&CAT[p.c].c)||'#eaf5ed'}">${p.e||'🛒'}</div>`}</div>
+ <div class="pdt"><button class="pcl" type="button" data-cat="${p.c}">${esc((CAT[p.c]&&CAT[p.c].n)||p.c)}</button><h3>${esc(p.n)}</h3><small>${esc(p.s)}</small><div class="pp2 pdp${isOffer(p)?' of':''}"><b>${money(p.p)}</b>${hasOld?`<s>${money(p.o)}</s><em>Ahorras ${money(p.o-p.p)}</em>`:''}</div><small class="eq pdeq">≈ ${alt(p.p)} · ${rtxt()}</small><div class="pdc" data-ctl="${p.id}">${ctl(p.id)}</div></div></div>
+ <div class="pds"><h4>Descripción</h4><p>${esc(p.d||'')}</p><ul class="pdl"><li><span>Presentación</span><b>${esc(p.s)}</b></li><li><span>Ideal para</span><b>${esc(ideal)}</b></li><li><span>Disponibilidad</span><b>${out?'Agotado':'Disponible · Se confirma por WhatsApp'}</b></li></ul></div>
+ ${same.length?`<div class="pds"><div class="pdhd"><h4>Productos similares</h4><button type="button" data-cat="${p.c}">Ver ${esc((CAT[p.c]&&CAT[p.c].n)||p.c)}</button></div>${shared.length?`<p class="simw">Parecidos por: ${shared.map(w=>`<span>${esc(w)}</span>`).join('')}</p>`:''}<div class="orow">${same.map(mc).join('')}</div></div>`:''}
  ${combo.length?`<div class="pds"><h4>Combina muy bien con</h4><div class="orow">${combo.map(mc).join('')}</div></div>`:''}`}
 function openPd(id){const p=PM[id];if(!p)return;pdLast=pdLast||document.activeElement;pdId=id;$('pdb').innerHTML=pdHTML(p);$('pdb').scrollTop=0;pd.classList.add('on');pd.setAttribute('aria-hidden','false');$('ov').classList.add('on');document.body.style.overflow='hidden';if(!pd.dataset.o){pd.dataset.o=1}setTimeout(()=>$('pdx').focus({preventScroll:true}),260)}
 function closePd(){if(!pd.classList.contains('on'))return;pd.classList.remove('on');pd.setAttribute('aria-hidden','true');pdId=null;if(!$('dr').classList.contains('on')&&!$('sh').classList.contains('on')&&!$('mn').classList.contains('on')){$('ov').classList.remove('on');document.body.style.overflow=''}if(pdLast&&pdLast.focus)pdLast.focus({preventScroll:true});pdLast=null}
@@ -1135,8 +1041,8 @@ function step1(T){const db=$('db'),df=$('df');
  if(!T.n){db.innerHTML=`<div class="emp"><b>Tu pedido está vacío</b>Agrega un mercado completo o los productos que necesites.<br><a class="btn" href="#mercados" id="go1">Ver mercados</a></div>`;df.innerHTML='';$('go1').onclick=closeDr;return}
  const left=Math.max(0,FREE_MIN-T.all),pct=Math.min(100,T.all/FREE_MIN*100);
  let h=S.mode!=='delivery'?'':`<div class="fr"><span class="frm">${mzSVG('mini')}</span><div class="frt">${left>0?`Te faltan <b>${money(left)}</b> para <b>delivery gratis</b>`:'🎉 <b>¡Tienes delivery gratis!</b>'}<div class="bar"><i style="width:${pct}%"></i></div></div></div>`;
- const ks=Object.entries(C.k);if(ks.length){h+=`<div class="gh"><span>Mercados completos</span><span>${ks.reduce((a,[,q])=>a+q,0)}</span></div>`+ks.map(([id,q])=>{const k=KM[id];return `<div class="ci kitc"><div class="im"><img src="${$(k.art[0][0]).src}" alt=""></div><div><h4>Mercado ${k.n}</h4><small>${k.units} productos · ${k.who}</small></div><div class="pp">${money(k.price*q)}</div><div class="st"><button data-t="k" data-a="-" data-id="${id}" aria-label="Quitar uno">−</button><span>${q}</span><button data-t="k" data-a="+" data-id="${id}" aria-label="Agregar uno">+</button></div><details class="kx"><summary>Ver qué incluye</summary><ul>${k.items.map(([i,n])=>`<li>${n*q}× ${esc(PM[i].n)}</li>`).join('')}</ul><button data-explode="${id}">¿Quieres cambiar algo? Convertir en productos sueltos</button></details></div>`}).join('')}
- const is=Object.entries(C.i);if(is.length){h+=`<div class="gh"><span>Productos sueltos</span><span>${is.reduce((a,[,q])=>a+q,0)}</span></div>`+is.map(([id,q])=>{const p=PM[id];return `<div class="ci"><div class="im">${phas(p)?`<img src="${pimg(p)}" alt="">`:p.e}</div><div><h4>${esc(p.n)}</h4><small>${esc(p.s)} · ${money(p.p)} c/u</small></div><div class="pp">${money(p.p*q)}</div><div class="st"><button data-t="i" data-a="-" data-id="${id}" aria-label="Quitar uno">−</button><span>${q}</span><button data-t="i" data-a="+" data-id="${id}" aria-label="Agregar uno">+</button></div></div>`}).join('')}
+ const ks=Object.entries(C.k).filter(([id])=>KM[id]);if(ks.length){h+=`<div class="gh"><span>Mercados completos</span><span>${ks.reduce((a,[,q])=>a+q,0)}</span></div>`+ks.map(([id,q])=>{const k=KM[id],kitItems=k.items.filter(([i])=>PM[i]);return `<div class="ci kitc"><div class="im"><img src="${$(k.art[0][0]).src}" alt=""></div><div><h4>Mercado ${k.n}</h4><small>${k.units} productos · ${k.who}</small></div><div class="pp">${money(k.price*q)}</div><div class="st"><button data-t="k" data-a="-" data-id="${id}" aria-label="Quitar uno">−</button><span>${q}</span><button data-t="k" data-a="+" data-id="${id}" aria-label="Agregar uno">+</button></div><details class="kx"><summary>Ver qué incluye</summary><ul>${kitItems.map(([i,n])=>`<li>${n*q}× ${esc(PM[i].n)}</li>`).join('')}</ul><button data-explode="${id}">¿Quieres cambiar algo? Convertir en productos sueltos</button></details></div>`}).join('')}
+ const is=Object.entries(C.i).filter(([id])=>PM[id]);if(is.length){h+=`<div class="gh"><span>Productos sueltos</span><span>${is.reduce((a,[,q])=>a+q,0)}</span></div>`+is.map(([id,q])=>{const p=PM[id];return `<div class="ci"><div class="im">${phas(p)?`<img src="${pimg(p)}" alt="">`:p.e}</div><div><h4>${esc(p.n)}</h4><small>${esc(p.s)} · ${money(p.p)} c/u</small></div><div class="pp">${money(p.p*q)}</div><div class="st"><button data-t="i" data-a="-" data-id="${id}" aria-label="Quitar uno">−</button><span>${q}</span><button data-t="i" data-a="+" data-id="${id}" aria-label="Agregar uno">+</button></div></div>`}).join('')}
  db.innerHTML=h;df.innerHTML=summary(T)+`<button class="btn" id="nx">Continuar</button>`;$('nx').onclick=()=>{S.step=2;drawDr();$('db').scrollTop=0}}
 function step2(T){const f=S.f,db=$('db'),df=$('df'),dl=S.mode==='delivery';
  db.innerHTML=`<button class="rm" id="bk" style="padding:0 0 10px">← Volver al pedido</button><div class="sg"><button data-m="delivery" class="${dl?'on':''}">🛵 Delivery</button><button data-m="pickup" class="${dl?'':'on'}">🏬 Pick up</button></div>
@@ -1155,8 +1061,8 @@ function step2(T){const f=S.f,db=$('db'),df=$('df'),dl=S.mode==='delivery';
 function read(){const g=i=>$(i)?$(i).value.trim():null;const v={name:g('fn'),phone:g('fp'),addr:g('fa'),note:g('fo')};for(const k in v)if(v[k]!==null)S.f[k]=v[k]}
 function send(){read();const f=S.f,dl=S.mode==='delivery';const miss=!f.name?'fn':!f.phone?'fp':(dl&&!f.addr)?'fa':'';if(miss){$(miss).focus();$(miss).style.borderColor='#e5392d';toast('Completa los datos marcados');return}
  const T=tot(),L=['Hola El Maracucho 👋, quiero hacer este pedido:','',`*Entrega:* ${dl?'Delivery':'Pick up en tienda'}`,`*Nombre:* ${f.name}`,`*Teléfono:* ${f.phone}`];if(dl)L.push(`*Dirección:* ${f.addr}`);L.push(`*Cuándo:* ${f.when}`);if(f.pay)L.push(`*Pago:* ${f.pay}`);if(f.note)L.push(`*Notas:* ${f.note}`);
- const ks=Object.entries(C.k);if(ks.length){L.push('','*MERCADOS COMPLETOS*');ks.forEach(([id,q])=>{const k=KM[id];L.push(`• ${q}× Mercado ${k.n} — ${usd(k.price*q)}`);k.items.forEach(([i,n])=>L.push(`    – ${n*q}× ${PM[i].n} ${PM[i].s}`))})}
- const is=Object.entries(C.i);if(is.length){L.push('','*PRODUCTOS*');is.forEach(([id,q])=>L.push(`• ${q}× ${PM[id].n} ${PM[id].s} — ${usd(PM[id].p*q)}`))}
+ const ks=Object.entries(C.k).filter(([id])=>KM[id]);if(ks.length){L.push('','*MERCADOS COMPLETOS*');ks.forEach(([id,q])=>{const k=KM[id];L.push(`• ${q}× Mercado ${k.n} — ${usd(k.price*q)}`);k.items.filter(([i])=>PM[i]).forEach(([i,n])=>L.push(`    – ${n*q}× ${PM[i].n} ${PM[i].s}`))})}
+ const is=Object.entries(C.i).filter(([id])=>PM[id]);if(is.length){L.push('','*PRODUCTOS*');is.forEach(([id,q])=>L.push(`• ${q}× ${PM[id].n} ${PM[id].s} — ${usd(PM[id].p*q)}`))}
  L.push('',`*Total productos:* ${usd(T.all)} (≈ ${bsf(T.all)} a tasa ${nf.format(R.v)} Bs/$)`+(T.ks>0?` (ahorro en mercados: ${usd(T.ks)})`:''),dl?'*Delivery:* por confirmar según zona':'*Pick up:* sin costo','','Pedido enviado desde la web de El Maracucho.');
  const orderItems=[];
  Object.entries(C.k).forEach(([id,q])=>{const k=KM[id];if(k)orderItems.push({id,type:'kit',n:'Mercado '+k.n,q,price:k.price})});
@@ -1166,7 +1072,7 @@ function send(){read();const f=S.f,dl=S.mode==='delivery';const miss=!f.name?'fn
  location.href=wa(L.join('\n'))}
 $('db').onclick=e=>{const b=e.target.closest('[data-a]'),x=e.target.closest('[data-explode]');
  if(b){const id=b.dataset.id,d=b.dataset.a==='+'?1:-1;b.dataset.t==='k'?setKit(id,d):setQty(id,d)}
- if(x){const k=KM[x.dataset.explode],q=C.k[k.id]||0;k.items.forEach(([i,n])=>C.i[i]=(C.i[i]||0)+n*q);delete C.k[k.id];save();paint();toast('Ahora puedes editar cada producto')}};
+ if(x){const k=KM[x.dataset.explode];if(!k)return;const q=C.k[k.id]||0;k.items.filter(([i])=>PM[i]).forEach(([i,n])=>C.i[i]=(C.i[i]||0)+n*q);delete C.k[k.id];save();paint();toast('Ahora puedes editar cada producto')}};
 /* reveal */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -4% 0px'});$$('.rv').forEach(e=>io.observe(e));
 paint();
@@ -1174,58 +1080,73 @@ syncCatalog();
 
 /* ---------- moneda: toggle, repintado y tasa BCV en vivo ---------- */
 function rateUI(){const t=rtxt();$$('.rt').forEach(e=>e.textContent=t);$$('#cu [data-c]').forEach(b=>{const on=b.dataset.c===CUR;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)})}
-function repriceAll(){if($('fn')&&$('dr').classList.contains('on'))read();let st=0;if(typeof pdId!=='undefined'&&pdId){st=$('pdb').scrollTop}drawKits();render();paint();if(typeof pdId!=='undefined'&&pdId){$('pdb').innerHTML=pdHTML(PM[pdId]);$('pdb').scrollTop=st}rateUI();if(window.mzSync)mzSync(tot())}
+function repriceAll(){if($('fn')&&$('dr').classList.contains('on'))read();if(typeof pdId!=='undefined'&&pdId&&!PM[pdId])closePd();let st=0;if(typeof pdId!=='undefined'&&pdId&&PM[pdId]){st=$('pdb').scrollTop}drawKits();render();paint();if(typeof pdId!=='undefined'&&pdId&&PM[pdId]){$('pdb').innerHTML=pdHTML(PM[pdId]);$('pdb').scrollTop=st}rateUI();if(window.mzSync)mzSync(tot())}
 async function syncCatalog(){
   try{
     const res=await fetch('/api/catalog',{cache:'no-store'});
     if(!res.ok)throw new Error('HTTP '+res.status);
     const data=await res.json();
-    if(!data||data.success===false||!Array.isArray(data.products))return;
-    let newFound=false;
-    data.products.forEach(r=>{
+    if(!data||data.success===false||!Array.isArray(data.products)||!data.products.length)return;
+    const nextList=[];
+    data.products.forEach((r,idx)=>{
       if(!r||!r.id)return;
-      let p=PM[r.id];
-      if(!p){
-        p={
-          id:r.id,
-          c:r.categoria||'despensa',
-          cn:(CAT[r.categoria]||{}).n||r.categoria,
-          n:r.nombre||'Producto',
-          s:r.presentacion||'Unidad',
-          p:Number(r.precio)||0,
-          e:r.emoji||'🛒',
-          tg:r.tags||'',
-          d:r.descripcion||'',
-          top:999
-        };
-        CATALOG.push(p);
-        PM[p.id]=p;
-        newFound=true;
-      }
+      const id=String(r.id);
+      const ex=PM[id]||{};
+      const rawCat=r.categoria!=null?String(r.categoria).trim():'';
+      const cat=rawCat||ex.c||'despensa';
+      if(!CAT[cat])CAT[cat]={n:(CATS[cat]&&CATS[cat][0])||(ex.c===cat&&ex.cn)||cat,c:(CATS[cat]&&CATS[cat][1])||'#eaf5ed'};
       const price=Number(r.precio);
-      if(Number.isFinite(price)&&price>=0)p.p=price;
-      const old=r.precio_oferta!=null?Number(r.precio_oferta):null;
-      p.o=Number.isFinite(old)&&old>0?old:null;
-      p.tag=r.promo_tag||null;
-      p.disponible=r.disponible===undefined||r.disponible===null?true:Number(r.disponible)!==0;
-      if(r.emoji)p.e=r.emoji;
-      if(r.imagen_url)p.imgUrl=r.imagen_url;
+      const old=r.precio_oferta!==null&&r.precio_oferta!==undefined&&r.precio_oferta!==''?Number(r.precio_oferta):null;
+      const hasImgField=r.imagen_url!==undefined;
+      const rawImg=hasImgField?(r.imagen_url?String(r.imagen_url).trim():null):(ex.imgUrl||PHOTO_URL[id]||'');
+      const p={
+        id,
+        c:cat,
+        cn:CAT[cat].n,
+        n:r.nombre?String(r.nombre).trim():(ex.n||id),
+        s:r.presentacion?String(r.presentacion).trim():(ex.s||'Unidad'),
+        p:Number.isFinite(price)&&price>=0?price:(ex.p||0),
+        o:Number.isFinite(old)&&old>0?old:null,
+        tag:r.promo_tag?String(r.promo_tag).trim():null,
+        e:r.emoji?String(r.emoji).trim():(ex.e||'🛒'),
+        sh:ex.sh||'bag',
+        t:r.tags!==undefined&&r.tags!==null?String(r.tags):(ex.t||''),
+        d:r.descripcion?String(r.descripcion).trim():(ex.d||(DESC[cat]&&DESC[cat][0])||''),
+        img:rawImg===null?0:(ex.img||PHOTO[id]||0),
+        imgUrl:rawImg,
+        disponible:r.disponible===undefined||r.disponible===null?true:Number(r.disponible)!==0,
+        top:ex.top||(idx<13?idx+1:999)
+      };
+      nextList.push(p);
     });
-    if(newFound){
-      Search.build(CATALOG,Object.fromEntries(Object.entries(CAT).map(([k,v])=>[k,v.n])));
+    if(nextList.length){
+      CATALOG.splice(0,CATALOG.length,...nextList);
+      Object.keys(PM).forEach(k=>delete PM[k]);
+      CATALOG.forEach(p=>{PM[p.id]=p});
     }
     (data.kits||[]).forEach(r=>{
       if(!r||!r.id)return;
       const k=KM[r.id];if(!k)return;
-      const price=Number(r.precio);if(Number.isFinite(price)&&price>=0)k.price=price;
-      const orig=Number(r.precio_original);if(Number.isFinite(orig)&&orig>0)k.orig=orig;
+      if(Array.isArray(r.items)&&r.items.length){
+        const validItems=r.items.map(it=>Array.isArray(it)?[it[0],Number(it[1])||1]:[it.id,Number(it.q||it.cantidad)||1]).filter(([i])=>PM[i]);
+        if(validItems.length)k.items=validItems;
+      }
       const d=Number(r.descuento);if(Number.isFinite(d)&&d>=0)k.d=d;
+      const calcOrig=Math.round(k.items.reduce((a,[i,q])=>a+(PM[i]?PM[i].p:0)*q,0)*100)/100;
+      const orig=Number(r.precio_original);
+      k.orig=Number.isFinite(orig)&&orig>0?orig:calcOrig;
+      const price=Number(r.precio);
+      k.price=Number.isFinite(price)&&price>=0?price:Math.round(k.orig*(1-k.d)*100)/100;
+      k.units=k.items.reduce((a,[,q])=>a+q,0);
       if(r.nombre)k.n=r.nombre;
       if(r.personas)k.who=r.personas;
       if(r.duracion)k.dur=r.duracion;
     });
+    cleanCart();
+    recalcCounts();
+    if(S.cat!=='all'&&S.cat!=='oferta'&&S.cat!=='vendidos'&&!cnt(S.cat))S.cat='all';
     FK='';
-    CNT.oferta=CATALOG.filter(p=>p.o).length;
+    drawCats();
     repriceAll();
   }catch(e){}
 }
@@ -1314,11 +1235,11 @@ const MENU_TILES=[['arma','Ármame el mercado','basket'],['buscar','Buscar un pr
 const menuHTML=()=>`<div class="ag2">${MENU_TILES.map(([a,t,i])=>`<button type="button" data-act="${a}">${ic(i)}<span>${t}</span></button>`).join('')}</div>`;
 function hello(){say([`¡Épale, primo! 👋 Soy <b>Maracuchito</b>, el asistente de El Maracucho.`,`¿Qué te hace falta pal almuerzo hoy? Te armo el mercado, te busco productos y te digo todo: horario, delivery, pagos.`,`Facilito: me decís qué necesitáis y te lo llevo volando a tu casa.`,menuHTML()],HOME)}
 /* tarjetas dentro del chat */
-const mini=p=>`<div class="mpc">${phas(p)?`<img src="${pimg(p)}" alt="" width="44" height="44">`:`<span class="me2" style="--c:${CAT[p.c].c}">${p.e}</span>`}<div><b>${esc(p.n)}</b><small>${esc(p.s)} · <em${p.o?' class="of"':''}>${money(p.p)}</em>${p.o?` <s>${money(p.o)}</s>`:''}</small></div><span class="mct" data-ctl="${p.id}">${ctl(p.id)}</span></div>`;
+const mini=p=>{const hasOld=Boolean(p.o&&p.o>p.p);return `<div class="mpc">${phas(p)?`<img src="${pimg(p)}" alt="" width="44" height="44">`:`<span class="me2" style="--c:${(CAT[p.c]&&CAT[p.c].c)||'#eaf5ed'}">${p.e||'🛒'}</span>`}<div><b>${esc(p.n)}</b><small>${esc(p.s)} · <em${isOffer(p)?' class="of"':''}>${money(p.p)}</em>${hasOld?` <s>${money(p.o)}</s>`:''}</small></div><span class="mct" data-ctl="${p.id}">${ctl(p.id)}</span></div>`};
 const KIMG={basico:'h_tod',super:'h_dor',mega:'h_pan'};
 const kitCard=k=>`<div class="mkc"><div class="mkh"><img src="${$(KIMG[k.id]).src}" alt=""><div><small>Mercado</small><b>${k.n}</b></div><span>−${Math.round(k.d*100)}%</span></div><p>${k.who} · ${k.dur} · ${k.units} productos</p><div class="mkp"><b>${money(k.price)}</b><s>${money(k.orig)}</s></div><button type="button" class="mkb" data-add-kit="${k.id}">Agregar mercado ${k.n}</button></div>`;
-const ESSENTIALS=['pan','arroz','pasta','cafe'];
-const CANASTA_TOTAL=ESSENTIALS.reduce((a,id)=>a+PM[id].p,0);
+const ESSENTIALS=['pan','arroz','mav','dia'];
+const canastaTotal=()=>Math.round(ESSENTIALS.reduce((a,id)=>a+(PM[id]?PM[id].p:0),0)*100)/100;
 asm.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a){setQty(a.dataset.id,a.dataset.a==='+'?1:-1,a);return}
  const k=e.target.closest('[data-add-kit]');if(k){const kid=k.dataset.addKit;setKit(kid,1,k);if(!busy)say([`¡Qué molleja de mercado! Ya te guardé el <b>Mercado ${KM[kid].n}</b> en la bolsa 🛍️`,`Llevas <b>${money(tot().all)}</b> en total.`],()=>chips([['📲 Enviar por WhatsApp',ACT.enviar],['🛒 Ver mi pedido',pedido],['🔎 Seguir comprando',ACT.buscar]]));return}
  const g=e.target.closest('[data-act]');if(g&&!busy){const f=ACT[g.dataset.act];if(f){add(esc(g.textContent.trim()),'me');f()}}});
@@ -1327,7 +1248,7 @@ const ACT={arma:()=>arma(),buscar:()=>say(['Dime qué buscas y te lo encuentro �
  ofertas:()=>ofertas(),mercados:()=>mercados(),horario:()=>horario(),delivery:()=>delivery(),pago:()=>pago(),mayor:()=>mayor(),pedido:()=>pedido(),canasta:()=>addCanasta(ESSENTIALS),
  abrir:()=>{asOpen(false);openDr()},enviar:()=>{asOpen(false);openDr();if(tot().n){S.step=2;drawDr()}},ver:()=>{asOpen(false);goShop()}};
 function home(){say(['¿En qué más te ayudo? 😊',menuHTML()],HOME)}
-function ofertas(){const l=CATALOG.filter(p=>p.o).sort((a,b)=>disc(b)-disc(a));say(['🔥 Te tengo la promo del día, mirá esto 👇','Estas son las <b>ofertas de la semana</b> (precios de demostración):',l.slice(0,6).map(mini).join('')+`<button type="button" class="alink" data-act="verof">Ver las ${l.length} ofertas en la página →</button>`],()=>chips([['🧺 Mercado recomendado',arma],['🛒 Mi pedido',pedido],['Menú',home]]))}
+function ofertas(){const l=CATALOG.filter(isOffer).sort((a,b)=>disc(b)-disc(a));say(['🔥 Te tengo la promo del día, mirá esto 👇','Estas son las <b>ofertas activas</b> en tienda:',l.slice(0,6).map(mini).join('')+`<button type="button" class="alink" data-act="verof">Ver las ${l.length} ofertas en la página →</button>`],()=>chips([['🧺 Mercado recomendado',arma],['🛒 Mi pedido',pedido],['Menú',home]]))}
 ACT.verof=()=>{asOpen(false);setCat('oferta',true)};
 function mercados(){say(['Tenemos 3 <b>mercados completos</b>, ya armados y con descuento 👇',KITS.map(kitCard).join(''),'¿No sabes cuál? Te ayudo a elegir 😉'],()=>chips([['🧺 Ayúdame a elegir',arma],['🛒 Mi pedido',pedido],['Menú',home]]))}
 function horario(){const o=openNow();say([`🕗 Abrimos <b>lunes a domingo, de 8:00 AM a 9:00 PM</b>. Ahora mismo estamos ${o?'<b>abiertos</b> ✅':'<b>cerrados</b> (abrimos a las 8:00 AM), pero puedes dejar tu pedido'}.`,'📍 La dirección exacta te la enviamos por WhatsApp. También nos consigues en Instagram <a href="https://instagram.com/elmaracucho_ve" target="_blank" rel="noopener">@elmaracucho_ve</a>.'],()=>chips([['🛵 Delivery',delivery],['💬 Pedir la ubicación',ubic],['Menú',home]]))}
@@ -1342,30 +1263,30 @@ function pedido(){const T=tot();if(!T.n){say(['Tu bolsa está vacía por ahora �
  const left=Math.max(0,FREE_MIN-T.all);
  say([`🛒 Esto llevas en tu bolsa:<ul class="asl">${L.slice(0,10).join('')}${L.length>10?`<li><span>…y ${L.length-10} más</span></li>`:''}</ul><div class="ast"><span>Total</span><b>${money(T.all)}</b></div>${T.ks>0?`<small class="asv">Ahorras ${money(T.ks)} con tus mercados</small>`:''}`,left>0?`Te faltan ${money(left)} para delivery gratis 😉`:'🎉 ¡Tienes delivery gratis!',`<div class="abt"><button type="button" data-act="enviar" class="p">Enviar por WhatsApp</button><button type="button" data-act="abrir">Ver / editar</button></div>`],()=>chips([['🔎 Buscar algo más',ACT.buscar],['Menú',home]]))}
 /* armar mercado guiado */
-const EXTRA={des:[['☕ Desayuno',[['cafe',1],['leche',1],['mermelada',1]]]],mer:[['🍿 Meriendas',[['dor',1],['galletas',2],['choco',2]]]],lim:[['🧼 Limpieza',[['det',1],['cloro',1],['axi',1]]]],beb:[['🥤 Bebidas',[['refresco',2],['jugo',2]]]]};
+const EXTRA={des:[['☕ Desayuno',[['pan',2],['dia',1],['tod',1]]]],mer:[['🍿 Meriendas',[['dor',1],['pep',2],['tru',2]]]],lim:[['🧼 Limpieza',[['fab',1],['axi',1],['sco',1]]]],beb:[['🧀 Salsas y untables',[['mav',1],['hz',1],['rik',1]]]]};
 const ST={k:null,x:null};
 function arma(){say(['¡Dale! Te armo el mercado en 2 preguntas 🧺','¿Para cuántas personas es?'],()=>chips([['👤 1–2 personas',()=>q2('basico')],['👨‍👩‍👧 3–4 personas',()=>q2('super')],['👨‍👩‍👧‍👦 5 o más',()=>q2('mega')]]))}
-function q2(k){ST.k=k;say(['¿Y qué no puede faltar en tu casa? 😋'],()=>chips([['☕ Desayuno',()=>rec('des')],['🍿 Meriendas',()=>rec('mer')],['🧼 Limpieza',()=>rec('lim')],['🥤 Bebidas',()=>rec('beb')],['✅ Así está bien',()=>rec(null)]]))}
-function rec(x){ST.x=x;const k=KM[ST.k],ex=x?EXTRA[x][0]:null,et=ex?ex[1].reduce((a,[i,q])=>a+PM[i].p*q,0):0;
- const exH=ex?`<div class="mex"><small>Le sumo ${ex[0].toLowerCase()}:</small>${ex[1].map(([i,q])=>`<span>${q}× ${esc(PM[i].n)} <b>${money(PM[i].p*q)}</b></span>`).join('')}</div>`:'';
+function q2(k){ST.k=k;say(['¿Y qué no puede faltar en tu casa? 😋'],()=>chips([['☕ Desayuno',()=>rec('des')],['🍿 Meriendas',()=>rec('mer')],['🧼 Limpieza',()=>rec('lim')],['🧀 Salsas y untables',()=>rec('beb')],['✅ Así está bien',()=>rec(null)]]))}
+function rec(x){ST.x=x;const k=KM[ST.k],ex=x?EXTRA[x][0]:null,exItems=ex?ex[1].filter(([i])=>PM[i]):[],et=exItems.reduce((a,[i,q])=>a+(PM[i]?PM[i].p*q:0),0);
+ const exH=ex&&exItems.length?`<div class="mex"><small>Le sumo ${ex[0].toLowerCase()}:</small>${exItems.map(([i,q])=>`<span>${q}× ${esc(PM[i].n)} <b>${money(PM[i].p*q)}</b></span>`).join('')}</div>`:'';
  say(['¡Listo! Mira lo que te armé 👇',`<div class="mkc"><div class="mkh"><img src="${$(KIMG[k.id]).src}" alt=""><div><small>Mercado</small><b>${k.n}</b></div><span>−${Math.round(k.d*100)}%</span></div><p>${k.who} · ${k.dur} · ${k.units} productos</p>${exH}<div class="mkp"><span>Total</span><b>${money(k.price+et)}</b>${k.orig>k.price?`<small>ahorras ${money(k.orig-k.price)}</small>`:''}</div></div>`],
  ()=>chips([['🛍️ Agregar todo a mi bolsa',addAll],...(ST.k!=='mega'?[['⬆️ Más grande',()=>{ST.k=ST.k==='basico'?'super':'mega';rec(ST.x)}]]:[]),...(ST.k!=='basico'?[['⬇️ Más pequeño',()=>{ST.k=ST.k==='mega'?'super':'basico';rec(ST.x)}]]:[]),['📋 Qué incluye',incluye],['🔄 Empezar de nuevo',arma]]))}
-function incluye(){const k=KM[ST.k];say([`El <b>Mercado ${k.n}</b> trae:<ul class="asl">${k.items.map(([i,q])=>`<li><span>${q}× ${esc(PM[i].n)}</span><small>${esc(PM[i].s)}</small></li>`).join('')}</ul>`],()=>chips([['🛍️ Agregar todo a mi bolsa',addAll],['🔄 Empezar de nuevo',arma]]))}
-function addAll(){C.k[ST.k]=(C.k[ST.k]||0)+1;if(ST.x)EXTRA[ST.x][0][1].forEach(([i,q])=>C.i[i]=(C.i[i]||0)+q);save();paint();
+function incluye(){const k=KM[ST.k],items=k.items.filter(([i])=>PM[i]);say([`El <b>Mercado ${k.n}</b> trae:<ul class="asl">${items.map(([i,q])=>`<li><span>${q}× ${esc(PM[i].n)}</span><small>${esc(PM[i].s)}</small></li>`).join('')}</ul>`],()=>chips([['🛍️ Agregar todo a mi bolsa',addAll],['🔄 Empezar de nuevo',arma]]))}
+function addAll(){C.k[ST.k]=(C.k[ST.k]||0)+1;if(ST.x)EXTRA[ST.x][0][1].forEach(([i,q])=>{if(PM[i])C.i[i]=(C.i[i]||0)+q});save();paint();
  say(['¡Qué molleja de mercado armaste! 🛍️ Ya te lo guardé en la bolsa.',`Total: <b>${money(tot().all)}</b>`],()=>chips([['📲 Enviar por WhatsApp',ACT.enviar],['🛒 Ver mi pedido',pedido],['🔎 Seguir comprando',ACT.buscar]]))}
 const btxt=v=>'$'+(Number.isInteger(v)?v:v.toFixed(2).replace('.',','));
 function canasta(v=0){
- const total=CANASTA_TOTAL,gap=v-total;
+ const total=canastaTotal(),gap=v-total;
  const line=gap>=0?`Te alcanza y te sobran <b>${usd(gap)}</b> para completar con lo que quieras.`:`Con ${btxt(v)} te faltan <b>${usd(-gap)}</b>, pero esto es lo mínimo que te recomiendo.`;
  mzState('wave',1800);
- say([`¡Épale, primo! Con ${btxt(v)} te armo la canasta esencial pa' la semana, mirá 👇`,ESSENTIALS.map(id=>mini(PM[id])).join(''),`<div class="ast"><span>Subtotal</span><b>${usd(total)}</b></div><small class="asv">≈ ${alt(total)}</small><p style="margin:6px 2px 8px">${line}</p><button type="button" class="mkb" data-act="canasta">Agregar canasta a mi bolsa</button>`],()=>chips([['💵 Otro presupuesto',presupuesto],['🛒 Mi pedido',pedido],['Menú',home]]));
+ say([`¡Épale, primo! Con ${btxt(v)} te armo la canasta esencial pa' la semana, mirá 👇`,ESSENTIALS.filter(id=>PM[id]).map(id=>mini(PM[id])).join(''),`<div class="ast"><span>Subtotal</span><b>${usd(total)}</b></div><small class="asv">≈ ${alt(total)}</small><p style="margin:6px 2px 8px">${line}</p><button type="button" class="mkb" data-act="canasta">Agregar canasta a mi bolsa</button>`],()=>chips([['💵 Otro presupuesto',presupuesto],['🛒 Mi pedido',pedido],['Menú',home]]));
 }
 function bRec(v){
  const b=btxt(v);
  if(v<15)return canasta(v);
  const k=v<29?KM.basico:v<46?KM.super:KM.mega;
  const gap=k.price-v;
- const line=gap>0?`Con ${b} te faltan <b>${usd(gap)}</b> para el <b>Mercado ${k.n}</b>. Si no quieres estirar, te armo la canasta esencial por <b>${usd(CANASTA_TOTAL)}</b>.`:`Con ${b} te alcanza y te sobran <b>${usd(-gap)}</b>.`;
+ const line=gap>0?`Con ${b} te faltan <b>${usd(gap)}</b> para el <b>Mercado ${k.n}</b>. Si no quieres estirar, te armo la canasta esencial por <b>${usd(canastaTotal())}</b>.`:`Con ${b} te alcanza y te sobran <b>${usd(-gap)}</b>.`;
  mzState('wave',1800);
  say([`¡Épale, primo! Para ${b} te tengo el <b>Mercado ${k.n}</b> (${k.who}, ${k.dur}), mira 👇`,kitCard(k),line],()=>chips([['🧺 Canasta esencial',()=>canasta(v)],['💵 Otro presupuesto',presupuesto],['🛒 Mi pedido',pedido]]));
 }

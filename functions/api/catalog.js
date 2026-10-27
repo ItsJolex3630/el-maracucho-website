@@ -48,7 +48,7 @@ export async function onRequestGet(context) {
       config: configMap,
       updatedAt: new Date().toISOString()
     }, 200, {
-      "Cache-Control": "public, max-age=10, s-maxage=30, stale-while-revalidate=60"
+      "Cache-Control": "no-store, no-cache, must-revalidate"
     });
   } catch (err) {
     console.error("Error en /api/catalog:", err);
