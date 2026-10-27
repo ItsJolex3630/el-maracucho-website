@@ -1181,9 +1181,27 @@ async function syncCatalog(){
     if(!res.ok)throw new Error('HTTP '+res.status);
     const data=await res.json();
     if(!data||data.success===false||!Array.isArray(data.products))return;
+    let newFound=false;
     data.products.forEach(r=>{
       if(!r||!r.id)return;
-      const p=PM[r.id];if(!p)return;
+      let p=PM[r.id];
+      if(!p){
+        p={
+          id:r.id,
+          c:r.categoria||'despensa',
+          cn:(CAT[r.categoria]||{}).n||r.categoria,
+          n:r.nombre||'Producto',
+          s:r.presentacion||'Unidad',
+          p:Number(r.precio)||0,
+          e:r.emoji||'🛒',
+          tg:r.tags||'',
+          d:r.descripcion||'',
+          top:999
+        };
+        CATALOG.push(p);
+        PM[p.id]=p;
+        newFound=true;
+      }
       const price=Number(r.precio);
       if(Number.isFinite(price)&&price>=0)p.p=price;
       const old=r.precio_oferta!=null?Number(r.precio_oferta):null;
@@ -1193,6 +1211,9 @@ async function syncCatalog(){
       if(r.emoji)p.e=r.emoji;
       if(r.imagen_url)p.imgUrl=r.imagen_url;
     });
+    if(newFound){
+      Search.build(CATALOG,Object.fromEntries(Object.entries(CAT).map(([k,v])=>[k,v.n])));
+    }
     (data.kits||[]).forEach(r=>{
       if(!r||!r.id)return;
       const k=KM[r.id];if(!k)return;

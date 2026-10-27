@@ -96,6 +96,10 @@ html:not([data-auth="in"]) #app{display:none}
 .btn svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .btn-ghost{background:#fff;color:var(--g8);border-color:var(--ln)}
 .btn-ghost:hover{background:var(--mint2);border-color:var(--mint)}
+.btn-primary{background:var(--g8);border-color:var(--g8)}
+.btn-primary:hover{background:var(--g7);border-color:var(--g7)}
+.btn-danger{background:#fff;color:var(--rd);border-color:#f3c2bd}
+.btn-danger:hover{background:#fdecea;border-color:#e7a9a3}
 .btn-wa{background:#25d366;border-color:#25d366;color:#05260f;font-weight:700}
 .btn-wa:hover{background:#1fc35c;border-color:#1fc35c}
 .logout-btn{min-width:44px}
@@ -244,6 +248,54 @@ tr.paused .p-cell b{color:var(--mu)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .toast.err{background:#7c1d16}
 
+/* product photo + modals */
+.p-photo{width:44px;height:44px;flex:none;position:relative;border:1px solid var(--ln);border-radius:12px;background:var(--cat,#eaf5ed);padding:0;display:grid;place-items:center;overflow:visible}
+.p-photo>img{width:100%;height:100%;object-fit:cover;border-radius:11px}
+.p-photo .p-emoji{width:100%;height:100%;border-radius:11px;background:transparent;font-size:21px}
+.p-photo .cam{position:absolute;right:-4px;bottom:-4px;width:20px;height:20px;border-radius:50%;background:var(--g8);border:2px solid #fff;display:grid;place-items:center;color:#fff}
+.p-photo .cam svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.p-photo:hover .cam{background:var(--g6)}
+.offer-cell{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.offer-tag{display:inline-flex;align-items:center;min-height:44px;padding:0 9px;border:1px solid var(--ln);border-radius:8px;background:#fff;font:600 11.5px var(--ff);color:var(--g7);white-space:nowrap;transition:background .16s,border-color .16s,color .16s}
+.offer-tag:hover{background:var(--mint2);border-color:var(--mint)}
+.offer-tag.on{background:var(--yl);border-color:var(--yl);color:var(--g9)}
+dialog.modal{width:min(560px,calc(100vw - 24px));max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);margin:auto;padding:0;border:1px solid var(--ln);border-radius:18px;background:var(--paper);color:var(--ink);box-shadow:var(--shadow);overflow:hidden}
+dialog.modal[open]{display:flex;flex-direction:column;animation:modalIn .18s ease-out}
+dialog.modal::backdrop{background:rgba(7,33,15,.58)}
+dialog.modal form{display:flex;flex-direction:column;min-height:0;max-height:inherit;overflow:hidden}
+@keyframes modalIn{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:none}}
+body.modal-open{overflow:hidden}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px 20px 12px;border-bottom:1px solid var(--ln2);flex:none}
+.modal-head h2{font:800 20px/1.15 var(--ff);letter-spacing:-.025em}
+.modal-head p{font-size:12.5px;color:var(--mu);margin-top:3px;overflow-wrap:anywhere}
+.modal-close{width:44px;height:44px;flex:none;border:1px solid var(--ln);border-radius:10px;background:#fff;color:var(--mu);font:400 24px/1 var(--ff);display:grid;place-items:center}
+.modal-close:hover{background:var(--mint2);color:var(--g8)}
+.modal-body{padding:16px 20px;overflow:auto;min-height:0}
+.modal-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;padding:12px 20px 18px;border-top:1px solid var(--ln2);flex:none}
+.modal-actions>.form-err{flex:1 0 100%;margin:0 0 2px}
+.modal-actions-right{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:grid;gap:5px;min-width:0}
+.field.full{grid-column:1/-1}
+.field>span{font:600 12px var(--ff);color:var(--mu)}
+.field input,.field select{width:100%;height:44px;min-width:0;border:1px solid var(--ln);border-radius:10px;background:#fff;padding:0 12px;font:500 14px var(--ff);color:var(--ink)}
+.field input::placeholder{color:var(--mu);opacity:.9}
+.form-err{color:var(--rd);font:600 12.5px/1.4 var(--ff);margin-top:10px}
+.form-hint{color:var(--mu);font:500 11.5px/1.45 var(--ff);margin-top:8px}
+.photo-field{display:flex;align-items:flex-start;gap:12px;background:var(--mint2);border:1px solid var(--ln2);border-radius:12px;padding:10px}
+.photo-preview{width:84px;height:84px;flex:none;position:relative;overflow:hidden;border:1px solid var(--ln);border-radius:10px;background:#fff;display:grid;place-items:center}
+.photo-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo-preview .p-emoji{width:100%;height:100%;border-radius:0;background:transparent;font-size:32px}
+.photo-controls{flex:1;min-width:0;display:grid;gap:6px}
+.photo-controls>input[type=text]{width:100%;height:44px;min-width:0;border:1px solid var(--ln);border-radius:9px;background:#fff;padding:0 10px;font:500 12.5px var(--ff);color:var(--ink)}
+.file-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 12px;border:1px solid var(--ln);border-radius:9px;background:#fff;color:var(--g8);font:600 12px var(--ff);cursor:pointer}
+.file-btn:hover{background:var(--mint2);border-color:var(--mint)}
+.file-btn:focus-within{outline:3px solid var(--g6);outline-offset:2px}
+.photo-status{color:var(--mu);font:500 11px/1.35 var(--ff);overflow-wrap:anywhere}
+.photo-status.err{color:var(--rd)}
+.offer-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.offer-toggle{margin-top:12px}
+
 /* responsive */
 @media(max-width:1024px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){
@@ -280,6 +332,14 @@ tr.paused .p-cell b{color:var(--mu)}
   .status-select{flex:1 1 100%}
   .status-select select{flex:1}
   .head-actions .btn{flex:1 1 auto}
+  .form-grid,.offer-fields{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .modal-head,.modal-body,.modal-actions{padding-left:16px;padding-right:16px}
+  .photo-field{flex-direction:column}
+  .photo-preview{width:72px;height:72px}
+  .photo-controls{width:100%}
+  .modal-actions .btn{flex:1 1 auto}
+  .modal-actions-right{width:100%;margin-left:0}
   .footer{display:block;text-align:center}
   .footer span{display:block;margin-top:4px}
 }
@@ -290,6 +350,7 @@ tr.paused .p-cell b{color:var(--mu)}
   .kit-form{grid-template-columns:1fr}
   .kit-prices{grid-template-columns:1fr 1fr}
   .login-card{padding:22px 18px}
+  dialog.modal{width:calc(100vw - 16px);max-width:calc(100vw - 16px)}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
@@ -378,8 +439,11 @@ tr.paused .p-cell b{color:var(--mu)}
   <main class="wrap">
     <section class="panel" id="panel-inventario" aria-labelledby="inv-title">
       <div class="panel-head">
-        <div><h1 id="inv-title">Inventario y catálogo</h1><p>Busca, ajusta precios, pausa productos y marca ofertas. Los cambios quedan guardados en este navegador.</p></div>
-        <span class="count-chip" id="inv-count">166 productos</span>
+        <div><h1 id="inv-title">Inventario y catálogo</h1><p>Busca, ajusta precios, pausa productos y marca ofertas. Los cambios se sincronizan con Turso.</p></div>
+        <div class="head-actions">
+          <span class="count-chip" id="inv-count">166 productos</span>
+          <button class="btn btn-primary" id="btn-new-product" type="button">+ Nuevo Producto</button>
+        </div>
       </div>
       <div class="toolbar">
         <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="inv-search" type="search" placeholder="Buscar producto, presentación o categoría" aria-label="Buscar productos" autocomplete="off"></label>
@@ -427,6 +491,101 @@ tr.paused .p-cell b{color:var(--mu)}
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="modal" id="modal-new-product" aria-labelledby="np-title">
+  <form id="np-form" novalidate>
+    <header class="modal-head">
+      <div><h2 id="np-title">Nuevo producto</h2><p>Se guarda en Turso y aparece en el inventario al instante.</p></div>
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+    </header>
+    <div class="modal-body">
+      <div class="form-grid">
+        <label class="field full"><span>Nombre del producto</span><input id="np-name" maxlength="80" required autocomplete="off" placeholder="Ej: Queso blanco duro"></label>
+        <label class="field"><span>Categoría</span><select id="np-cat" required></select></label>
+        <label class="field"><span>Presentación</span><input id="np-pres" maxlength="40" placeholder="1 kg, 500 g, Pack 6"></label>
+        <label class="field"><span>Precio USD</span><input id="np-price" type="number" inputmode="decimal" min="0" step="0.01" required placeholder="0.00"></label>
+        <label class="field"><span>Emoji de respaldo</span><input id="np-emoji" maxlength="8" value="🛒" autocomplete="off"></label>
+        <div class="field full">
+          <span>Foto del producto</span>
+          <div class="photo-field" data-photo-field>
+            <div class="photo-preview" data-photo-preview><span class="p-emoji">🛒</span></div>
+            <div class="photo-controls">
+              <label class="file-btn">Elegir foto<input type="file" accept="image/*" class="sr-only" data-photo-file></label>
+              <input type="text" data-photo-url inputmode="url" autocomplete="off" placeholder="o pega una URL de imagen" aria-label="URL de la foto">
+              <input type="hidden" data-photo-value>
+              <small class="photo-status" data-photo-status>Se optimiza a 400 px.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <label class="check offer-toggle"><input type="checkbox" id="np-offer"><span class="box" aria-hidden="true"></span><span class="check-label">Destacar como oferta</span></label>
+      <div class="offer-fields" id="np-offer-fields" hidden>
+        <label class="field"><span>Precio anterior tachado USD</span><input id="np-offer-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></label>
+        <label class="field"><span>Etiqueta promo</span><input id="np-offer-tag" maxlength="20" placeholder="-15%, Top, Nuevo" list="promo-tags"></label>
+      </div>
+    </div>
+    <footer class="modal-actions">
+      <p class="form-err" id="np-error" role="alert" hidden></p>
+      <button class="btn btn-ghost" type="button" data-close-modal>Cancelar</button>
+      <button class="btn" type="submit" id="np-save">Guardar producto</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="modal" id="modal-photo" aria-labelledby="photo-title">
+  <form id="photo-form">
+    <header class="modal-head">
+      <div><h2 id="photo-title">Foto del producto</h2><p id="photo-sub">Cambia la imagen que se muestra en la tienda.</p></div>
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+    </header>
+    <div class="modal-body">
+      <div class="photo-field" data-photo-field>
+        <div class="photo-preview" data-photo-preview><span class="p-emoji">🛒</span></div>
+        <div class="photo-controls">
+          <label class="file-btn">Elegir foto<input type="file" accept="image/*" class="sr-only" data-photo-file></label>
+          <input type="text" data-photo-url inputmode="url" autocomplete="off" placeholder="o pega una URL de imagen" aria-label="URL de la foto">
+          <input type="hidden" data-photo-value>
+          <small class="photo-status" data-photo-status>Se optimiza a 400 px.</small>
+        </div>
+      </div>
+    </div>
+    <footer class="modal-actions">
+      <p class="form-err" id="photo-error" role="alert" hidden></p>
+      <button class="btn btn-danger" type="button" id="photo-remove">Quitar foto</button>
+      <div class="modal-actions-right">
+        <button class="btn btn-ghost" type="button" data-close-modal>Cancelar</button>
+        <button class="btn" type="submit">Guardar foto</button>
+      </div>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="modal" id="modal-offer" aria-labelledby="offer-title">
+  <form id="offer-form">
+    <header class="modal-head">
+      <div><h2 id="offer-title">Ajustar oferta</h2><p id="offer-sub">Define el precio anterior y la etiqueta promocional.</p></div>
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+    </header>
+    <div class="modal-body">
+      <div class="offer-fields">
+        <label class="field"><span>Precio anterior tachado USD</span><input id="of-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></label>
+        <label class="field"><span>Etiqueta promo</span><input id="of-tag" maxlength="20" placeholder="-15%, Top, Nuevo" list="promo-tags"></label>
+      </div>
+      <p class="form-hint">El precio anterior debe ser mayor al precio actual. Si dejas la etiqueta vacía, la tienda calcula el descuento.</p>
+    </div>
+    <footer class="modal-actions">
+      <p class="form-err" id="offer-error" role="alert" hidden></p>
+      <button class="btn btn-ghost" type="button" data-close-modal>Cancelar</button>
+      <button class="btn" type="submit">Guardar oferta</button>
+    </footer>
+  </form>
+</dialog>
+
+<datalist id="promo-tags">
+  <option value="-15%"></option><option value="-14%"></option><option value="-12%"></option>
+  <option value="OFERTA"></option><option value="Top"></option><option value="Nuevo"></option>
+</datalist>
+
 <script id="seed" type="application/json">{"cats":{"harinas":["Harinas y cereales","#fbeec6"],"despensa":["Despensa","#e4f1e7"],"cafe":["Café y desayuno","#f1e0d0"],"salsas":["Salsas y aderezos","#fbdcd2"],"snacks":["Snacks y dulces","#fdefbf"],"lacteos":["Lácteos y charcutería","#fde4c4"],"bebidas":["Bebidas","#d6eaf6"],"panes":["Panes y repostería","#f7e3c3"],"frutas":["Frutas y verduras","#dff0cf"],"carnes":["Carnes y pollo","#f8d9d6"],"personal":["Cuidado personal","#e8def7"],"limpieza":["Limpieza","#e3dcfa"],"hogar":["Hogar y papel","#dcefe4"]},"products":[{"id":"pan","c":"harinas","n":"Harina PAN blanca","s":"1 kg","p":1.6,"e":"🌽"},{"id":"trigo","c":"harinas","n":"Harina de trigo todo uso","s":"1 kg","p":1.4,"e":"🌾"},{"id":"avena","c":"harinas","n":"Avena en hojuelas","s":"400 g","p":1.3,"e":"🥣"},{"id":"pasta","c":"harinas","n":"Pasta larga","s":"1 kg","p":1.7,"e":"🍝"},{"id":"pastac","c":"harinas","n":"Pasta corta","s":"1 kg","p":1.7,"e":"🍝"},{"id":"maizina","c":"harinas","n":"Maicena","s":"400 g","p":1.9,"e":"🌽"},{"id":"arroz","c":"harinas","n":"Arroz Premium Mary","s":"1 kg","p":1.55,"e":"🍚"},{"id":"cereal","c":"harinas","n":"Hojuelas de maíz","s":"370 g","p":2.6,"e":"🥣"},{"id":"cereal2","c":"harinas","n":"Cereal de chocolate","s":"300 g","p":3.1,"e":"🥣"},{"id":"granola","c":"harinas","n":"Granola con frutas","s":"350 g","p":3.4,"e":"🥣"},{"id":"espagueti","c":"harinas","n":"Macarrones","s":"500 g","p":1.1,"e":"🍝"},{"id":"tortillas","c":"harinas","n":"Tortillas de harina","s":"10 und","p":2.4,"e":"🫓"},{"id":"fororo","c":"harinas","n":"Fororo","s":"400 g","p":1.6,"e":"🌽"},{"id":"azucar","c":"despensa","n":"Azúcar","s":"1 kg","p":1.45,"e":"🍬"},{"id":"aceite","c":"despensa","n":"Aceite vegetal","s":"1 L","p":3.2,"e":"🫒"},{"id":"sal","c":"despensa","n":"Sal refinada","s":"1 kg","p":0.8,"e":"🧂"},{"id":"caraotas","c":"despensa","n":"Caraotas negras","s":"500 g","p":1.6,"e":"🫘"},{"id":"lentejas","c":"despensa","n":"Lentejas","s":"500 g","p":1.5,"e":"🫘"},{"id":"atun","c":"despensa","n":"Atún en aceite","s":"140 g","p":2.1,"e":"🥫"},{"id":"sardinas","c":"despensa","n":"Sardinas en tomate","s":"170 g","p":1.4,"e":"🥫"},{"id":"vinagre","c":"despensa","n":"Vinagre blanco","s":"500 ml","p":1,"e":"🍶"},{"id":"maiz","c":"despensa","n":"Maíz dulce en lata","s":"340 g","p":1.7,"e":"🌽"},{"id":"garbanzos","c":"despensa","n":"Garbanzos","s":"500 g","p":1.8,"e":"🫘"},{"id":"pimienta","c":"despensa","n":"Pimienta molida","s":"50 g","p":1.2,"e":"🧂"},{"id":"comino","c":"despensa","n":"Comino molido","s":"50 g","p":1.1,"e":"🧂"},{"id":"caldo","c":"despensa","n":"Cubitos de caldo","s":"12 und","p":1.3,"e":"🍲"},{"id":"sazon","c":"despensa","n":"Sazón completo","s":"100 g","p":1.4,"e":"🧂"},{"id":"aceitunas","c":"despensa","n":"Aceitunas rellenas","s":"240 g","p":2.8,"e":"🫒"},{"id":"papelon","c":"despensa","n":"Papelón en panela","s":"400 g","p":1.5,"e":"🍯"},{"id":"miel","c":"despensa","n":"Miel de abeja","s":"250 g","p":3.2,"e":"🍯"},{"id":"lechecond","c":"despensa","n":"Leche condensada","s":"395 g","p":2.6,"e":"🥛"},{"id":"cacao","c":"despensa","n":"Cacao en polvo","s":"200 g","p":2.9,"e":"🍫"},{"id":"gelatina","c":"snacks","n":"Gelatina de fresa","s":"120 g","p":0.9,"e":"🍓"},{"id":"flan","c":"snacks","n":"Flan de vainilla en polvo","s":"100 g","p":1.1,"e":"🍮"},{"id":"cafe","c":"cafe","n":"Café molido","s":"250 g","p":3.5,"e":"☕"},{"id":"tod","c":"cafe","n":"Toddy achocolatado","s":"400 g","p":3.9,"e":"🍫"},{"id":"leche","c":"cafe","n":"Leche en polvo","s":"400 g","p":5.8,"e":"🥛"},{"id":"mermelada","c":"cafe","n":"Mermelada de fresa","s":"350 g","p":2.4,"e":"🍓"},{"id":"cafe2","c":"cafe","n":"Café instantáneo","s":"100 g","p":4.2,"e":"☕"},{"id":"te","c":"cafe","n":"Té de manzanilla","s":"20 bolsitas","p":1.5,"e":"🍵"},{"id":"chocobeber","c":"cafe","n":"Chocolate para beber","s":"500 g","p":3.3,"e":"🍫"},{"id":"cremaavellana","c":"cafe","n":"Crema de avellanas y cacao","s":"350 g","p":4.6,"e":"🌰"},{"id":"mani","c":"cafe","n":"Mantequilla de maní","s":"340 g","p":3.7,"e":"🥜"},{"id":"mav","c":"salsas","n":"Mayonesa Mavesa","s":"500 g","p":3.4,"e":"🥚"},{"id":"hz","c":"salsas","n":"Ketchup Heinz","s":"342 g","p":3.1,"e":"🍅"},{"id":"mostaza","c":"salsas","n":"Mostaza","s":"200 g","p":1.5,"e":"🌭"},{"id":"soya","c":"salsas","n":"Salsa de soya","s":"150 ml","p":1.2,"e":"🥢"},{"id":"tomate","c":"salsas","n":"Pasta de tomate","s":"190 g","p":1.3,"e":"🍅"},{"id":"ajosalsa","c":"salsas","n":"Salsa de ajo","s":"200 g","p":2.2,"e":"🧄"},{"id":"picante","c":"salsas","n":"Salsa picante","s":"150 ml","p":1.4,"e":"🌶️"},{"id":"bbq","c":"salsas","n":"Salsa BBQ","s":"350 g","p":2.9,"e":"🍖"},{"id":"cesar","c":"salsas","n":"Aderezo César","s":"250 ml","p":3.1,"e":"🥗"},{"id":"dor","c":"snacks","n":"Doritos sabor queso","s":"320 g","p":4.2,"e":"🌮"},{"id":"pep","c":"snacks","n":"Pepito original","s":"100 g","p":1.2,"e":"🧀"},{"id":"tru","c":"snacks","n":"Trululu aros","s":"Bolsa","p":1,"e":"🍬"},{"id":"galletas","c":"snacks","n":"Galletas de soda","s":"200 g","p":1.1,"e":"🍪"},{"id":"papas","c":"snacks","n":"Papitas fritas","s":"140 g","p":1.8,"e":"🥔"},{"id":"choco","c":"snacks","n":"Chocolate en barra","s":"100 g","p":1.5,"e":"🍫"},{"id":"oreo","c":"snacks","n":"Galletas rellenas de chocolate","s":"6 und","p":1.4,"e":"🍪"},{"id":"maria","c":"snacks","n":"Galletas María","s":"200 g","p":1.2,"e":"🍪"},{"id":"galletacoco","c":"snacks","n":"Galletas de coco","s":"180 g","p":1.6,"e":"🥥"},{"id":"barras","c":"snacks","n":"Barras de cereal","s":"6 und","p":2.8,"e":"🍫"},{"id":"gomitas","c":"snacks","n":"Gomitas de frutas","s":"100 g","p":1.1,"e":"🍬"},{"id":"caramelos","c":"snacks","n":"Caramelos surtidos","s":"200 g","p":1.3,"e":"🍬"},{"id":"cotufas","c":"snacks","n":"Cotufas para microondas","s":"3 und","p":2.2,"e":"🍿"},{"id":"tostones","c":"snacks","n":"Tostones de plátano","s":"100 g","p":1.5,"e":"🍌"},{"id":"platanitos","c":"snacks","n":"Platanitos fritos","s":"120 g","p":1.3,"e":"🍌"},{"id":"manisal","c":"snacks","n":"Maní salado","s":"200 g","p":1.7,"e":"🥜"},{"id":"frutossecos","c":"snacks","n":"Mix de frutos secos","s":"150 g","p":3.6,"e":"🌰"},{"id":"wafer","c":"snacks","n":"Wafer de vainilla","s":"6 und","p":1.2,"e":"🍫"},{"id":"rik","c":"lacteos","n":"Salsa cheddar Rikesa","s":"200 g","p":2.4,"e":"🧀"},{"id":"dia","c":"lacteos","n":"Diablitos Underwood","s":"Lata","p":1.9,"e":"😈"},{"id":"jamon","c":"lacteos","n":"Jamón ahumado Ricci","s":"1 kg","p":8.34,"e":"🍖"},{"id":"queso","c":"lacteos","n":"Queso blanco duro","s":"1 kg","p":7.5,"e":"🧀"},{"id":"mantequilla","c":"lacteos","n":"Mantequilla","s":"250 g","p":2.6,"e":"🧈"},{"id":"huevos","c":"lacteos","n":"Cartón de huevos","s":"30 und","p":5.2,"e":"🥚"},{"id":"yogurt","c":"lacteos","n":"Yogurt de fresa","s":"1 L","p":1.9,"e":"🍓"},{"id":"yogbeb","c":"lacteos","n":"Yogurt bebible","s":"200 ml","p":0.9,"e":"🥛"},{"id":"yoggriego","c":"lacteos","n":"Yogurt griego natural","s":"500 g","p":3.6,"e":"🥛"},{"id":"quesoamar","c":"lacteos","n":"Queso amarillo en lonjas","s":"200 g","p":3.2,"e":"🧀"},{"id":"quesocrema","c":"lacteos","n":"Queso crema","s":"230 g","p":2.5,"e":"🧀"},{"id":"quesorall","c":"lacteos","n":"Queso rallado","s":"100 g","p":1.9,"e":"🧀"},{"id":"leche1","c":"lacteos","n":"Leche líquida entera","s":"1 L","p":1.9,"e":"🥛"},{"id":"lechechoc","c":"lacteos","n":"Leche achocolatada","s":"200 ml","p":0.9,"e":"🍫"},{"id":"mortadela","c":"lacteos","n":"Mortadela","s":"500 g","p":3.5,"e":"🥓"},{"id":"salchicha","c":"lacteos","n":"Salchichas tipo Viena","s":"500 g","p":3.2,"e":"🌭"},{"id":"jamonlonja","c":"lacteos","n":"Jamón de pierna en lonjas","s":"200 g","p":2.6,"e":"🍖"},{"id":"tocineta","c":"lacteos","n":"Tocineta","s":"200 g","p":3.2,"e":"🥓"},{"id":"refresco","c":"bebidas","n":"Refresco de cola","s":"2 L","p":2.2,"e":"🥤"},{"id":"agua","c":"bebidas","n":"Agua mineral","s":"5 L","p":1.5,"e":"💧"},{"id":"jugo","c":"bebidas","n":"Jugo de naranja","s":"1 L","p":1.9,"e":"🧃"},{"id":"malta","c":"bebidas","n":"Malta","s":"Pack 6","p":4.2,"e":"🍺"},{"id":"jugocaja","c":"bebidas","n":"Jugo en cajita","s":"200 ml","p":0.7,"e":"🧃"},{"id":"jugomango","c":"bebidas","n":"Néctar de mango","s":"1 L","p":2.1,"e":"🥭"},{"id":"tefrio","c":"bebidas","n":"Té frío de limón","s":"500 ml","p":1.2,"e":"🍋"},{"id":"refrescona","c":"bebidas","n":"Refresco de naranja","s":"2 L","p":2.1,"e":"🍊"},{"id":"hidratante","c":"bebidas","n":"Bebida hidratante","s":"500 ml","p":1.3,"e":"⚡"},{"id":"aguaper","c":"bebidas","n":"Agua mineral pequeña","s":"600 ml","p":0.5,"e":"💧"},{"id":"aguasab","c":"bebidas","n":"Agua con sabor","s":"600 ml","p":0.9,"e":"🍑"},{"id":"energ","c":"bebidas","n":"Bebida energizante","s":"250 ml","p":1.8,"e":"⚡"},{"id":"pansand","c":"panes","n":"Pan de sándwich","s":"500 g","p":2.4,"e":"🍞"},{"id":"panperro","c":"panes","n":"Pan para perros calientes","s":"8 und","p":2.2,"e":"🌭"},{"id":"panham","c":"panes","n":"Pan para hamburguesa","s":"6 und","p":2.4,"e":"🍔"},{"id":"pancanilla","c":"panes","n":"Pan canilla","s":"1 und","p":0.9,"e":"🥖"},{"id":"panquecitos","c":"panes","n":"Panquecitos de vainilla","s":"6 und","p":1.6,"e":"🧁"},{"id":"donas","c":"panes","n":"Donas glaseadas","s":"4 und","p":3.2,"e":"🍩"},{"id":"croissant","c":"panes","n":"Croissants","s":"4 und","p":3.5,"e":"🥐"},{"id":"tostadas","c":"panes","n":"Pan tostado","s":"200 g","p":1.8,"e":"🍞"},{"id":"bizcocho","c":"panes","n":"Bizcocho de vainilla","s":"1 und","p":4.2,"e":"🍰"},{"id":"pizzamasa","c":"panes","n":"Masa para pizza","s":"2 und","p":3.1,"e":"🍕"},{"id":"banano","c":"frutas","n":"Cambur","s":"1 kg","p":1.2,"e":"🍌"},{"id":"manzana","c":"frutas","n":"Manzana roja","s":"1 kg","p":2.8,"e":"🍎"},{"id":"naranja","c":"frutas","n":"Naranjas","s":"1 kg","p":1.4,"e":"🍊"},{"id":"platano","c":"frutas","n":"Plátano","s":"1 kg","p":1.5,"e":"🍌"},{"id":"papa","c":"frutas","n":"Papa","s":"1 kg","p":1.6,"e":"🥔"},{"id":"cebolla","c":"frutas","n":"Cebolla","s":"1 kg","p":1.4,"e":"🧅"},{"id":"tomatef","c":"frutas","n":"Tomate fresco","s":"1 kg","p":1.8,"e":"🍅"},{"id":"zanahoria","c":"frutas","n":"Zanahoria","s":"1 kg","p":1.1,"e":"🥕"},{"id":"limon","c":"frutas","n":"Limón","s":"1 kg","p":1.6,"e":"🍋"},{"id":"aguacate","c":"frutas","n":"Aguacate","s":"1 und","p":1.4,"e":"🥑"},{"id":"ajo","c":"frutas","n":"Ajo","s":"250 g","p":1.3,"e":"🧄"},{"id":"pimenton","c":"frutas","n":"Pimentón","s":"500 g","p":1.2,"e":"🫑"},{"id":"lechuga","c":"frutas","n":"Lechuga","s":"1 und","p":1,"e":"🥬"},{"id":"uvas","c":"frutas","n":"Uvas","s":"500 g","p":2.9,"e":"🍇"},{"id":"fresas","c":"frutas","n":"Fresas","s":"250 g","p":2.2,"e":"🍓"},{"id":"pina","c":"frutas","n":"Piña","s":"1 und","p":2,"e":"🍍"},{"id":"mango","c":"frutas","n":"Mango","s":"1 kg","p":2.4,"e":"🥭"},{"id":"pollo","c":"carnes","n":"Pollo entero","s":"1.8 kg","p":5.4,"e":"🍗"},{"id":"pechuga","c":"carnes","n":"Pechuga de pollo","s":"1 kg","p":5.2,"e":"🍗"},{"id":"muslos","c":"carnes","n":"Muslos de pollo","s":"1 kg","p":3.4,"e":"🍗"},{"id":"molida","c":"carnes","n":"Carne molida","s":"1 kg","p":6.1,"e":"🥩"},{"id":"bistec","c":"carnes","n":"Bistec de res","s":"1 kg","p":7.2,"e":"🥩"},{"id":"costilla","c":"carnes","n":"Costilla de res","s":"1 kg","p":5.5,"e":"🥩"},{"id":"cerdo","c":"carnes","n":"Chuletas de cerdo","s":"1 kg","p":5,"e":"🥩"},{"id":"pescado","c":"carnes","n":"Filete de pescado","s":"500 g","p":4.4,"e":"🐟"},{"id":"hamburguesas","c":"carnes","n":"Hamburguesas de carne","s":"4 und","p":3.6,"e":"🍔"},{"id":"nuggets","c":"carnes","n":"Nuggets de pollo","s":"500 g","p":4.1,"e":"🍗"},{"id":"shampoo","c":"personal","n":"Champú","s":"400 ml","p":3.2,"e":"🧴"},{"id":"acond","c":"personal","n":"Acondicionador","s":"400 ml","p":3.4,"e":"🧴"},{"id":"dentalcrema","c":"personal","n":"Crema dental","s":"100 g","p":1.6,"e":"🪥"},{"id":"cepillo","c":"personal","n":"Cepillo de dientes","s":"1 und","p":1.1,"e":"🪥"},{"id":"desod","c":"personal","n":"Desodorante","s":"1 und","p":2.4,"e":"🧴"},{"id":"toallas","c":"personal","n":"Toallas sanitarias","s":"10 und","p":1.9,"e":"🩹"},{"id":"panales","c":"personal","n":"Pañales etapa 3","s":"30 und","p":7.5,"e":"👶"},{"id":"toallitas","c":"personal","n":"Toallitas húmedas","s":"80 und","p":2.6,"e":"👶"},{"id":"afeitar","c":"personal","n":"Máquinas de afeitar","s":"3 und","p":2.1,"e":"🪒"},{"id":"jabon","c":"hogar","n":"Jabón de baño","s":"3 und","p":2.4,"e":"🧼"},{"id":"fab","c":"limpieza","n":"Fabuloso lavanda","s":"1 L","p":2.5,"e":"💜"},{"id":"axi","c":"limpieza","n":"Axion lavaplatos limón","s":"850 g","p":2.9,"e":"🍋"},{"id":"cloro","c":"limpieza","n":"Cloro","s":"1 L","p":1.3,"e":"🧴"},{"id":"det","c":"limpieza","n":"Detergente en polvo","s":"1 kg","p":3.6,"e":"🧺"},{"id":"suavizante","c":"limpieza","n":"Suavizante de ropa","s":"1 L","p":2.6,"e":"🧺"},{"id":"desinfpisos","c":"limpieza","n":"Desinfectante","s":"1 L","p":2.2,"e":"🧴"},{"id":"esponjas","c":"limpieza","n":"Esponjas de cocina","s":"3 und","p":1.2,"e":"🧽"},{"id":"panos","c":"limpieza","n":"Paños multiusos","s":"3 und","p":1.4,"e":"🧻"},{"id":"ambient","c":"limpieza","n":"Ambientador","s":"360 ml","p":2.5,"e":"🌸"},{"id":"sco","c":"hogar","n":"Papel higiénico Scott Rindemax","s":"4 rollos","p":2.2,"e":"🧻"},{"id":"serv","c":"hogar","n":"Servilletas","s":"100 und","p":1,"e":"🧻"},{"id":"bolsas","c":"hogar","n":"Bolsas de basura","s":"10 und","p":1.8,"e":"🗑️"},{"id":"bombillo","c":"hogar","n":"Bombillo LED","s":"1 und","p":1.8,"e":"💡"},{"id":"fosforos","c":"hogar","n":"Fósforos","s":"1 caja","p":0.4,"e":"🔥"},{"id":"velas","c":"hogar","n":"Velas","s":"6 und","p":1.2,"e":"🕯️"},{"id":"papelalum","c":"hogar","n":"Papel aluminio","s":"7 m","p":2.3,"e":"🧻"},{"id":"vasos","c":"hogar","n":"Vasos desechables","s":"25 und","p":1.1,"e":"🥤"},{"id":"platosd","c":"hogar","n":"Platos desechables","s":"20 und","p":1.3,"e":"🍽️"},{"id":"globos","c":"hogar","n":"Globos de colores","s":"25 und","p":1.5,"e":"🎈"}],"kits":[{"id":"basico","n":"Básico","who":"1–2 personas","dur":"≈ 1 semana","d":0.05,"units":16,"orig":35.25000000000001,"price":33.49,"items":[["pan",2],["arroz",2],["pasta",2],["aceite",1],["azucar",1],["sal",1],["caraotas",1],["cafe",1],["mav",1],["atun",2],["huevos",1],["sco",1]]},{"id":"super","n":"Súper","who":"3–4 personas","dur":"≈ 2 semanas","d":0.08,"units":42,"orig":100.30000000000001,"price":92.28,"items":[["pan",4],["arroz",4],["pasta",3],["aceite",2],["azucar",2],["sal",1],["caraotas",2],["lentejas",1],["cafe",2],["tod",1],["leche",1],["avena",1],["mav",1],["hz",1],["atun",4],["sardinas",2],["huevos",2],["queso",1],["galletas",2],["fab",1],["axi",1],["sco",1],["refresco",2]]},{"id":"mega","n":"Mega","who":"5 o más personas","dur":"≈ 1 mes","d":0.1,"units":100,"orig":236.89000000000001,"price":213.2,"items":[["pan",8],["arroz",6],["pasta",5],["pastac",3],["trigo",2],["aceite",3],["azucar",3],["sal",2],["caraotas",3],["lentejas",2],["cafe",3],["tod",2],["leche",2],["avena",2],["cereal",2],["mav",2],["hz",2],["tomate",3],["atun",6],["sardinas",3],["huevos",3],["queso",2],["jamon",1],["mantequilla",2],["galletas",3],["pep",3],["dor",2],["refresco",4],["jugo",2],["agua",2],["fab",2],["axi",2],["cloro",2],["det",2],["sco",2],["bolsas",2]]}]}</script>
 <script>
 const $=(s,r=document)=>r.querySelector(s);
@@ -448,6 +607,8 @@ const STATUS_CLASS={'Pendiente':'st-pend','En Preparación':'st-prep','En Camino
 let overrides={},kitOverrides={},orders=[],rate={v:890,src:'ref',d:''},manualRate=null;
 let invQuery='',invCat='all',invStatus='all',orderStatusFilter='all',panel='inventario';
 let appReady=false,lastStoreAt=null,rateLoading=false;
+let photoId=null,offerId=null,photoNew=null,photoEdit=null;
+const IMG_SRC=/^(?:https?:|data:image\/|\/|\.\.?\/)|\.(?:png|jpe?g|webp|avif|gif|svg)(?:$|[?#])/i;
 const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 function readJSON(key,fallback){
@@ -471,8 +632,104 @@ function current(id){
   if(!b)return null;
   const ov=overrides[id]||{};
   const raw=Number(ov.price);
-  const old=Number(b.o);
-  return {...b,active:ov.active!==undefined?!!ov.active:b.active!==false,offer:ov.offer!==undefined?!!ov.offer:!!b.offer,p:Number.isFinite(raw)&&raw>=0?raw:b.p,o:Number.isFinite(old)&&old>0?old:null,tag:b.tag||null};
+  const offerOff=ov.offer===false;
+  const oldRaw=offerOff?null:(ov.offerPrice!==undefined?Number(ov.offerPrice):Number(b.o));
+  const tag=offerOff?null:(ov.tag!==undefined?ov.tag:(b.tag||null));
+  return {...b,active:ov.active!==undefined?!!ov.active:b.active!==false,offer:ov.offer!==undefined?!!ov.offer:!!b.offer,p:Number.isFinite(raw)&&raw>=0?raw:b.p,o:Number.isFinite(oldRaw)&&oldRaw>0?oldRaw:null,tag:tag||null,imgUrl:ov.imgUrl!==undefined?(ov.imgUrl||''):(b.imgUrl||'')};
+}
+function photoSrc(p){const u=String(p&&p.imgUrl||'').trim();return u&&IMG_SRC.test(u)?u:''}
+function makeProductId(name){
+  const raw=norm(name).replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,32)||'producto';
+  let id=raw,n=2;
+  while(baseById.has(id)||overrides[id])id=raw+'-'+n++;
+  return id;
+}
+function compressPhoto(file){
+  return new Promise((resolve,reject)=>{
+    if(!file||!file.type.startsWith('image/'))return reject(new Error('Selecciona un archivo de imagen.'));
+    if(file.size>20*1024*1024)return reject(new Error('La imagen supera 20 MB.'));
+    const src=URL.createObjectURL(file);
+    const img=new Image();
+    img.onload=()=>{
+      URL.revokeObjectURL(src);
+      try{
+        const scale=Math.min(1,400/Math.max(img.naturalWidth||img.width,img.naturalHeight||img.height));
+        const w=Math.max(1,Math.round((img.naturalWidth||img.width)*scale));
+        const h=Math.max(1,Math.round((img.naturalHeight||img.height)*scale));
+        const canvas=document.createElement('canvas');
+        canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext('2d');
+        if(!ctx)throw new Error('Este navegador no pudo procesar la imagen.');
+        ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);
+        let out=canvas.toDataURL('image/webp',.82);
+        if(!out.startsWith('data:image/webp'))out=canvas.toDataURL('image/jpeg',.82);
+        resolve(out);
+      }catch(err){reject(err)}
+    };
+    img.onerror=()=>{URL.revokeObjectURL(src);reject(new Error('No se pudo leer la imagen.'))};
+    img.src=src;
+  });
+}
+function photoField(root,getEmoji){
+  const file=$('[data-photo-file]',root),url=$('[data-photo-url]',root),hidden=$('[data-photo-value]',root),preview=$('[data-photo-preview]',root),status=$('[data-photo-status]',root);
+  let emoji=getEmoji()||'🛒',value='',busy=false,token=0;
+  function note(txt,err){status.textContent=txt;status.classList.toggle('err',!!err)}
+  function paint(v){
+    value=v;hidden.value=v;
+    preview.innerHTML=`<span class="p-emoji">${esc(emoji)}</span>`;
+    const src=photoSrc({imgUrl:v});
+    if(src){const img=new Image();img.alt='';img.addEventListener('error',()=>img.remove());img.src=src;preview.appendChild(img)}
+  }
+  file.addEventListener('change',async()=>{
+    const f=file.files&&file.files[0];if(!f)return;
+    const my=++token;
+    busy=true;note('Optimizando foto…');
+    try{
+      const data=await compressPhoto(f);
+      if(my!==token)return;
+      url.value='';paint(data);
+      note('Foto lista · '+Math.round(data.length/1024)+' KB.');
+    }catch(err){
+      if(my!==token)return;
+      note(err.message||'No se pudo procesar la foto.',true);
+      file.value='';
+    }finally{if(my===token)busy=false}
+  });
+  url.addEventListener('input',()=>{
+    token++;busy=false;
+    const v=url.value.trim();
+    if(!v){paint('');note('Sin foto: se usará el emoji.');return}
+    if(!photoSrc({imgUrl:v})){note('Enlace no válido. Usa una URL http(s) o una ruta de imagen.',true);return}
+    paint(v);note('Enlace listo.');
+  });
+  return {
+    set(v,em){
+      token++;busy=false;
+      if(em!==undefined)emoji=em||'🛒';
+      const raw=String(v||'');
+      file.value='';
+      url.value=IMG_SRC.test(raw)&&!raw.startsWith('data:')?raw:'';
+      paint(raw);
+      if(!raw)note('Sin foto: se usará el emoji.');
+      else if(raw.startsWith('data:image/'))note('Foto actual cargada desde el dispositivo.');
+      else if(photoSrc({imgUrl:raw}))note('Foto actual.');
+      else note('Imagen base del catálogo. Elige una nueva para reemplazarla.');
+    },
+    setEmoji(em){emoji=em||'🛒';if(!photoSrc({imgUrl:value}))paint(value)},
+    get(){return value},
+    get busy(){return busy}
+  };
+}
+function openModal(dialog){
+  if(!dialog||dialog.open)return;
+  $$('dialog.modal[open]').forEach(d=>d.close());
+  if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');
+  document.body.classList.add('modal-open');
+}
+function closeModal(dialog){
+  if(!dialog)return;
+  if(dialog.open&&typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open');
+  if(!$('dialog.modal[open]'))document.body.classList.remove('modal-open');
 }
 function allProducts(){return BASE.map(p=>current(p.id))}
 function realOrders(){return orders.filter(o=>!o.demo)}
@@ -485,7 +742,6 @@ function kitPrice(k){
 function setOverride(id,patch){
   const p=current(id);
   const local={...patch};
-  delete local.offerPrice;
   overrides[id]={...(overrides[id]||{}),...local,updatedAt:new Date().toISOString()};
   const ok=writeJSON(CATALOG_KEY,overrides);
   syncProduct(id,patch,p);
@@ -499,14 +755,11 @@ function setKitOverride(id,patch){
 }
 function syncProduct(id,patch,p){
   if(!p)return;
-  const offerChanged=patch.offer!==undefined;
-  const body={
-    id,
-    precio:patch.price,
-    disponible:patch.active,
-    promo_tag:offerChanged?(patch.offer?'OFERTA':null):(p.tag||null),
-    precio_oferta:offerChanged?(patch.offer?(patch.offerPrice??p.o??null):null):(p.o??null)
-  };
+  const offerOff=patch.offer===false;
+  const tag=offerOff?null:(patch.tag!==undefined?(patch.tag||null):(p.tag||(patch.offer===true?'OFERTA':null)));
+  const oldPrice=offerOff?null:(patch.offerPrice!==undefined?(patch.offerPrice??null):(p.o??null));
+  const image=patch.imgUrl!==undefined?String(patch.imgUrl||''):(p.imgUrl||null);
+  const body={id,precio:patch.price,disponible:patch.active,imagen_url:image,precio_oferta:oldPrice,promo_tag:tag};
   fetch('/api/admin/products',{method:'POST',headers:{'Authorization':'Bearer '+API_PIN,'Content-Type':'application/json'},body:JSON.stringify(body)})
     .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
     .catch(()=>toast('Cambio guardado localmente. Turso no respondió.','err'));
@@ -649,12 +902,13 @@ function filteredProducts(){
   });
 }
 function productRow(p){
-  const active=p.active!==false;
+  const active=p.active!==false,photo=photoSrc(p);
+  const offerText=p.offer?(p.tag||(p.o&&p.o>p.p?'-'+Math.round((1-p.p/p.o)*100)+'%':'Ajustar')):'Ajustar';
   return `<tr data-id="${esc(p.id)}" class="${active?'':'paused'}">
-    <td data-label="Producto"><div class="p-cell"><span class="p-emoji" style="--cat:${esc(catColor(p.c))}">${esc(p.e||'•')}</span><div><b>${esc(p.n)}</b><small>${esc(p.s)}</small></div></div></td>
+    <td data-label="Producto"><div class="p-cell"><button class="p-photo" type="button" data-edit-photo="${esc(p.id)}" style="--cat:${esc(catColor(p.c))}" aria-label="Cambiar foto de ${esc(p.n)}">${photo?`<img src="${esc(photo)}" alt="">`:`<span class="p-emoji">${esc(p.e||'•')}</span>`}<span class="cam" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13.5" r="3.5"/></svg></span></button><div><b>${esc(p.n)}</b><small>${esc(p.s)}</small></div></div></td>
     <td data-label="Categoría"><span class="cat-badge">${esc(catLabel(p.c))}</span></td>
     <td data-label="Precio USD"><div class="price-box"><span>$</span><input type="number" inputmode="decimal" min="0" step="0.01" data-price="${esc(p.id)}" value="${p.p.toFixed(2)}" aria-label="Precio en dólares de ${esc(p.n)}"></div></td>
-    <td data-label="Oferta"><label class="check"><input type="checkbox" data-offer="${esc(p.id)}" ${p.offer?'checked':''} aria-label="Marcar ${esc(p.n)} como oferta"><span class="box" aria-hidden="true"></span><span class="check-label">Oferta</span></label></td>
+    <td data-label="Oferta"><div class="offer-cell"><label class="check"><input type="checkbox" data-offer="${esc(p.id)}" ${p.offer?'checked':''} aria-label="Marcar ${esc(p.n)} como oferta"><span class="box" aria-hidden="true"></span><span class="check-label">Oferta</span></label><button class="offer-tag${p.offer?' on':''}" type="button" data-edit-offer="${esc(p.id)}" aria-label="Ajustar oferta de ${esc(p.n)}">${esc(offerText)}</button></div></td>
     <td data-label="Estado"><label class="switch-row"><input type="checkbox" role="switch" data-active="${esc(p.id)}" ${active?'checked':''} aria-checked="${active}" aria-label="Disponibilidad de ${esc(p.n)}"><span class="switch" aria-hidden="true"></span><span class="switch-label">${active?'Disponible':'Agotado'}</span></label></td>
   </tr>`;
 }
@@ -881,7 +1135,7 @@ async function syncCatalog(){
       const price=Number(r.precio);
       const old=r.precio_oferta!=null?Number(r.precio_oferta):null;
       const active=r.disponible===undefined||r.disponible===null?true:Number(r.disponible)!==0;
-      return {id,c:r.categoria||'despensa',n:r.nombre||id,s:r.presentacion||'',p:Number.isFinite(price)&&price>=0?price:0,o:Number.isFinite(old)&&old>0?old:null,tag:r.promo_tag||null,e:r.emoji||'•',d:r.descripcion||'',t:r.tags||'',img:'',imgUrl:r.imagen_url||'',active,offer:!!(r.promo_tag&&/oferta/i.test(r.promo_tag))||(Number.isFinite(old)&&old>0),orden:Number(r.orden)||i+1};
+      return {id,c:r.categoria||'despensa',n:r.nombre||id,s:r.presentacion||'',p:Number.isFinite(price)&&price>=0?price:0,o:Number.isFinite(old)&&old>0?old:null,tag:r.promo_tag||null,e:r.emoji||'•',d:r.descripcion||'',t:r.tags||'',img:'',imgUrl:r.imagen_url||'',active,offer:!!r.promo_tag||(Number.isFinite(old)&&old>0),orden:Number(r.orden)||i+1};
     }).filter(Boolean);
     if(!mapped.length)throw new Error('Catálogo vacío');
     BASE.splice(0,BASE.length,...mapped);
@@ -938,6 +1192,155 @@ async function setOrderStatus(id,estado){
     toast('Estado guardado localmente. Turso no respondió.','err');
   }
 }
+function formError(el,msg){
+  if(!el)return;
+  el.textContent=msg||'';
+  el.hidden=!msg;
+}
+function openNewProduct(){
+  const form=$('#np-form');
+  form.reset();
+  $('#np-emoji').value='🛒';
+  $('#np-offer-fields').hidden=true;
+  formError($('#np-error'),'');
+  populateCatSelect();
+  photoNew.set('','🛒');
+  openModal($('#modal-new-product'));
+  setTimeout(()=>$('#np-name').focus({preventScroll:true}),60);
+}
+async function createProduct(e){
+  e.preventDefault();
+  const nameEl=$('#np-name'),priceEl=$('#np-price'),err=$('#np-error');
+  const name=nameEl.value.trim();
+  const priceRaw=priceEl.value.trim();
+  const price=Number(priceRaw.replace(',','.'));
+  const cat=$('#np-cat').value||Object.keys(CATS)[0]||'despensa';
+  const pres=$('#np-pres').value.trim();
+  const emoji=$('#np-emoji').value.trim()||'🛒';
+  const offer=$('#np-offer').checked;
+  const oldRaw=$('#np-offer-price').value.trim().replace(',','.');
+  const tag=$('#np-offer-tag').value.trim();
+  formError(err,'');
+  if(!name){formError(err,'Escribe el nombre del producto.');nameEl.focus();return}
+  if(!priceRaw||!Number.isFinite(price)||price<0){formError(err,'Ingresa un precio válido en USD.');priceEl.focus();return}
+  const finalPrice=Math.round(price*100)/100;
+  let old=null;
+  if(offer){
+    if(oldRaw){
+      old=Number(oldRaw);
+      if(!Number.isFinite(old)||old<=0){formError(err,'El precio anterior debe ser un número mayor que cero.');$('#np-offer-price').focus();return}
+      old=Math.round(old*100)/100;
+      if(old<=finalPrice){formError(err,'El precio anterior debe ser mayor al precio actual.');$('#np-offer-price').focus();return}
+    }
+    if(old==null&&!tag){formError(err,'Indica un precio anterior o una etiqueta para la oferta.');$('#np-offer-price').focus();return}
+  }
+  if(photoNew.busy){formError(err,'Espera a que la foto termine de procesarse.');return}
+  const photoTyped=$('#modal-new-product [data-photo-url]').value.trim();
+  if(photoTyped&&!photoSrc({imgUrl:photoTyped})){formError(err,'El enlace de la foto no es válido. Usa una URL http(s) o una ruta de imagen.');return}
+  const btn=$('#np-save');
+  btn.disabled=true;btn.textContent='Guardando…';
+  try{
+    const id=makeProductId(name);
+    const image=photoNew.get();
+    const body={id,categoria:cat,nombre:name,presentacion:pres||'Unidad',precio:finalPrice,precio_oferta:offer?old:null,promo_tag:offer?(tag||null):null,emoji,imagen_url:image||null,disponible:1,descripcion:'',tags:''};
+    const res=await fetch('/api/admin/products',{method:'POST',headers:{'Authorization':'Bearer '+API_PIN,'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok||data.success===false)throw new Error(data.error||'No se pudo guardar el producto.');
+    const created={id,c:cat,n:name,s:pres||'Unidad',p:finalPrice,o:offer?old:null,tag:offer?(tag||null):null,e:emoji,d:'',t:'',img:'',imgUrl:image||'',active:true,offer:!!offer,orden:999};
+    BASE.push(created);baseById.set(id,created);
+    populateCatSelect();
+    invQuery='';invCat='all';invStatus='all';
+    $('#inv-search').value='';$('#inv-cat').value='all';$('#inv-status').value='all';
+    renderKpis();renderInventory();
+    closeModal($('#modal-new-product'));
+    toast(`${name} guardado en Turso`);
+  }catch(error){
+    formError(err,error.message||'No se pudo guardar el producto.');
+  }finally{
+    btn.disabled=false;btn.textContent='Guardar producto';
+  }
+}
+function openPhoto(id){
+  const p=current(id);
+  if(!p)return;
+  photoId=id;
+  $('#photo-title').textContent='Foto de '+p.n;
+  $('#photo-sub').textContent=p.s||'Cambia la imagen que se muestra en la tienda.';
+  formError($('#photo-error'),'');
+  $('#photo-remove').disabled=!(p.imgUrl||'');
+  photoEdit.set(p.imgUrl||'',p.e||'🛒');
+  openModal($('#modal-photo'));
+}
+function savePhoto(e){
+  e.preventDefault();
+  const p=current(photoId);
+  if(!p)return;
+  const dlg=$('#modal-photo'),err=$('#photo-error');
+  const typed=$('[data-photo-url]',dlg).value.trim();
+  if(typed&&!photoSrc({imgUrl:typed})){formError(err,'El enlace no es válido. Usa una URL http(s) o una ruta de imagen.');return}
+  if(photoEdit.busy){formError(err,'Espera a que la foto termine de procesarse.');return}
+  const value=photoEdit.get(),before=p.imgUrl||'';
+  formError(err,'');
+  if(value===before){closeModal(dlg);return}
+  setOverride(photoId,{imgUrl:value});
+  closeModal(dlg);
+  renderInventory();
+  toast(value?'Foto actualizada en Turso':'Foto eliminada; se usará el emoji');
+}
+function openOffer(id){
+  const p=current(id);
+  if(!p)return;
+  offerId=id;
+  $('#offer-title').textContent='Oferta de '+p.n;
+  $('#offer-sub').textContent=`Precio actual ${usd(p.p)}${p.o?' · anterior '+usd(p.o):''}`;
+  $('#of-price').value=p.o?p.o.toFixed(2):'';
+  $('#of-tag').value=p.tag||'';
+  formError($('#offer-error'),'');
+  openModal($('#modal-offer'));
+  setTimeout(()=>$('#of-price').focus({preventScroll:true}),60);
+}
+function saveOffer(e){
+  e.preventDefault();
+  const p=current(offerId);
+  if(!p)return;
+  const err=$('#offer-error');
+  const raw=$('#of-price').value.trim().replace(',','.');
+  const tag=$('#of-tag').value.trim();
+  formError(err,'');
+  let old=null;
+  if(raw){
+    old=Number(raw);
+    if(!Number.isFinite(old)||old<=0){formError(err,'El precio anterior debe ser un número mayor que cero.');$('#of-price').focus();return}
+    old=Math.round(old*100)/100;
+    if(old<=p.p){formError(err,'El precio anterior debe ser mayor al precio actual.');$('#of-price').focus();return}
+  }
+  if(old==null&&!tag){formError(err,'Indica un precio anterior o una etiqueta para la oferta.');$('#of-price').focus();return}
+  setOverride(offerId,{offer:true,offerPrice:old,tag:tag||null});
+  closeModal($('#modal-offer'));
+  renderKpis();renderInventory();
+  toast(`Oferta de ${p.n} actualizada`);
+}
+function bindModals(){
+  photoNew=photoField($('#modal-new-product'),()=>$('#np-emoji').value.trim()||'🛒');
+  photoEdit=photoField($('#modal-photo'),()=>current(photoId)?.e||'🛒');
+  $('#btn-new-product').addEventListener('click',openNewProduct);
+  $('#np-emoji').addEventListener('input',()=>photoNew.setEmoji($('#np-emoji').value.trim()||'🛒'));
+  $('#np-offer').addEventListener('change',e=>{$('#np-offer-fields').hidden=!e.target.checked});
+  $('#np-form').addEventListener('submit',createProduct);
+  $('#photo-form').addEventListener('submit',savePhoto);
+  $('#photo-remove').addEventListener('click',()=>{
+    const p=current(photoId);
+    if(!p)return;
+    photoEdit.set('',p.e||'🛒');
+    $('#photo-form').requestSubmit();
+  });
+  $('#offer-form').addEventListener('submit',saveOffer);
+  $$('dialog.modal').forEach(d=>{
+    d.addEventListener('click',e=>{if(e.target===d)closeModal(d)});
+    d.addEventListener('close',()=>{if(!$('dialog.modal[open]'))document.body.classList.remove('modal-open')});
+  });
+  $$('[data-close-modal]').forEach(b=>b.addEventListener('click',()=>closeModal(b.closest('dialog'))));
+}
 function showPanel(name,scroll){
   if(!['inventario','mercados','pedidos'].includes(name))return;
   panel=name;
@@ -991,6 +1394,8 @@ function populateCatSelect(){
   const sel=$('#inv-cat');
   const opts=Object.entries(CATS).sort((a,b)=>a[1][0].localeCompare(b[1][0],'es')).map(([k,v])=>`<option value="${esc(k)}">${esc(v[0])}</option>`).join('');
   sel.innerHTML='<option value="all">Todas las categorías</option>'+opts;
+  const np=$('#np-cat');
+  if(np){const val=np.value;np.innerHTML=opts;if([...np.options].some(o=>o.value===val))np.value=val}
 }
 function bindAppEvents(){
   $('#logout').addEventListener('click',logout);
@@ -1004,7 +1409,12 @@ function bindAppEvents(){
       $('#inv-search').value='';$('#inv-cat').value='all';$('#inv-status').value='all';
       renderInventory();
       $('#inv-search').focus();
+      return;
     }
+    const photoBtn=e.target.closest('[data-edit-photo]');
+    if(photoBtn){openPhoto(photoBtn.dataset.editPhoto);return}
+    const offerBtn=e.target.closest('[data-edit-offer]');
+    if(offerBtn){openOffer(offerBtn.dataset.editOffer)}
   });
   $('#inv-body').addEventListener('change',e=>{
     const priceEl=e.target.closest('[data-price]');
@@ -1032,14 +1442,11 @@ function bindAppEvents(){
     }
     const offerEl=e.target.closest('[data-offer]');
     if(offerEl){
-      const id=offerEl.dataset.offer,p=current(id),offer=offerEl.checked;
-      const patch={offer};
-      if(offer&&p.o!=null)patch.offerPrice=p.o;
-      if(setOverride(id,patch)){
-        renderKpis();
-        renderInventory();
-        toast(`${p.n} ${offer?'marcado como oferta':'quitado de ofertas'}`);
-      }
+      const id=offerEl.dataset.offer,p=current(id);
+      if(offerEl.checked){renderInventory();openOffer(id);return}
+      setOverride(id,{offer:false,offerPrice:null,tag:null});
+      renderKpis();renderInventory();
+      toast(`${p.n} ya no está en oferta`);
     }
   });
   $('#kits-grid').addEventListener('change',e=>{
@@ -1131,6 +1538,7 @@ function initialize(){
   loadData();
   populateCatSelect();
   bindAppEvents();
+  bindModals();
   renderKpis();
   renderInventory();
   renderKits();
