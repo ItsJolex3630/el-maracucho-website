@@ -86,6 +86,10 @@ html:not([data-auth="in"]) #app{display:none}
 .rate-dot{width:7px;height:7px;border-radius:50%;background:var(--g5);flex:none}
 .rate-dot.cache,.rate-dot.ref{background:var(--yl)}
 .rate-dot.manual{background:var(--g8)}
+.turso-badge{display:inline-flex;align-items:center;gap:5px;background:var(--mint2);border:1px solid var(--ln2);border-radius:9px;padding:7px 9px;font:600 11.5px/1 var(--ff);color:var(--g8);white-space:nowrap;max-width:100%}
+.turso-badge[data-state="load"]{background:#fff8e1;border-color:#f0d58a;color:#6b4a00}
+.turso-badge[data-state="err"]{background:#fdecea;border-color:#f3c2bd;color:var(--rd)}
+.turso-short{display:none}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:0 14px;border:1px solid transparent;border-radius:10px;background:var(--g6);color:#fff;font:600 13px var(--ff);line-height:1;transition:background .16s,transform .16s,border-color .16s}
 .btn:hover{background:var(--g5)}
 .btn:active{transform:scale(.98)}
@@ -266,7 +270,8 @@ tr.paused .p-cell b{color:var(--mu)}
   .inv-table tr.empty-row td::before{display:none}
   .orders-grid{grid-template-columns:1fr}
 }
-@media(max-width:640px){.rate-chip{display:none}.brand small{display:none}.tab{min-width:0;font-size:12.5px}.logout-label{display:none}.logout-btn{padding:0;width:44px}.tabs{top:65px}}
+@media(max-width:760px){.rate-chip{display:none}}
+@media(max-width:640px){.brand small{display:none}.turso-full{display:none}.turso-short{display:inline}.tab{min-width:0;font-size:12.5px}.logout-label{display:none}.logout-btn{padding:0;width:44px}.tabs{top:65px}}
 @media(max-width:520px){
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .panel-head h1{font-size:21px}
@@ -322,6 +327,7 @@ tr.paused .p-cell b{color:var(--mu)}
         <span><b>El Maracucho</b><small>Panel operativo</small></span>
       </a>
       <div class="top-actions">
+        <span class="turso-badge" id="turso-badge" data-state="load" role="status" aria-live="polite"><span class="turso-full">🟡 Conectando a Turso…</span><span class="turso-short">🟡 Turso…</span></span>
         <span class="rate-chip" id="rate-chip"><i class="rate-dot ref"></i>BCV · Bs 890,00</span>
         <button class="btn btn-ghost logout-btn" id="logout" type="button" aria-label="Cerrar sesión">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H5.5A1.5 1.5 0 0 0 4 6.5v11A1.5 1.5 0 0 0 5.5 19H9"/><path d="M15 8l4 4-4 4"/><path d="M19 12H9"/></svg>
@@ -435,6 +441,7 @@ const CATS=SEED.cats,BASE=SEED.products,KIT_SEED=SEED.kits;
 const baseById=new Map(BASE.map(p=>[p.id,p]));
 const SESSION_KEY='mar_admin_session',CATALOG_KEY='mar_catalog_overrides',KITS_KEY='mar_kits_db',ORDERS_KEY='mar_orders_db',RATE_KEY='mar_rate',RATE_MANUAL_KEY='mar_admin_rate_override';
 const PIN_HASH='10188b61e28265d638b0059c87dd13730526ce84b9deaa273063bce84a55ca68';
+const API_PIN='maracucho2026';
 const SESSION_HOURS=12;
 const STATUSES=['Pendiente','En Preparación','En Camino / Listo','Entregado'];
 const STATUS_CLASS={'Pendiente':'st-pend','En Preparación':'st-prep','En Camino / Listo':'st-way','Entregado':'st-done'};
@@ -462,25 +469,53 @@ function catColor(c){return CATS[c]?CATS[c][1]:'#eaf5ed'}
 function current(id){
   const b=baseById.get(id);
   if(!b)return null;
-  const o=overrides[id]||{};
-  const raw=Number(o.price);
-  return {...b,active:o.active!==false,offer:!!o.offer,p:Number.isFinite(raw)&&raw>=0?raw:b.p};
+  const ov=overrides[id]||{};
+  const raw=Number(ov.price);
+  const old=Number(b.o);
+  return {...b,active:ov.active!==undefined?!!ov.active:b.active!==false,offer:ov.offer!==undefined?!!ov.offer:!!b.offer,p:Number.isFinite(raw)&&raw>=0?raw:b.p,o:Number.isFinite(old)&&old>0?old:null,tag:b.tag||null};
 }
 function allProducts(){return BASE.map(p=>current(p.id))}
 function realOrders(){return orders.filter(o=>!o.demo)}
-function kitBase(k){return k.items.reduce((a,[id,q])=>a+(current(id)?.p||0)*q,0)}
+function kitBase(k){const orig=Number(k.orig);if(Number.isFinite(orig)&&orig>0)return orig;return k.items.reduce((a,[id,q])=>a+(current(id)?.p||0)*q,0)}
 function kitPrice(k){
   const o=kitOverrides[k.id]||{};
   const p=Number(o.price);
   return Number.isFinite(p)&&p>=0?Math.round(p*100)/100:Math.round(Number(k.price)*100)/100;
 }
 function setOverride(id,patch){
-  overrides[id]={...(overrides[id]||{}),...patch,updatedAt:new Date().toISOString()};
-  return writeJSON(CATALOG_KEY,overrides);
+  const p=current(id);
+  const local={...patch};
+  delete local.offerPrice;
+  overrides[id]={...(overrides[id]||{}),...local,updatedAt:new Date().toISOString()};
+  const ok=writeJSON(CATALOG_KEY,overrides);
+  syncProduct(id,patch,p);
+  return ok;
 }
 function setKitOverride(id,patch){
   kitOverrides[id]={...(kitOverrides[id]||{}),...patch,updatedAt:new Date().toISOString()};
-  return writeJSON(KITS_KEY,kitOverrides);
+  const ok=writeJSON(KITS_KEY,kitOverrides);
+  syncKit(id,patch);
+  return ok;
+}
+function syncProduct(id,patch,p){
+  if(!p)return;
+  const offerChanged=patch.offer!==undefined;
+  const body={
+    id,
+    precio:patch.price,
+    disponible:patch.active,
+    promo_tag:offerChanged?(patch.offer?'OFERTA':null):(p.tag||null),
+    precio_oferta:offerChanged?(patch.offer?(patch.offerPrice??p.o??null):null):(p.o??null)
+  };
+  fetch('/api/admin/products',{method:'POST',headers:{'Authorization':'Bearer '+API_PIN,'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+    .catch(()=>toast('Cambio guardado localmente. Turso no respondió.','err'));
+}
+function syncKit(id,patch){
+  const body={id,precio:patch.price,descuento:patch.discount!==undefined?patch.discount/100:undefined};
+  fetch('/api/admin/kits',{method:'POST',headers:{'Authorization':'Bearer '+API_PIN,'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+    .catch(()=>toast('Mercado guardado localmente. Turso no respondió.','err'));
 }
 function saveOrders(){return writeJSON(ORDERS_KEY,orders)}
 function rateLabel(){
@@ -521,27 +556,38 @@ function loadData(){
 }
 function normalizeOrder(o){
   if(!o||typeof o!=='object')return null;
-  const items=Array.isArray(o.items)?o.items.map(it=>{
+  let raw=o.items;
+  if(typeof raw==='string'){try{raw=JSON.parse(raw)}catch(e){raw=[]}}
+  const items=Array.isArray(raw)?raw.map(it=>{
+    if(!it)return null;
     if(Array.isArray(it)){
       const p=current(it[0]);
       return {id:it[0],n:p?p.n:'Producto',q:Number(it[1])||1,p:p?p.p:0};
     }
     const id=it.id||it.pid||it.productId;
     const p=id?current(id):null;
-    return {id:id||'',n:it.n||it.name||(p?p.n:'Producto'),q:Number(it.q||it.qty||it.quantity)||1,p:Number(it.p??it.price??(p?p.p:0))||0};
+    return {id:id||'',n:it.n||it.name||it.nombre||(p?p.n:'Producto'),q:Number(it.q??it.qty??it.quantity??it.cantidad)||1,p:Number(it.p??it.price??it.precio??(p?p.p:0))||0};
   }).filter(Boolean):[];
-  const total=Number(o.total);
-  const mode=String(o.mode||o.type||'').toLowerCase()==='pickup'||o.pickup===true?'pickup':'delivery';
+  const total=Number(o.total??o.total_usd??o.totalUSD);
+  const status=o.status||o.estado;
+  const rawRate=Number(o.tasa_bcv??o.rate);
+  const rawTotalBs=Number(o.total_bs??o.totalBs);
+  const mode=String(o.mode||o.metodo||o.type||'').toLowerCase()==='pickup'||o.pickup===true?'pickup':'delivery';
   return {
     id:String(o.id||o.orderId||o.number||'—'),
-    createdAt:o.createdAt||o.date||new Date().toISOString(),
-    customer:o.customer||o.name||o.cliente||'Cliente',
-    phone:o.phone||o.tel||o.whatsapp||'',
+    createdAt:o.createdAt||o.created_at||o.date||new Date().toISOString(),
+    customer:o.customer||o.cliente_nombre||o.name||o.cliente||'Cliente',
+    phone:o.phone||o.cliente_telefono||o.tel||o.whatsapp||'',
     mode,
-    address:o.address||o.addr||o.direccion||'',
+    address:o.address||o.direccion||o.addr||'',
+    when:o.when||o.cuando||'',
+    pay:o.pay||o.forma_pago||'',
+    note:o.note||o.notas||'',
     items,
     total:Number.isFinite(total)&&total>=0?total:items.reduce((a,it)=>a+it.p*it.q,0),
-    status:STATUSES.includes(o.status)?o.status:'Pendiente',
+    rate:Number.isFinite(rawRate)&&rawRate>0?rawRate:null,
+    totalBs:Number.isFinite(rawTotalBs)&&rawTotalBs>=0?rawTotalBs:null,
+    status:STATUSES.includes(status)?status:'Pendiente',
     demo:!!o.demo
   };
 }
@@ -553,8 +599,11 @@ function waPhone(phone){
   if(d.length===10)return '58'+d;
   return d;
 }
+function orderBs(o){
+  return o.totalBs!=null?'Bs '+nf.format(o.totalBs):bs(o.total);
+}
 function waMessage(o){
-  return `Hola ${o.customer}, te escribimos de El Maracucho para confirmar tu pedido ${o.id}. Estado: ${o.status}. Total: ${usd(o.total)} (${bs(o.total)}).`;
+  return `Hola ${o.customer}, te escribimos de El Maracucho para confirmar tu pedido ${o.id}. Estado: ${o.status}. Total: ${usd(o.total)} (${orderBs(o)}).`;
 }
 function fmtDate(iso){
   try{
@@ -671,7 +720,7 @@ function orderCard(o){
     </div>
     <div class="order-main">
       <div><b>${esc(o.customer)}</b><small>${esc(o.phone||'Sin teléfono')}</small></div>
-      <div class="order-total"><b>${usd(o.total)}</b><small>${bs(o.total)}</small></div>
+      <div class="order-total"><b>${usd(o.total)}</b><small>${orderBs(o)}</small></div>
     </div>
     <p class="order-mode">${modeText}</p>
     <details class="order-items"><summary>${o.items.length} producto${o.items.length===1?'':'s'}</summary><ul>${items}</ul></details>
@@ -718,13 +767,7 @@ function addDemoOrder(){
     toast('Pedido demo cargado. No cuenta en los KPIs.');
   }
 }
-function refreshOrders(){
-  const raw=readJSON(ORDERS_KEY,[]);
-  orders=Array.isArray(raw)?raw.map(normalizeOrder).filter(Boolean):[];
-  renderOrders();
-  renderKpis();
-  toast('Pedidos actualizados');
-}
+function refreshOrders(){syncOrders(true)}
 function exportOrders(){
   if(!orders.length){toast('No hay pedidos para exportar','err');return}
   const blob=new Blob([JSON.stringify(orders,null,2)],{type:'application/json'});
@@ -815,6 +858,85 @@ function setRate(v,src,d=''){
   renderKpis();
   if(panel==='mercados')renderKits();
   if(panel==='pedidos')renderOrders();
+}
+function setTursoBadge(state){
+  const el=$('#turso-badge');
+  if(!el)return;
+  const map={load:['🟡 Conectando a Turso…','🟡 Turso…'],ok:['🟢 Turso Cloud Conectado','🟢 Turso'],err:['🟠 Modo local · Turso sin conexión','🟠 Local']};
+  const pair=map[state]||map.load;
+  el.dataset.state=state;
+  el.innerHTML=`<span class="turso-full">${pair[0]}</span><span class="turso-short">${pair[1]}</span>`;
+}
+async function syncCatalog(){
+  setTursoBadge('load');
+  try{
+    const res=await fetch('/api/catalog',{cache:'no-store'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const data=await res.json();
+    if(!data||data.success===false||!Array.isArray(data.products)||!data.products.length)throw new Error('Catálogo vacío');
+    const mapped=data.products.map((r,i)=>{
+      if(!r||typeof r!=='object')return null;
+      const id=String(r.id||'');
+      if(!id)return null;
+      const price=Number(r.precio);
+      const old=r.precio_oferta!=null?Number(r.precio_oferta):null;
+      const active=r.disponible===undefined||r.disponible===null?true:Number(r.disponible)!==0;
+      return {id,c:r.categoria||'despensa',n:r.nombre||id,s:r.presentacion||'',p:Number.isFinite(price)&&price>=0?price:0,o:Number.isFinite(old)&&old>0?old:null,tag:r.promo_tag||null,e:r.emoji||'•',d:r.descripcion||'',t:r.tags||'',img:'',imgUrl:r.imagen_url||'',active,offer:!!(r.promo_tag&&/oferta/i.test(r.promo_tag))||(Number.isFinite(old)&&old>0),orden:Number(r.orden)||i+1};
+    }).filter(Boolean);
+    if(!mapped.length)throw new Error('Catálogo vacío');
+    BASE.splice(0,BASE.length,...mapped);
+    baseById.clear();mapped.forEach(p=>baseById.set(p.id,p));
+    let newCat=false;
+    mapped.forEach(p=>{if(!CATS[p.c]){CATS[p.c]=[p.c,'#eaf5ed'];newCat=true}});
+    if(newCat){populateCatSelect();invCat='all';$('#inv-cat').value='all'}
+    const kits=(data.kits||[]).map(k=>{
+      if(!k||!k.id)return null;
+      const items=Array.isArray(k.items)?k.items.map(it=>{
+        if(!it)return null;
+        if(Array.isArray(it))return [it[0],Number(it[1])||1];
+        return [it.id||it.producto_id||it.productId,Number(it.cantidad??it.q??it.qty)||1];
+      }).filter(Boolean).filter(([id])=>id):[];
+      return {id:String(k.id),n:k.nombre||k.id,who:k.personas||'',dur:k.duracion||'',d:Number(k.descuento)||0,price:Number(k.precio)||0,orig:Number(k.precio_original)||0,units:items.reduce((a,[,q])=>a+q,0),items};
+    }).filter(Boolean);
+    if(kits.length)KIT_SEED.splice(0,KIT_SEED.length,...kits);
+    renderKpis();renderInventory();renderKits();renderOrders();
+    setTursoBadge('ok');
+  }catch(e){
+    setTursoBadge('err');
+    toast('Turso no respondió. Usando el catálogo local.','err');
+  }
+}
+async function syncOrders(notify=false){
+  try{
+    const res=await fetch('/api/admin/orders',{headers:{'Authorization':'Bearer '+API_PIN},cache:'no-store'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const data=await res.json();
+    if(!data||data.success===false||!Array.isArray(data.orders))throw new Error('Respuesta inválida');
+    const remote=data.orders.map(normalizeOrder).filter(Boolean);
+    const demos=orders.filter(o=>o.demo);
+    orders=[...demos,...remote.filter(o=>!demos.some(d=>d.id===o.id))];
+    try{localStorage.setItem(ORDERS_KEY,JSON.stringify(orders))}catch(e){}
+    renderOrders();renderKpis();
+    if(notify)toast('Pedidos actualizados desde Turso');
+  }catch(e){
+    if(notify)toast('No se pudieron cargar pedidos de Turso. Usando datos locales.','err');
+  }
+}
+async function setOrderStatus(id,estado){
+  if(!STATUSES.includes(estado))return;
+  const o=orders.find(x=>x.id===id);
+  if(!o)return;
+  o.status=estado;
+  o.updatedAt=new Date().toISOString();
+  if(!saveOrders())return;
+  renderOrders();renderKpis();
+  try{
+    const res=await fetch('/api/admin/orders',{method:'PATCH',headers:{'Authorization':'Bearer '+API_PIN,'Content-Type':'application/json'},body:JSON.stringify({id,estado})});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    toast(`Pedido ${id}: ${estado}`);
+  }catch(e){
+    toast('Estado guardado localmente. Turso no respondió.','err');
+  }
 }
 function showPanel(name,scroll){
   if(!['inventario','mercados','pedidos'].includes(name))return;
@@ -911,7 +1033,9 @@ function bindAppEvents(){
     const offerEl=e.target.closest('[data-offer]');
     if(offerEl){
       const id=offerEl.dataset.offer,p=current(id),offer=offerEl.checked;
-      if(setOverride(id,{offer})){
+      const patch={offer};
+      if(offer&&p.o!=null)patch.offerPrice=p.o;
+      if(setOverride(id,patch)){
         renderKpis();
         renderInventory();
         toast(`${p.n} ${offer?'marcado como oferta':'quitado de ofertas'}`);
@@ -961,11 +1085,7 @@ function bindAppEvents(){
   $('#panel-pedidos').addEventListener('change',e=>{
     const sel=e.target.closest('[data-order-status]');
     if(!sel)return;
-    const o=orders.find(x=>x.id===sel.dataset.orderStatus);
-    if(!o||!STATUSES.includes(sel.value))return;
-    o.status=sel.value;
-    o.updatedAt=new Date().toISOString();
-    if(saveOrders()){renderOrders();renderKpis();toast(`Pedido ${o.id}: ${o.status}`)}
+    setOrderStatus(sel.dataset.orderStatus,sel.value);
   });
   $('#rate-edit').addEventListener('click',()=>{
     const form=$('#rate-form');
@@ -1018,6 +1138,8 @@ function initialize(){
   showPanel(panel,false);
   updateLastSave();
   loadRate();
+  syncCatalog();
+  syncOrders();
 }
 function enterApp(){
   document.documentElement.dataset.auth='in';
@@ -1031,6 +1153,8 @@ function enterApp(){
     showPanel(panel,false);
     updateLastSave();
     loadRate();
+    syncCatalog();
+    syncOrders();
   }
   setTimeout(()=>{const s=$('#inv-search');if(s)s.focus({preventScroll:true})},80);
 }
