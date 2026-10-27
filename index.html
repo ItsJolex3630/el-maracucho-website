@@ -383,19 +383,20 @@ body{padding-bottom:34px}
 .mzs .mz-f{display:none;transform-origin:100px 84px}
 .mzs[data-l="1"] .mz-f1,.mzs[data-l="2"] .mz-f1,.mzs[data-l="2"] .mz-f2,.mzs[data-l="3"] .mz-f{display:inline;animation:mzin .5s var(--ez) both}
 @keyframes mzin{from{transform:translateY(26px) scale(.7)}to{transform:none}}
-.mzs .mz-ey{transform-origin:100px 123px;animation:mzbl 4.6s infinite}
-@keyframes mzbl{0%,91%,97%,100%{transform:none}94%{transform:scaleY(.12)}}
+.mzs .mz-ey{transform-origin:100px 123px;animation:mzbl 4.6s infinite;will-change:transform}
+@keyframes mzbl{0%,88%,93%,98%,100%{transform:none}90%,95%{transform:scaleY(.08)}}
 .mzs .mz-pu{transition:transform .25s var(--ez)}
 .mzs .mz-mo{transform-origin:100px 143px}
-.mzs .mz-al{transform-origin:39px 140px}
-.mz .mz-bd{animation:mzbob 3.2s ease-in-out infinite}
-@keyframes mzbob{0%,100%{transform:none}50%{transform:translateY(-4px)}}
-.mz .mz-sh{transform-origin:100px 243px;animation:mzshd 3.2s ease-in-out infinite}
-@keyframes mzshd{50%{transform:scaleX(.9)}}
-.mz.hop .mz-bd{animation:mzhop .6s var(--ez)}
-@keyframes mzhop{0%{transform:none}35%{transform:translateY(-22px) rotate(-5deg)}70%{transform:translateY(2px) scaleY(.96)}100%{transform:none}}
-.mz.wave .mz-al,.mz.hop .mz-al{animation:mzwv .5s ease-in-out 4 alternate}
-@keyframes mzwv{from{transform:rotate(12deg)}to{transform:rotate(-22deg)}}
+.mzs .mz-al{transform-origin:39px 140px;will-change:transform}
+.mz .mz-bd{transform-origin:100px 236px;will-change:transform;animation:mzbob 3.4s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes mzbob{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-7px) rotate(1.5deg)}}
+.mz .mz-sh{transform-origin:100px 243px;animation:mzshd 3.4s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes mzshd{0%,100%{transform:scaleX(1);opacity:.2}50%{transform:scaleX(.88);opacity:.14}}
+.mz.hop .mz-bd{animation:mzhop .7s var(--ez)}
+@keyframes mzhop{0%{transform:none}10%{transform:scaleY(.85) scaleX(1.1) translateY(4px)}35%{transform:scaleY(1.15) scaleX(.9) translateY(-26px) rotate(-4deg)}62%{transform:scaleY(.9) scaleX(1.08) translateY(2px)}82%{transform:scaleY(1.03) scaleX(.98) translateY(-3px)}100%{transform:none}}
+.mz.wave .mz-al{animation:mzwv .95s var(--ez) 1}
+.mz.hop .mz-al{animation:mzwv .65s var(--ez) 1}
+@keyframes mzwv{0%,100%{transform:rotate(0)}15%{transform:rotate(-24deg)}35%{transform:rotate(16deg)}55%{transform:rotate(-10deg)}75%{transform:rotate(5deg)}}
 .mz.talk .mz-mo,.mzs.talk .mz-mo{animation:mztk .22s ease-in-out infinite alternate}
 @keyframes mztk{from{transform:scaleY(1)}to{transform:scaleY(.5)}}
 .mz.think .mz-pu{transform:translate(-2px,-5px)!important}
@@ -406,6 +407,8 @@ body{padding-bottom:34px}
 @media(max-width:899px){.asp{left:8px;right:8px;width:auto;bottom:calc(var(--dh,29px) + 6px + env(safe-area-inset-bottom,0));height:min(620px,calc(100dvh - var(--dh,29px) - 84px));border-radius:24px}}
 .ash{display:flex;align-items:center;gap:11px;padding:12px 14px;background:linear-gradient(110deg,var(--g8),var(--g6));color:#fff;flex:none}
 .asav{width:48px;height:48px;flex:none;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;overflow:hidden;box-shadow:0 0 0 2px var(--yl)}.asav svg{width:46px;height:46px;margin-top:4px}
+.asav.hop{animation:ashop .55s var(--ez)}
+@keyframes ashop{0%,100%{transform:none}30%{transform:translateY(-5px) scale(1.05)}65%{transform:translateY(1px) scale(.97)}}
 .ash b{display:block;font:800 16px/1.1 var(--ff)}.ash small{display:flex;align-items:center;font:500 11.5px/1.3 var(--ff);opacity:.9}.ash small .dot{background:#3ddc84}
 .asx{margin-left:auto;flex:none;width:44px;height:44px;min-width:44px;min-height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:21px;line-height:1;display:grid;place-items:center;transition:transform .16s var(--ez)}.asx:active{transform:scale(.9)}
 .asm{flex:1;overflow:auto;padding:16px 12px 8px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain;background:radial-gradient(120% 60% at 100% 0,var(--mint2),transparent 60%)}
@@ -461,7 +464,7 @@ body{padding-bottom:34px}
 #mayor,#visitanos,#faq,footer{content-visibility:auto;contain-intrinsic-size:auto 700px}
 .pt img{mix-blend-mode:normal;filter:drop-shadow(0 10px 10px rgba(11,50,27,.16))}
 @media(max-width:699px){.pt img{filter:none}}
-@media(prefers-reduced-motion:reduce){.mz .mz-bd,.mz .mz-sh,.mzs .mz-ey,.mzs .mz-f{animation:none!important}.mzb,.asp,.mn{transition:opacity .15s}}
+@media(prefers-reduced-motion:reduce){.mz .mz-bd,.mz .mz-sh,.mzs .mz-ey,.mzs .mz-al,.mzs .mz-f,.mz.talk .mz-mo,.mzs.talk .mz-mo,.asav.hop{animation:none!important}.mz .mz-bd,.mz .mz-sh,.mzs .mz-ey,.mzs .mz-al{will-change:auto}.mzb,.asp,.mn{transition:opacity .15s}}
 
 /* ---- escala: miles de productos ---- */
 .pc{content-visibility:auto;contain-intrinsic-size:auto 330px;contain:layout paint}
@@ -1073,7 +1076,7 @@ function fly(from,img){if(RM||!from)return;const r=from.getBoundingClientRect(),
  d.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${dx*.5}px,${dy*.5-60}px) scale(1.1)`,opacity:1,offset:.45},{transform:`translate(${dx}px,${dy}px) scale(.3)`,opacity:.4}],{duration:650,easing:'cubic-bezier(.5,0,.7,.4)'}).onfinish=()=>{d.remove();const k=$('cb');k.classList.remove('bump');void k.offsetWidth;k.classList.add('bump')}}
 function paint(){const T=tot();$('cbt').textContent=mshort(T.all);$('cbn').textContent=T.n;$('tbn').textContent=T.n;$('tbn').classList.toggle('on',T.n>0);$('tbl').innerHTML=T.n?`${usd(T.all)} · <span class="tbs">${bshort(T.all)}</span>`:'Pedido';$('tcart').classList.toggle('has',T.n>0);if(window.mzSync)mzSync(T);
  $$('[data-ctl]').forEach(s=>{const h=ctl(s.dataset.ctl);if(s.innerHTML!==h)s.innerHTML=h});if($('dr').classList.contains('on'))drawDr()}
-function setQty(id,d,from){const q=Math.max(0,(C.i[id]||0)+d);if(q)C.i[id]=q;else delete C.i[id];save();if(d>0){fly(from,PM[id].img?IM[PM[id].img]:'');if(q===1)toast('Agregado: '+PM[id].n)}paint()}
+function setQty(id,d,from){const q=Math.max(0,(C.i[id]||0)+d);if(q)C.i[id]=q;else delete C.i[id];save();if(d>0){fly(from,PM[id].img?IM[PM[id].img]:'');if(q===1)toast(PM[id].n+' · '+mshort(tot().all))}paint()}
 function setKit(id,d,from){const q=Math.max(0,(C.k[id]||0)+d);if(q)C.k[id]=q;else delete C.k[id];save();if(d>0){fly(from,$(KM[id].art[0][0]).src);toast('Mercado '+KM[id].n+' agregado')}paint()}
 $('pg').onclick=e=>{const b=e.target.closest('[data-a]');if(b){setQty(b.dataset.id,b.dataset.a==='+'?1:-1,b);return}const o=e.target.closest('[data-open]');if(o)openPd(o.dataset.open)};
 /* ---------- ficha de producto ---------- */
@@ -1196,7 +1199,7 @@ $('asw').href=wa('Hola El Maracucho 👋, vengo de la página web y tengo una pr
 const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 window.flyTo=()=>mzEl.offsetParent&&!asp.classList.contains('on')?mzEl:null;
-function mzState(c,ms){if(RM&&c!=='talk'&&c!=='think')return;mzEl.classList.remove(c);void mzEl.offsetWidth;mzEl.classList.add(c);if(ms)setTimeout(()=>mzEl.classList.remove(c),ms)}
+function mzState(c,ms){if(RM&&c!=='talk'&&c!=='think')return;const av=document.querySelector('.asav');mzEl.classList.remove(c);void mzEl.offsetWidth;mzEl.classList.add(c);if(c==='hop'&&av){av.classList.remove('hop');void av.offsetWidth;av.classList.add('hop')}if(ms)setTimeout(()=>{mzEl.classList.remove(c);if(av)av.classList.remove('hop')},ms)}
 let bubT,lastBub=0;
 function mzSay(m,ms){if(asp.classList.contains('on'))return;mzb.innerHTML=m;mzb.classList.add('on');lastBub=Date.now();clearTimeout(bubT);bubT=setTimeout(()=>mzb.classList.remove('on'),ms||3800)}
 mzb.onclick=()=>asOpen(true);
@@ -1204,7 +1207,7 @@ mzb.onclick=()=>asOpen(true);
 let prevN=null,prevFree=null;
 window.mzSync=function(T){const n=T.n,l=n===0?0:n<4?1:n<10?2:3;$$('.mzs').forEach(s=>s.setAttribute('data-l',l));$('mzn').textContent=n;$('mzn').classList.toggle('on',n>0);
  const free=T.all>=FREE_MIN;
- if(prevN!==null&&n>prevN){mzState('hop',600);if(free&&!prevFree)mzSay('🎉 ¡Ya tienes <b>delivery gratis</b>!',4200);else if(Date.now()-lastBub>2500)mzSay(pick(['¡Pa’ la bolsa! 🛍️','¡Qué molleja! 🔥','¡Buena elección, primo! 👌','¡Eso va! 🛒']),2200)}
+ if(prevN!==null&&n>prevN){mzState('hop',780);if(free&&!prevFree)mzSay('🎉 ¡Ya tienes <b>delivery gratis</b>!',4200);else if(Date.now()-lastBub>2500)mzSay(pick(['¡Pa’ la bolsa! 🛍️','¡Qué molleja! 🔥','¡Buena elección, primo! 👌','¡Eso va! 🛒']),2200)}
  prevN=n;prevFree=free};
 /* ojos que te siguen */
 if(fine&&!RM){let pr=0,px=0,py=0;addEventListener('pointermove',e=>{px=e.clientX;py=e.clientY;if(!pr)pr=requestAnimationFrame(()=>{pr=0;if(mzEl.classList.contains('think'))return;const r=mzEl.getBoundingClientRect();if(!r.width)return;const dx=px-(r.left+r.width/2),dy=py-(r.top+r.height*.45),d=Math.hypot(dx,dy)||1,k=Math.min(1,d/260)*3.2;mzEl.querySelector('.mz-pu').style.transform=`translate(${dx/d*k}px,${dy/d*k}px)`})},{passive:true})}
@@ -1227,24 +1230,26 @@ function say(list,done){busy=true;mzEl.classList.add('talk');$$('.asav .mzs').fo
  (function next(){if(i>=list.length){busy=false;mzEl.classList.remove('talk');$$('.asav .mzs').forEach(s=>s.classList.remove('talk'));done&&done();return}
   const t=document.createElement('div');t.className='adots';t.innerHTML='<i></i><i></i><i></i>';asm.appendChild(t);asm.scrollTop=asm.scrollHeight;
   const m=list[i++];setTimeout(()=>{t.remove();add(m,'bot');setTimeout(next,RM?0:200)},RM?0:Math.min(950,330+plain(m).length*8))})()}
-function chips(list){asc.innerHTML='';list.forEach(([label,fn])=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=()=>{if(busy)return;add(esc(label),'me');fn()};asc.appendChild(b)})}
-const HOME=()=>chips([['🧺 Ármame el mercado',arma],['🏷️ Ofertas',ofertas],['🛒 Mi pedido',pedido],['🕗 Horario',horario],['🛵 Delivery',delivery],['💬 Hablar con alguien',humano]]);
+function chips(list){asc.innerHTML='';list.forEach(([label,fn])=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=()=>{if(busy)return;add(esc(label),'me');fn()};asc.appendChild(b)});asm.scrollTop=asm.scrollHeight}
+const HOME=()=>chips([['💵 Tengo un presupuesto',presupuesto],['🧺 Mercado recomendado',arma],['🔥 Ver ofertas',ofertas],['🛒 Mi pedido',pedido],['🕗 Horario',horario],['🛵 Delivery',delivery],['💬 Hablar con alguien',humano]]);
 const MENU_TILES=[['arma','Ármame el mercado','basket'],['buscar','Buscar un producto','spark'],['ofertas','Ofertas','tag'],['mercados','Mercados completos','store'],['horario','Horario y ubicación','clock'],['delivery','Delivery y pick up','truck'],['pago','Formas de pago','card'],['mayor','Compras al mayor','home']];
 const menuHTML=()=>`<div class="ag2">${MENU_TILES.map(([a,t,i])=>`<button type="button" data-act="${a}">${ic(i)}<span>${t}</span></button>`).join('')}</div>`;
-function hello(){say([`¡Épale, primo! 👋 Soy <b>Maracuchito</b>, el asistente de El Maracucho.`,`Te armo el mercado, te busco productos y te digo todo: horario, delivery, pagos… Escríbeme lo que necesites o toca una opción 👇`,menuHTML()],HOME)}
+function hello(){say([`¡Épale, primo! 👋 Soy <b>Maracuchito</b>, el asistente de El Maracucho.`,`¿Qué te hace falta pal almuerzo hoy? Te armo el mercado, te busco productos y te digo todo: horario, delivery, pagos.`,`Facilito: me decís qué necesitáis y te lo llevo volando a tu casa.`,menuHTML()],HOME)}
 /* tarjetas dentro del chat */
 const mini=p=>`<div class="mpc">${p.img?`<img src="${IM[p.img]}" alt="" width="44" height="44">`:`<span class="me2" style="--c:${CAT[p.c].c}">${p.e}</span>`}<div><b>${esc(p.n)}</b><small>${esc(p.s)} · <em${p.o?' class="of"':''}>${money(p.p)}</em>${p.o?` <s>${money(p.o)}</s>`:''}</small></div><span class="mct" data-ctl="${p.id}">${ctl(p.id)}</span></div>`;
 const KIMG={basico:'h_tod',super:'h_dor',mega:'h_pan'};
 const kitCard=k=>`<div class="mkc"><div class="mkh"><img src="${$(KIMG[k.id]).src}" alt=""><div><small>Mercado</small><b>${k.n}</b></div><span>−${Math.round(k.d*100)}%</span></div><p>${k.who} · ${k.dur} · ${k.units} productos</p><div class="mkp"><b>${money(k.price)}</b><s>${money(k.orig)}</s></div><button type="button" class="mkb" data-add-kit="${k.id}">Agregar mercado ${k.n}</button></div>`;
+const ESSENTIALS=['pan','arroz','pasta','cafe'];
+const CANASTA_TOTAL=ESSENTIALS.reduce((a,id)=>a+PM[id].p,0);
 asm.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a){setQty(a.dataset.id,a.dataset.a==='+'?1:-1,a);return}
- const k=e.target.closest('[data-add-kit]');if(k){setKit(k.dataset.addKit,1,k);return}
+ const k=e.target.closest('[data-add-kit]');if(k){const kid=k.dataset.addKit;setKit(kid,1,k);if(!busy)say([`¡Qué molleja de mercado! Ya te guardé el <b>Mercado ${KM[kid].n}</b> en la bolsa 🛍️`,`Llevas <b>${money(tot().all)}</b> en total.`],()=>chips([['📲 Enviar por WhatsApp',ACT.enviar],['🛒 Ver mi pedido',pedido],['🔎 Seguir comprando',ACT.buscar]]));return}
  const g=e.target.closest('[data-act]');if(g&&!busy){const f=ACT[g.dataset.act];if(f){add(esc(g.textContent.trim()),'me');f()}}});
 /* acciones */
 const ACT={arma:()=>arma(),buscar:()=>say(['Dime qué buscas y te lo encuentro 🔎 Por ejemplo: <i>harina</i>, <i>café</i>, <i>refresco</i> o <i>agrega 2 arroz</i>.'],()=>{chips([['Harina',()=>buscar('harina')],['Café',()=>buscar('cafe')],['Limpieza',()=>buscar('limpieza')],['Menú',home]]);asq.focus({preventScroll:true})}),
- ofertas:()=>ofertas(),mercados:()=>mercados(),horario:()=>horario(),delivery:()=>delivery(),pago:()=>pago(),mayor:()=>mayor(),pedido:()=>pedido(),
+ ofertas:()=>ofertas(),mercados:()=>mercados(),horario:()=>horario(),delivery:()=>delivery(),pago:()=>pago(),mayor:()=>mayor(),pedido:()=>pedido(),canasta:()=>addCanasta(ESSENTIALS),
  abrir:()=>{asOpen(false);openDr()},enviar:()=>{asOpen(false);openDr();if(tot().n){S.step=2;drawDr()}},ver:()=>{asOpen(false);goShop()}};
 function home(){say(['¿En qué más te ayudo? 😊',menuHTML()],HOME)}
-function ofertas(){const l=CATALOG.filter(p=>p.o).sort((a,b)=>disc(b)-disc(a));say(['🏷️ Estas son las <b>ofertas de la semana</b> (precios de demostración):',l.slice(0,6).map(mini).join('')+`<button type="button" class="alink" data-act="verof">Ver las ${l.length} ofertas en la página →</button>`],()=>chips([['🧺 Ármame el mercado',arma],['🛒 Mi pedido',pedido],['Menú',home]]))}
+function ofertas(){const l=CATALOG.filter(p=>p.o).sort((a,b)=>disc(b)-disc(a));say(['🔥 Te tengo la promo del día, mirá esto 👇','Estas son las <b>ofertas de la semana</b> (precios de demostración):',l.slice(0,6).map(mini).join('')+`<button type="button" class="alink" data-act="verof">Ver las ${l.length} ofertas en la página →</button>`],()=>chips([['🧺 Mercado recomendado',arma],['🛒 Mi pedido',pedido],['Menú',home]]))}
 ACT.verof=()=>{asOpen(false);setCat('oferta',true)};
 function mercados(){say(['Tenemos 3 <b>mercados completos</b>, ya armados y con descuento 👇',KITS.map(kitCard).join(''),'¿No sabes cuál? Te ayudo a elegir 😉'],()=>chips([['🧺 Ayúdame a elegir',arma],['🛒 Mi pedido',pedido],['Menú',home]]))}
 function horario(){const o=openNow();say([`🕗 Abrimos <b>lunes a domingo, de 8:00 AM a 9:00 PM</b>. Ahora mismo estamos ${o?'<b>abiertos</b> ✅':'<b>cerrados</b> (abrimos a las 8:00 AM), pero puedes dejar tu pedido'}.`,'📍 La dirección exacta te la enviamos por WhatsApp. También nos consigues en Instagram <a href="https://instagram.com/elmaracucho_ve" target="_blank" rel="noopener">@elmaracucho_ve</a>.'],()=>chips([['🛵 Delivery',delivery],['💬 Pedir la ubicación',ubic],['Menú',home]]))}
@@ -1269,7 +1274,31 @@ function rec(x){ST.x=x;const k=KM[ST.k],ex=x?EXTRA[x][0]:null,et=ex?ex[1].reduce
  ()=>chips([['🛍️ Agregar todo a mi bolsa',addAll],...(ST.k!=='mega'?[['⬆️ Más grande',()=>{ST.k=ST.k==='basico'?'super':'mega';rec(ST.x)}]]:[]),...(ST.k!=='basico'?[['⬇️ Más pequeño',()=>{ST.k=ST.k==='mega'?'super':'basico';rec(ST.x)}]]:[]),['📋 Qué incluye',incluye],['🔄 Empezar de nuevo',arma]]))}
 function incluye(){const k=KM[ST.k];say([`El <b>Mercado ${k.n}</b> trae:<ul class="asl">${k.items.map(([i,q])=>`<li><span>${q}× ${esc(PM[i].n)}</span><small>${esc(PM[i].s)}</small></li>`).join('')}</ul>`],()=>chips([['🛍️ Agregar todo a mi bolsa',addAll],['🔄 Empezar de nuevo',arma]]))}
 function addAll(){C.k[ST.k]=(C.k[ST.k]||0)+1;if(ST.x)EXTRA[ST.x][0][1].forEach(([i,q])=>C.i[i]=(C.i[i]||0)+q);save();paint();
- say(['¡Qué molleja de mercado! 🛍️🔥 Ya está todo en tu bolsa.',`Total: <b>${money(tot().all)}</b>`],()=>chips([['📲 Enviar por WhatsApp',ACT.enviar],['🛒 Ver mi pedido',pedido],['🔎 Seguir comprando',ACT.buscar]]))}
+ say(['¡Qué molleja de mercado armaste! 🛍️ Ya te lo guardé en la bolsa.',`Total: <b>${money(tot().all)}</b>`],()=>chips([['📲 Enviar por WhatsApp',ACT.enviar],['🛒 Ver mi pedido',pedido],['🔎 Seguir comprando',ACT.buscar]]))}
+const btxt=v=>'$'+(Number.isInteger(v)?v:v.toFixed(2).replace('.',','));
+function canasta(v=0){
+ const total=CANASTA_TOTAL,gap=v-total;
+ const line=gap>=0?`Te alcanza y te sobran <b>${usd(gap)}</b> para completar con lo que quieras.`:`Con ${btxt(v)} te faltan <b>${usd(-gap)}</b>, pero esto es lo mínimo que te recomiendo.`;
+ mzState('wave',1800);
+ say([`¡Épale, primo! Con ${btxt(v)} te armo la canasta esencial pa' la semana, mirá 👇`,ESSENTIALS.map(id=>mini(PM[id])).join(''),`<div class="ast"><span>Subtotal</span><b>${usd(total)}</b></div><small class="asv">≈ ${alt(total)}</small><p style="margin:6px 2px 8px">${line}</p><button type="button" class="mkb" data-act="canasta">Agregar canasta a mi bolsa</button>`],()=>chips([['💵 Otro presupuesto',presupuesto],['🛒 Mi pedido',pedido],['Menú',home]]));
+}
+function bRec(v){
+ const b=btxt(v);
+ if(v<15)return canasta(v);
+ const k=v<29?KM.basico:v<46?KM.super:KM.mega;
+ const gap=k.price-v;
+ const line=gap>0?`Con ${b} te faltan <b>${usd(gap)}</b> para el <b>Mercado ${k.n}</b>. Si no quieres estirar, te armo la canasta esencial por <b>${usd(CANASTA_TOTAL)}</b>.`:`Con ${b} te alcanza y te sobran <b>${usd(-gap)}</b>.`;
+ mzState('wave',1800);
+ say([`¡Épale, primo! Para ${b} te tengo el <b>Mercado ${k.n}</b> (${k.who}, ${k.dur}), mira 👇`,kitCard(k),line],()=>chips([['🧺 Canasta esencial',()=>canasta(v)],['💵 Otro presupuesto',presupuesto],['🛒 Mi pedido',pedido]]));
+}
+function presupuesto(){
+ say(['¡Épale, primo! 💵 ¿Cuánto tienes pensado gastar?','Dime un monto en dólares y te armo algo que te rinda, sin inventos.'],()=>chips([['$10',()=>bRec(10)],['$20',()=>bRec(20)],['$35',()=>bRec(35)],['$50',()=>bRec(50)],['Menú',home]]));
+}
+function addCanasta(ids){
+ ids.forEach(id=>{if(PM[id])C.i[id]=(C.i[id]||0)+1});
+ save();paint();
+ say(['¡Qué molleja de mercado armaste! 🛍️ Ya te guardé la canasta en la bolsa.',`Total: <b>${money(tot().all)}</b>`],()=>chips([['📲 Enviar por WhatsApp',ACT.enviar],['🛒 Ver mi pedido',pedido],['🔎 Seguir comprando',ACT.buscar]]));
+}
 /* búsqueda de productos y texto libre */
 const SYN={coca:'refresco',cola:'refresco',gaseosa:'refresco',soda:'refresco',arepa:'harina pan',arepas:'harina pan',maiz:'harina pan',toilet:'papel',higienico:'papel',lavaplatos:'axion',lavaplato:'axion',espagueti:'pasta',espaguetis:'pasta',fideos:'pasta',chuche:'snacks',chuches:'snacks',golosinas:'snacks',dulces:'snacks',chucherias:'snacks',chocolate:'choco',chocolates:'choco',cheddar:'rikesa',diablito:'diablitos',jabones:'jabon',detergentes:'detergente',mayo:'mayonesa',salsa:'salsa',viveres:'despensa',charcuteria:'lacteos',fiambre:'jamon'};
 const STOP=new Set('quiero queria tienen tiene tienes hay busco buscando necesito dame dime precio precios cuanto cuesta cuestan vale valen el la los las de del un una unos unas para me mi por favor algo venden vendes que con y o a al es son en ese esa este esta agrega agregar agregame añade anade pon ponme mete meteme suma sumame comprar compra hola gracias si no porfa pls'.split(' '));
@@ -1285,6 +1314,12 @@ function respond(t){const n=norm(t).replace(/[¿?¡!.,;:]/g,' ').replace(/\s+/g,
  if(has('agrega','añade','anade','pon ','ponme','mete','suma','quiero ')){const m=n.match(/\b(\d{1,2})\b/)||w.map(x=>NUM[x]?[0,NUM[x]]:null).find(Boolean);const l=findP(n);const k=KITS.find(k=>has(norm(k.n))&&has('mercado'));
   if(k&&has('agrega','añade','anade','ponme','mete','suma')){setKit(k.id,1);say([`¡Listo! Agregué el <b>Mercado ${k.n}</b> a tu bolsa 🛍️`],()=>chips([['🛒 Mi pedido',pedido],['Menú',home]]));return}
   if(l.length===1||(l.length&&m&&has('agrega','añade','anade','ponme','mete','suma'))){const p=l[0],q=Math.max(1,Math.min(20,m?+m[1]:1));C.i[p.id]=(C.i[p.id]||0)+q;save();paint();say([`¡Hecho! Agregué <b>${q}× ${esc(p.n)}</b> 🛍️`,mini(p)],()=>chips([['🛒 Mi pedido',pedido],['🔎 Buscar otra cosa',ACT.buscar],['Menú',home]]));return}}
+ const bt=norm(t).replace(/[¿?¡!;:]/g,' ').replace(/\s+/g,' ').trim();
+ let bm=bt.match(/(?:presupuesto(?:\s+(?:de|es|son|hasta))?|tengo|con|quiero|dispongo de|cuento con|hasta|maximo|solo)\s*\$?\s*(\d{1,4}(?:[.,]\d{1,2})?)/);
+ if(!bm)bm=bt.match(/(?:^|\s)\$?\s*(\d{1,4}(?:[.,]\d{1,2})?)\s*(?:\$|dolar(?:es)?|usd|verdes?)(?=\s|$)/);
+ if(!bm){const b3=bt.match(/^\s*\$?\s*(\d{1,4}(?:[.,]\d{1,2})?)\s*$/);if(b3){const v=parseFloat(b3[1].replace(',','.'));if(v>0){bRec(v);return}}}
+ if(bm){const v=parseFloat(bm[1].replace(',','.'));if(v>0&&(/(\$|dolar|usd|verde|plata|presupuesto|dispongo|cuento con|hasta|maximo)/.test(bt)||v>=5)){bRec(v);return}}
+ if(has('presupuesto'))return presupuesto();
  if(has('gracias','thank','chevere','fino','excelente','perfecto'))return say(['¡A la orden, primo! 😄 Aquí estoy si necesitas algo más.'],HOME);
  if(w.length<=4&&has('hola','buenas','buen','epale','saludos','hey','que tal','qlq','klk'))return say(['¡Épale! 👋 ¿Qué necesitas hoy?',menuHTML()],HOME);
  if(has('persona','humano','asesor','alguien','llamar','telefono','numero','contacto','whatsapp','wsp','wasap','hablar'))return humano();
